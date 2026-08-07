@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Buyer Messages & Inquiries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --warning-orange: #d97706;
+      --badge-green-bg: #eaf6ec;
+      --badge-green-text: #16a34a;
+      --danger-red: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 70px;
+    }
+
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-title { font-size: 18px; font-weight: 800; color: var(--primary-green); }
+
+    .chat-layout { display: flex; flex: 1; height: calc(100vh - 125px); }
+
+    .inbox-list { width: 340px; border-right: 1px solid var(--border-color); overflow-y: auto; background: #ffffff; }
+
+    @media (max-width: 768px) {
+      .inbox-list { width: 100%; display: block; }
+      .inbox-list.hidden-mobile { display: none !important; }
+    }
+
+    .inbox-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .inbox-item:hover, .inbox-item.active { background: #f1f7f3; }
+    .seller-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: #cbd5e1; }
+    .inbox-info { flex: 1; overflow: hidden; }
+    .seller-name-row { display: flex; justify-content: space-between; margin-bottom: 2px; }
+    .seller-name { font-size: 13px; font-weight: 800; color: var(--text-dark); }
+    .chat-time { font-size: 10px; color: var(--text-muted); }
+    .preview-msg { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .badge-type { font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; }
+    .badge-normal { background: #f1f5f9; color: #475569; }
+    .badge-inquiry { background: var(--badge-green-bg); color: var(--badge-green-text); }
+
+    .chat-window { flex: 1; display: flex; flex-direction: column; background: #f8faf8; }
+
+    @media (max-width: 768px) {
+      .chat-window { display: none; }
+      .chat-window.active-mobile { display: flex !important; }
+    }
+
+    .chat-header {
+      padding: 12px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-user-info { display: flex; align-items: center; gap: 10px; }
+    .back-to-inbox { display: none; background: none; border: none; font-size: 20px; font-weight: 800; color: var(--primary-green); cursor: pointer; padding: 4px 8px; }
+    @media (max-width: 768px) { .back-to-inbox { display: block; } }
+
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+
+    .btn-contact {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dark);
+      transition: background-color 0.2s;
+    }
+    .btn-contact:hover { background: #f1f5f9; }
+    .btn-contact.reserve { background: var(--primary-green); color: #ffffff; border-color: var(--primary-green); }
+    .btn-contact.reserve:hover { background: var(--primary-green-light); }
+    .btn-contact.delete { color: var(--danger-red); border-color: #fee2e2; background: #fef2f2; }
+    .btn-contact.delete:hover { background: #fee2e2; }
+
+    .inquiry-status-bar {
+      padding: 8px 16px;
+      background: #f4f8f5;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .status-select {
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-family: var(--font-family);
+      font-size: 11px;
+      font-weight: 700;
+      background: #fff;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .message-stream { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+
+    .inquiry-card {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 4px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      width: 100%;
+      max-width: 95%;
+      align-self: center;
+    }
+
+    .inquiry-thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; }
+    .inquiry-details { flex: 1; }
+    .inquiry-header-tag { font-size: 10px; font-weight: 800; color: var(--badge-green-text); text-transform: uppercase; margin-bottom: 2px; }
+    .inquiry-prod-name { font-size: 14px; font-weight: 800; }
+    .inquiry-prod-price { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+    .inquiry-status-badge { background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px; }
+
+    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.4; word-wrap: break-word; }
+    .msg-bubble.seller { background: #ffffff; border: 1px solid var(--border-color); align-self: flex-start; border-bottom-left-radius: 2px; }
+    .msg-bubble.buyer { background: var(--primary-green); color: #ffffff; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+    .reservation-card-msg {
+      background: #fff8eb;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 8px 0;
+      color: var(--text-dark);
+      align-self: center;
+      width: 100%;
+      max-width: 90%;
+    }
+    .res-title { font-size: 12px; font-weight: 800; color: var(--warning-orange); margin-bottom: 4px; }
+
+    .chat-input-bar { padding: 12px; background: #ffffff; border-top: 1px solid var(--border-color); display: flex; gap: 8px; }
+    .chat-input { flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid var(--border-color); outline: none; font-family: var(--font-family); font-size: 13px; }
+    .send-btn { background: var(--primary-green); color: #ffffff; border: none; border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s; }
+    .send-btn:hover { background: var(--primary-green-light); }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+    .modal-backdrop.active { opacity: 1; visibility: visible; }
+
+    .app-modal { background: #ffffff; border-radius: 20px; max-width: 420px; width: 100%; padding: 20px; box-shadow: 0 20px 30px rgba(0,0,0,0.15); }
+    .modal-title { font-size: 16px; font-weight: 800; margin-bottom: 12px; }
+    .modal-label { font-size: 11px; font-weight: 700; margin-top: 10px; display: block; }
+    .modal-input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); font-family: var(--font-family); font-size: 13px; margin-top: 4px; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+    .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #64748b; font-size: 10px; font-weight: 600; gap: 3px; }
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <header class="navbar">
+      <span class="navbar-title">Inquiries & Seller Messages</span>
+      <span style="font-size:12px; font-weight:700; color:var(--primary-green);" id="activeCountTag">Active Conversations</span>
+    </header>
+
+    <div class="chat-layout">
+      <aside class="inbox-list" id="inboxList"></aside>
+
+      <main class="chat-window" id="chatWindow">
+        <div class="chat-header">
+          <div class="header-user-info">
+            <button class="back-to-inbox" onclick="showInbox()">&larr;</button>
+            <div>
+              <div class="seller-name" id="activeSellerName">Select a Conversation</div>
+              <div style="font-size:10px; color:var(--accent-green); font-weight:700;" id="activeStatusSub">● Online</div>
+            </div>
+          </div>
+
+          <div class="header-actions" id="headerActionsContainer">
+            <button class="btn-contact" onclick="triggerCall()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Seller
+            </button>
+            <button class="btn-contact reserve" id="reserveActionBtn" onclick="openRequestReserveModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              Request Reservation
+            </button>
+            <!-- Delete Chat Button in Header -->
+            <button class="btn-contact delete" onclick="deleteActiveChat()" title="Delete this conversation">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div class="inquiry-status-bar" id="inquiryStatusBar" style="display: none;">
+          <span>Inquiry Status:</span>
+          <select id="inquiryStatusSelect" class="status-select" onchange="handleStatusChange(this.value)">
+            <option value="Active">Active</option>
+            <option value="Waiting for Seller">Waiting for Seller</option>
+            <option value="Waiting for Consumer">Waiting for Consumer</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="message-stream" id="msgStream"></div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Ask about produce, price, or pickup schedule..." onkeypress="if(event.key==='Enter') sendMessage()">
+          <button class="send-btn" onclick="sendMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="reserveModalBackdrop">
+      <div class="app-modal">
+        <div class="modal-title">Request Produce Reservation</div>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">The system automatically pulls details from this product inquiry to send your request.</p>
+
+        <div style="background:#f1f7f3; border:1px solid #bbf7d0; border-radius:10px; padding:10px; margin-bottom:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--badge-green-text);">Target Product:</div>
+          <div style="font-size:13px; font-weight:800;" id="modalTargetProduct">-</div>
+          <div style="font-size:12px; color:var(--text-muted);" id="modalTargetPrice">-</div>
+        </div>
+
+        <label class="modal-label">Requested Quantity</label>
+        <input type="number" class="modal-input" id="resQty" value="1" placeholder="Enter quantity">
+
+        <label class="modal-label">Preferred Pickup / Delivery Date</label>
+        <input type="date" class="modal-input" id="resDate">
+
+        <div style="display:flex; gap:8px; margin-top:16px;">
+          <button class="btn-contact reserve" style="flex:1; justify-content:center; padding:10px;" onclick="confirmReservationRequest()">Send Request</button>
+          <button class="btn-contact" style="flex:1; justify-content:center; padding:10px;" onclick="closeRequestReserveModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="Register as Buyer.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="Buyer Messages_2.html" class="nav-item active">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Messages</span>
+      </a>
+      <a href="Seller Discoveries.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Discover</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script>
+    let conversations = JSON.parse(localStorage.getItem('darawat_buyer_conversations')) || [
+      {
+        id: 'conv-maria',
+        type: 'normal',
+        name: 'Maria (General Chat)',
+        phone: '0917-111-2233',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+        time: '10:42 AM',
+        preview: 'Hello, good afternoon!',
+        messages: [
+          { type: 'buyer', text: 'Hello, good afternoon!' },
+          { type: 'seller', text: 'Good afternoon! How can I assist you today?' }
+        ]
+      },
+      {
+        id: 'conv-badiang',
+        type: 'product_inquiry',
+        name: "Badiang Greens Farm",
+        phone: '0917-555-0192',
+        avatar: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=150',
+        time: '10:42 AM',
+        preview: 'Good day! Yes, we have freshly harvested stock ready by Sunday evening.',
+        product: {
+          name: 'Fresh Pechay',
+          image: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600',
+          price: '₱25.00 / bundle',
+          status: 'Active Inquiry',
+          date: 'August 10, 2026'
+        },
+        messages: [
+          { type: 'buyer', text: 'Hello! I am looking to inquire about your Pechay listing. Is 50 bundles available for Monday pickup?' },
+          { type: 'seller', text: 'Good day! Yes, we have freshly harvested stock ready by Sunday evening.' }
+        ]
+      }
+    ];
+
+    let activeConvId = conversations.length > 0 ? conversations[0].id : null;
+
+    const newInquiry = JSON.parse(localStorage.getItem('active_darawat_inquiry'));
+    if (newInquiry) {
+      localStorage.removeItem('active_darawat_inquiry');
+      let existing = conversations.find(c => c.name === newInquiry.sellerName && c.type === newInquiry.type);
+      if (existing) {
+        existing.preview = newInquiry.initialText;
+        existing.time = 'Just now';
+        if (newInquiry.type === 'product_inquiry') {
+          existing.product = {
+            name: newInquiry.productName,
+            image: newInquiry.image,
+            price: newInquiry.price,
+            status: newInquiry.status,
+            date: newInquiry.date
+          };
+        }
+        existing.messages.push({ type: 'buyer', text: newInquiry.initialText });
+        activeConvId = existing.id;
+      } else {
+        const newConv = {
+          id: newInquiry.id,
+          type: newInquiry.type,
+          name: newInquiry.sellerName,
+          phone: '0919-888-9900',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+          time: 'Just now',
+          preview: newInquiry.initialText,
+          product: newInquiry.type === 'product_inquiry' ? {
+            name: newInquiry.productName,
+            image: newInquiry.image,
+            price: newInquiry.price,
+            status: newInquiry.status,
+            date: newInquiry.date
+          } : null,
+          messages: [
+            { type: 'buyer', text: newInquiry.initialText }
+          ]
+        };
+        conversations.unshift(newConv);
+        activeConvId = newConv.id;
+      }
+      saveAndRender();
+    }
+
+    function saveAndRender() {
+      localStorage.setItem('darawat_buyer_conversations', JSON.stringify(conversations));
+      renderInboxList();
+      renderActiveChat();
+    }
+
+    function renderInboxList() {
+      const list = document.getElementById('inboxList');
+      list.innerHTML = '';
+      document.getElementById('activeCountTag').innerText = `${conversations.length} Active Conversations`;
+
+      if (conversations.length === 0) {
+        list.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-muted); font-size: 13px;">No active conversations.</div>`;
+        return;
+      }
+
+      conversations.forEach(c => {
+        const item = document.createElement('div');
+        item.className = `inbox-item ${c.id === activeConvId ? 'active' : ''}`;
+        item.onclick = (e) => {
+          // Prevent selecting if delete icon was clicked directly
+          if(e.target.closest('.delete-icon-btn')) return;
+          activeConvId = c.id;
+          renderInboxList();
+          renderActiveChat();
+          if (window.innerWidth <= 768) {
+            document.getElementById('inboxList').classList.add('hidden-mobile');
+            document.getElementById('chatWindow').classList.add('active-mobile');
+          }
+        };
+
+        const badgeHTML = c.type === 'product_inquiry' 
+          ? `<span class="badge-type badge-inquiry">🌱 Product Inquiry</span>` 
+          : `<span class="badge-type badge-normal">💬 Normal Message</span>`;
+
+        item.innerHTML = `
+          <img src="${c.avatar}" class="seller-avatar" alt="Avatar">
+          <div class="inbox-info">
+            <div class="seller-name-row">
+              <span class="seller-name">${c.name}</span>
+              <span class="chat-time">${c.time}</span>
+            </div>
+            <div class="preview-msg">${c.preview}</div>
+            ${badgeHTML}
+          </div>
+          <button class="delete-icon-btn" onclick="deleteChatById('${c.id}', event)" title="Delete Chat" style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:4px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function renderActiveChat() {
+      const current = conversations.find(c => c.id === activeConvId);
+      const stream = document.getElementById('msgStream');
+      const statusBar = document.getElementById('inquiryStatusBar');
+      const reserveBtn = document.getElementById('reserveActionBtn');
+      const headerActions = document.getElementById('headerActionsContainer');
+
+      if (!current) {
+        document.getElementById('activeSellerName').innerText = 'No Conversation Selected';
+        stream.innerHTML = `<div style="text-align: center; color: var(--text-muted); margin-top: 40px; font-size: 13px;">Please select or start a new conversation.</div>`;
+        statusBar.style.display = 'none';
+        if(reserveBtn) reserveBtn.style.display = 'none';
+        return;
+      }
+
+      document.getElementById('activeSellerName').innerText = current.name;
+      stream.innerHTML = '';
+
+      if (current.type === 'product_inquiry' && current.product) {
+        statusBar.style.display = 'flex';
+        document.getElementById('inquiryStatusSelect').value = current.product.status;
+        if(reserveBtn) reserveBtn.style.display = 'flex';
+
+        const card = document.createElement('div');
+        card.className = 'inquiry-card';
+        card.innerHTML = `
+          <img src="${current.product.image}" class="inquiry-thumb" alt="Product">
+          <div class="inquiry-details">
+            <div class="inquiry-header-tag">Product Inquiry</div>
+            <div class="inquiry-prod-name">🌱 ${current.product.name}</div>
+            <div class="inquiry-prod-price">${current.product.price}</div>
+            <span class="inquiry-status-badge">Status: ${current.product.status}</span>
+          </div>
+        `;
+        stream.appendChild(card);
+      } else {
+        statusBar.style.display = 'none';
+        if(reserveBtn) reserveBtn.style.display = 'none';
+      }
+
+      current.messages.forEach(msg => {
+        if (msg.type === 'buyer' || msg.type === 'seller') {
+          const div = document.createElement('div');
+          div.className = `msg-bubble ${msg.type}`;
+          div.innerText = msg.text;
+          stream.appendChild(div);
+        } else if (msg.type === 'reservation') {
+          const card = document.createElement('div');
+          card.className = 'reservation-card-msg';
+          card.innerHTML = `
+            <div class="res-title">📌 ${msg.status}</div>
+            <div style="font-size:12px; font-weight:700;">${msg.item}</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Agreed Price: ${msg.price}</div>
+            <div style="font-size:11px; color:var(--text-muted);">Requested Date: ${msg.date}</div>
+          `;
+          stream.appendChild(card);
+        }
+      });
+
+      stream.scrollTop = stream.scrollHeight;
+    }
+
+    function showInbox() {
+      document.getElementById('inboxList').classList.remove('hidden-mobile');
+      document.getElementById('chatWindow').classList.remove('active-mobile');
+    }
+
+    function triggerCall() {
+      const current = conversations.find(c => c.id === activeConvId);
+      if (current) {
+        alert(`Initiating phone call to ${current.name} at ${current.phone}...`);
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (val) {
+        const current = conversations.find(c => c.id === activeConvId);
+        if (current) {
+          current.messages.push({ type: 'buyer', text: val });
+          current.preview = val;
+          current.time = 'Just now';
+          input.value = '';
+          saveAndRender();
+        }
+      }
+    }
+
+    function handleStatusChange(statusVal) {
+      const current = conversations.find(c => c.id === activeConvId);
+      if (current && current.product) {
+        current.product.status = statusVal;
+        saveAndRender();
+        alert(`Inquiry status updated to: ${statusVal}`);
+      }
+    }
+
+    function openRequestReserveModal() {
+      const current = conversations.find(c => c.id === activeConvId);
+      if (!current || !current.product) return;
+
+      document.getElementById('modalTargetProduct').innerText = current.product.name;
+      document.getElementById('modalTargetPrice').innerText = current.product.price;
+      
+      document.getElementById('resDate').value = new Date().toISOString().split('T')[0];
+      document.getElementById('reserveModalBackdrop').classList.add('active');
+    }
+
+    function closeRequestReserveModal() {
+      document.getElementById('reserveModalBackdrop').classList.remove('active');
+    }
+
+    function confirmReservationRequest() {
+      const current = conversations.find(c => c.id === activeConvId);
+      if (!current || !current.product) return;
+
+      const qty = parseFloat(document.getElementById('resQty').value) || 1;
+      const date = document.getElementById('resDate').value;
+      const itemDesc = `${qty} units - ${current.product.name}`;
+
+      current.messages.push({
+        type: 'reservation',
+        status: 'RESERVATION REQUEST SENT',
+        item: itemDesc,
+        price: current.product.price,
+        date: date
+      });
+      current.preview = `Reservation Request: ${itemDesc}`;
+      saveAndRender();
+
+      closeRequestReserveModal();
+      alert(`Reservation request successfully sent for ${current.product.name}!`);
+    }
+
+    // Function to delete active open chat
+    function deleteActiveChat() {
+      if (!activeConvId) return;
+      if (confirm("Are you sure you want to delete this conversation?")) {
+        conversations = conversations.filter(c => c.id !== activeConvId);
+        activeConvId = conversations.length > 0 ? conversations[0].id : null;
+        saveAndRender();
+        if (window.innerWidth <= 768) {
+          showInbox();
+        }
+      }
+    }
+
+    // Function to delete chat directly from inbox list icon
+    function deleteChatById(id, event) {
+      event.stopPropagation();
+      if (confirm("Are you sure you want to delete this conversation?")) {
+        conversations = conversations.filter(c => c.id !== id);
+        if (activeConvId === id) {
+          activeConvId = conversations.length > 0 ? conversations[0].id : null;
+        }
+        saveAndRender();
+      }
+    }
+
+    window.onload = function() {
+      saveAndRender();
+    };
+  </script>
+
+</body>
+</html>

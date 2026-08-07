@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Product Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --heart-red: #ef4444;
+      --bookmark-blue: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 110px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    /* Product Detail Card Container */
+    .product-detail-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-top: 10px;
+    }
+
+    .product-hero-wrapper {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: #f1f5f9;
+      cursor: zoom-in;
+    }
+
+    @media (min-width: 768px) {
+      .product-hero-wrapper {
+        height: 380px;
+      }
+    }
+
+    .product-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Image Thumbnails Gallery */
+    .product-thumbnails-container {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 0 16px;
+      background: #ffffff;
+      overflow-x: auto;
+    }
+
+    .thumb-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.7;
+      transition: all 0.2s;
+    }
+
+    .thumb-img:hover {
+      opacity: 1;
+    }
+
+    .thumb-img.active {
+      border-color: var(--primary-green);
+      opacity: 1;
+    }
+
+    /* Fullscreen Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      padding: 20px;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 36px;
+      cursor: pointer;
+      z-index: 1010;
+    }
+
+    /* Floating Actions */
+    .product-top-actions {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .floating-action-btn {
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+    }
+
+    .floating-action-btn:hover {
+      background: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .floating-action-btn.fav-btn.active svg {
+      fill: var(--heart-red);
+      stroke: var(--heart-red);
+    }
+
+    .floating-action-btn.save-seller-btn.active svg {
+      fill: var(--bookmark-blue);
+      stroke: var(--bookmark-blue);
+    }
+
+    .product-details-body {
+      padding: 24px;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #eef8f0;
+      color: #16a34a;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .product-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .product-seller-info {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* View Shop Link Button */
+    .view-shop-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f7f3;
+      color: var(--primary-green);
+      border: 1px solid #d2ebd6;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: background-color 0.2s;
+    }
+
+    .view-shop-btn:hover {
+      background-color: #e2f0e6;
+    }
+
+    /* Detail Grid Layout */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .detail-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .detail-card {
+      background: #f8faf8;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .detail-card-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .detail-card-value {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .price-value {
+      color: var(--primary-green);
+      font-size: 16px;
+    }
+
+    .expiry-value {
+      color: var(--danger-red);
+    }
+
+    /* Description Section */
+    .description-box {
+      background: #f8faf8;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      font-size: 13.5px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .description-title {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Fulfillment Section */
+    .fulfillment-section {
+      background: #f4f8f5;
+      border: 1px solid #d2ebd6;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .fulfillment-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary-green);
+    }
+
+    .fulfillment-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .fulfillment-pill {
+      background: #ffffff;
+      color: var(--primary-green);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #bce3c2;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Fixed Footer Styling */
+    .product-detail-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      padding: 14px 16px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      z-index: 200;
+    }
+
+    .footer-actions-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.2s;
+    }
+
+    .btn-action.primary {
+      background: var(--primary-green);
+      color: #fff;
+    }
+
+    .btn-action.primary:hover {
+      background: var(--primary-green-light);
+    }
+
+    .btn-action.secondary {
+      background: #f1f5f9;
+      color: var(--text-dark);
+    }
+
+    .btn-action.secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-action.save-seller-action {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    .btn-action.save-seller-action.saved {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    @media (max-width: 767px) {
+      .product-detail-footer {
+        padding: 10px 12px;
+      }
+      .footer-actions-container {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .btn-action {
+        width: 100%;
+        padding: 13px;
+        font-size: 14px;
+      }
+    }
+
+    /* Back Link */
+    .back-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .back-nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal Styles */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      padding: 16px;
+    }
+    .modal-backdrop.active { opacity: 1; visibility: visible; }
+    .app-modal { background: #ffffff; border-radius: 20px; max-width: 420px; width: 100%; padding: 20px; box-shadow: 0 20px 30px rgba(0,0,0,0.15); }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Fullscreen View">
+  </div>
+
+  <!-- Message Type Selection Modal -->
+  <div class="modal-backdrop" id="messageOptionsModal">
+    <div class="app-modal">
+      <div style="font-size: 16px; font-weight: 800; color: var(--primary-green); margin-bottom: 8px;">Contact Seller</div>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">
+        How would you like to inquire about this product?
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn-action secondary" style="justify-content: flex-start; padding: 14px;" onclick="proceedToChat('normal')">
+          <span style="font-size: 16px; margin-right: 8px;">💬</span> 
+          Normal Chat (Ask Details)
+        </button>
+        
+        <button class="btn-action primary" style="justify-content: flex-start; padding: 14px;" onclick="proceedToChat('reservation')">
+          <span style="font-size: 16px; margin-right: 8px;">📌</span> 
+          Request Reservation
+        </button>
+      </div>
+
+      <button style="background:none; border:none; color:var(--text-muted); font-size:12px; font-weight:700; width:100%; margin-top:16px; cursor:pointer;" onclick="closeMessageOptionsModal()">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <a href="Register as Buyer.html" class="logo-container">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      
+      <a href="Register as Buyer.html" class="back-nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home Feed
+      </a>
+
+      <!-- Product Detail View Card -->
+      <div class="product-detail-card">
+        
+        <!-- Main Hero Image (Click to Fullscreen) -->
+        <div class="product-hero-wrapper" onclick="openLightbox(document.getElementById('detailProductImg').src)">
+          <img id="detailProductImg" src="" alt="Product Image" class="product-hero-img">
+          
+          <div class="product-top-actions" onclick="event.stopPropagation()">
+            <button class="floating-action-btn fav-btn" id="detailFavBtn" title="Favorite Product" onclick="toggleDetailFavorite()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="floating-action-btn save-seller-btn" id="detailSaveSellerBtn" title="Save Producer" onclick="toggleDetailSaveSeller()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Thumbnail Gallery Switcher -->
+        <div class="product-thumbnails-container" id="productThumbnails">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="product-details-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <span class="verified-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                VERIFIED SELLER
+              </span>
+              <h1 class="product-title" id="detailProductName">Loading Product...</h1>
+              <div class="product-seller-info" id="detailSellerInfo">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span id="detailLocationText">Fetching location...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- View Seller Shop Button -->
+          <button class="view-shop-btn" id="viewShopBtn" onclick="viewSellerShop()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            View Seller Shop Profile
+          </button>
+
+          <!-- Product Attributes Grid -->
+          <div class="detail-grid">
+            <div class="detail-card">
+              <div class="detail-card-label">Price</div>
+              <div class="detail-card-value price-value" id="detailPrice">₱ 0.00</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Unit</div>
+              <div class="detail-card-value" id="detailUnit">-</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Category</div>
+              <div class="detail-card-value" id="detailCategory">-</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-card-label">Available Stock</div>
+              <div class="detail-card-value" id="detailQuantity">-</div>
+            </div>
+          </div>
+
+          <div class="detail-card" style="margin-bottom: 20px;">
+            <div class="detail-card-label">Expiry / Best Before Date</div>
+            <div class="detail-card-value expiry-value" id="detailExpiry">-</div>
+          </div>
+
+          <!-- Description Box -->
+          <div class="description-box">
+            <span class="description-title">Product Description</span>
+            <p id="detailDescription" style="color:var(--text-dark);">No description available.</p>
+          </div>
+
+          <!-- Fulfillment & Delivery Options (Highlighted Section) -->
+          <div class="fulfillment-section">
+            <span class="fulfillment-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              Available Fulfillment & Delivery Options
+            </span>
+            <div class="fulfillment-pills" id="detailFulfillment">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Fixed Footer Action Bar -->
+    <footer class="product-detail-footer">
+      <div class="footer-actions-container">
+        <button class="btn-action save-seller-action" id="detailSaveSellerBarBtn" onclick="toggleDetailSaveSeller()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span id="saveSellerBarText">Save Producer</span>
+        </button>
+
+        <button class="btn-action primary" onclick="openMessageOptionsModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Inquire / Message
+        </button>
+
+        <button class="btn-action secondary" id="detailCallBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Seller
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    let currentProductData = null;
+    const isFavorite = new Set();
+    const isSavedSeller = new Set();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const storedData = sessionStorage.getItem('selectedProductDetail');
+      if (storedData) {
+        currentProductData = JSON.parse(storedData);
+        populateProductDetails(currentProductData);
+      } else {
+        currentProductData = {
+          id: 'prod-fallback',
+          productName: 'Fresh Organically Grown Pechay',
+          sellerName: 'Badiang Greens Farm',
+          sellerId: 'seller-badiang',
+          category: 'Leafy Vegetables',
+          unit: 'per bundle',
+          price: '₱ 25.00',
+          quantity: '50 bundles',
+          expiryDate: 'August 10, 2026',
+          description: 'Harvested fresh early morning. Grown using natural organic fertilizer without chemical pesticides.',
+          fulfillment: ['Farm Pickup', 'Local Delivery'],
+          location: 'Badiang, San Jose de Buenavista',
+          distance: '0.8 km away',
+          phone: '0917-555-0192',
+          images: [
+            'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=800',
+            'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=800',
+            'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800'
+          ]
+        };
+        populateProductDetails(currentProductData);
+      }
+    });
+
+    function populateProductDetails(data) {
+      let imgList = data.images && data.images.length > 0 ? data.images : [data.image || 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=800'];
+
+      document.getElementById('detailProductImg').src = imgList[0];
+      
+      const thumbContainer = document.getElementById('productThumbnails');
+      thumbContainer.innerHTML = '';
+      imgList.forEach((imgUrl, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgUrl;
+        thumb.className = `thumb-img ${index === 0 ? 'active' : ''}`;
+        thumb.onclick = () => {
+          document.getElementById('detailProductImg').src = imgUrl;
+          document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        };
+        thumbContainer.appendChild(thumb);
+      });
+
+      document.getElementById('detailProductName').innerText = data.productName;
+      document.getElementById('detailLocationText').innerText = `${data.sellerName} • ${data.location} (${data.distance})`;
+      document.getElementById('detailPrice').innerText = data.price;
+      document.getElementById('detailUnit').innerText = data.unit;
+      document.getElementById('detailCategory').innerText = data.category;
+      document.getElementById('detailQuantity').innerText = data.quantity;
+      document.getElementById('detailExpiry').innerText = data.expiryDate;
+      document.getElementById('detailDescription').innerText = data.description;
+
+      const pillsContainer = document.getElementById('detailFulfillment');
+      pillsContainer.innerHTML = '';
+      data.fulfillment.forEach(opt => {
+        const span = document.createElement('span');
+        span.className = 'fulfillment-pill';
+        span.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> ${opt}`;
+        pillsContainer.appendChild(span);
+      });
+
+      document.getElementById('detailCallBtn').onclick = function() {
+        alert(`Calling seller (${data.sellerName}) at ${data.phone}...`);
+      };
+
+      updateStatesUI();
+    }
+
+    // Modal Handlers para sa pagpili ng Normal Chat o Reservation
+    function openMessageOptionsModal() {
+      document.getElementById('messageOptionsModal').classList.add('active');
+    }
+
+    function closeMessageOptionsModal() {
+      document.getElementById('messageOptionsModal').classList.remove('active');
+    }
+
+    function proceedToChat(type) {
+  if (!currentProductData) return;
+
+  // Kunin ang mga kasalukuyang conversations mula sa localStorage
+  let conversations = JSON.parse(localStorage.getItem('darawat_buyer_conversations')) || [];
+
+  // Hanapin kung may existing chat na kay sellerName
+  let existingConv = conversations.find(c => c.name === currentProductData.sellerName);
+
+  const initialText = type === 'reservation' 
+    ? `Hello, I would like to request a reservation for ${currentProductData.productName}.` 
+    : `Hello, good afternoon! I have a question about ${currentProductData.productName}.`;
+
+  if (existingConv) {
+    // Kung meron na, i-update lang ang uri nito (kung reservation) at idagdag sa messages
+    existingConv.type = type === 'reservation' ? 'product_inquiry' : existingConv.type;
+    existingConv.preview = initialText;
+    existingConv.time = 'Just now';
+    
+    // Kung reservation, i-attach o i-update ang product details sa card
+    if (type === 'reservation') {
+      existingConv.product = {
+        name: currentProductData.productName,
+        image: currentProductData.images ? currentProductData.images[0] : currentProductData.image,
+        price: currentProductData.price,
+        status: 'Active Inquiry',
+        date: new Date().toLocaleDateString()
+      };
+    }
+
+    // Idagdag ang message sa stream
+    existingConv.messages.push({ type: 'buyer', text: initialText });
+
+  } else {
+    // Kung wala pang chat sa seller na ito, gumawa ng bago sa iisang listahan
+    const newConv = {
+      id: 'conv-' + Date.now(),
+      type: type === 'reservation' ? 'product_inquiry' : 'normal',
+      name: currentProductData.sellerName,
+      phone: currentProductData.phone || '0917-555-0192',
+      avatar: currentProductData.images ? currentProductData.images[0] : currentProductData.image,
+      time: 'Just now',
+      preview: initialText,
+      product: type === 'reservation' ? {
+        name: currentProductData.productName,
+        image: currentProductData.images ? currentProductData.images[0] : currentProductData.image,
+        price: currentProductData.price,
+        status: 'Active Inquiry',
+        date: new Date().toLocaleDateString()
+      } : null,
+      messages: [
+        { type: 'buyer', text: initialText }
+      ]
+    };
+    conversations.unshift(newConv);
+  }
+
+  // I-save pabalik sa localStorage para mabasa ng Buyer Messages
+  localStorage.setItem('darawat_buyer_conversations', JSON.stringify(conversations));
+  
+  // Diretsong pumunta sa Buyer Messages page
+  window.location.href = 'Buyer Messages.html';
+}
+
+    // View Seller Shop Handler
+    function viewSellerShop() {
+      if (!currentProductData) return;
+      sessionStorage.setItem('selectedSellerShop', JSON.stringify({
+        sellerId: currentProductData.sellerId,
+        sellerName: currentProductData.sellerName,
+        location: currentProductData.location,
+        distance: currentProductData.distance,
+        phone: currentProductData.phone
+      }));
+      window.location.href = 'Seller Shop.html';
+    }
+
+    function openLightbox(imgSrc) {
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxModal').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    function toggleDetailFavorite() {
+      if (!currentProductData) return;
+      const id = currentProductData.id;
+      if (isFavorite.has(id)) {
+        isFavorite.delete(id);
+        alert(`Removed "${currentProductData.productName}" from your Favorites.`);
+      } else {
+        isFavorite.add(id);
+        alert(`Added "${currentProductData.productName}" to your Favorites!`);
+      }
+      updateStatesUI();
+    }
+
+    function toggleDetailSaveSeller() {
+      if (!currentProductData) return;
+      const sId = currentProductData.sellerId;
+      if (isSavedSeller.has(sId)) {
+        isSavedSeller.delete(sId);
+        alert(`Removed "${currentProductData.sellerName}" from your Saved Producers.`);
+      } else {
+        isSavedSeller.add(sId);
+        alert(`Saved "${currentProductData.sellerName}" to your Saved Producers!`);
+      }
+      updateStatesUI();
+    }
+
+    function updateStatesUI() {
+      if (!currentProductData) return;
+      const favBtn = document.getElementById('detailFavBtn');
+      const saveBtn = document.getElementById('detailSaveSellerBtn');
+      const saveBarBtn = document.getElementById('detailSaveSellerBarBtn');
+      const saveBarText = document.getElementById('saveSellerBarText');
+
+      if (isFavorite.has(currentProductData.id)) {
+        favBtn.classList.add('active');
+      } else {
+        favBtn.classList.remove('active');
+      }
+
+      if (isSavedSeller.has(currentProductData.sellerId)) {
+        saveBtn.classList.add('active');
+        saveBarBtn.classList.add('saved');
+        saveBarText.innerText = 'Producer Saved ✓';
+      } else {
+        saveBtn.classList.remove('active');
+        saveBarBtn.classList.remove('saved');
+        saveBarText.innerText = 'Save Producer';
+      }
+    }
+  </script>
+</body>
+</html>

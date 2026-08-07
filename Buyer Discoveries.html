@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Consumer Discover Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --warning-orange: #d97706;
+      --info-blue: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      background: #fafcf9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 90px;
+    }
+
+    /* Top Navigation Header */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    .header-tag {
+      background: #edf7ee;
+      color: var(--primary-green);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Content Container */
+    .content-area {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Search & Filter Bar */
+    .search-box {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      font-family: var(--font-family);
+      font-size: 14px;
+      color: var(--text-dark);
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-green);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .filter-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+
+    .filter-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip-btn {
+      white-space: nowrap;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip-btn.active, .chip-btn:hover {
+      background: var(--primary-green);
+      color: #ffffff;
+      border-color: var(--primary-green);
+    }
+
+    /* Main Grid Layout */
+    .discover-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-title-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-link {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* 1. Market Price Intelligence Cards */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .price-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .price-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-color: var(--primary-green);
+    }
+
+    .price-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .price-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .price-val-wrapper {
+      text-align: right;
+    }
+
+    .price-value {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .price-trend {
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 2px;
+    }
+
+    .price-trend.up { color: #16a34a; }
+    .price-trend.down { color: var(--danger-red); }
+
+    /* 2. Top Producers Spotlight */
+    .lead-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .lead-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .lead-buyer {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .lead-badge {
+      background: #eef8f0;
+      color: var(--primary-green);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #d2ebd6;
+    }
+
+    .lead-req {
+      font-size: 13px;
+      color: var(--text-dark);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .lead-details-row {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .lead-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-action {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    .btn-action.primary {
+      background: var(--primary-green);
+      color: #ffffff;
+    }
+
+    .btn-action.secondary {
+      background: #f1f5f9;
+      color: var(--text-dark);
+    }
+
+    /* 3. Advisory & Government Announcements */
+    .advisories-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .advisory-card {
+      min-width: 260px;
+      background: linear-gradient(135deg, #064e29 0%, #0d6838 100%);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .advisory-tag {
+      font-size: 10px;
+      font-weight: 800;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .advisory-title {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .advisory-desc {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-bottom: 12px;
+    }
+
+    /* Reusable Interactive Modal Window */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .app-modal {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.active .app-modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-body {
+      font-size: 13px;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-top: 8px;
+      font-family: var(--font-family);
+      font-size: 13px;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+    }
+
+    .nav-item.active {
+      color: var(--primary-green);
+    }
+
+    .nav-item-icon {
+      width: 22px;
+      height: 22px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Header -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+        <button class="header-tag" onclick="openLocationModal()">📍 San Jose de Buenavista</button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search market prices, verified producers, or food advisories..." onkeyup="filterFeed(this.value)">
+      </div>
+
+      <!-- Quick Filter Chips -->
+      <div class="filter-scroll">
+        <button class="chip-btn active" onclick="selectFilter(this, 'all')">All Discoveries</button>
+        <button class="chip-btn" onclick="selectFilter(this, 'price')">Market Price Index</button>
+        <button class="chip-btn" onclick="selectFilter(this, 'producers')">Verified Producers</button>
+        <button class="chip-btn" onclick="selectFilter(this, 'advisory')">Consumer Advisories</button>
+      </div>
+
+      <div class="discover-grid">
+
+        <!-- 1. Market Price Intelligence -->
+        <section id="sectionPrice">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Consumer Market Prices (Today)
+            </h2>
+            <button class="btn-link" onclick="openPriceIndexModal()">Full Price Index</button>
+          </div>
+
+          <div class="price-grid">
+            <div class="price-card feed-item" data-title="Fresh Pechay" onclick="openPriceDetailModal('Fresh Pechay', '₱25.00/bundle', '₱30.00/bundle', '+₱2.00')">
+              <div>
+                <div class="price-item-name">Fresh Pechay</div>
+                <div class="price-sub">Direct Farm Avg: ₱25/bdl</div>
+              </div>
+              <div class="price-val-wrapper">
+                <div class="price-value">₱30.00</div>
+                <div class="price-trend up">▲ +₱2.00</div>
+              </div>
+            </div>
+
+            <div class="price-card feed-item" data-title="Sitaw String Beans" onclick="openPriceDetailModal('Sitaw (String Beans)', '₱40.00/kg', '₱45.00/kg', '+₱5.00')">
+              <div>
+                <div class="price-item-name">Sitaw (String Beans)</div>
+                <div class="price-sub">Direct Farm Avg: ₱40/kg</div>
+              </div>
+              <div class="price-val-wrapper">
+                <div class="price-value">₱45.00</div>
+                <div class="price-trend up">▲ +₱5.00</div>
+              </div>
+            </div>
+
+            <div class="price-card feed-item" data-title="Native Tomatoes" onclick="openPriceDetailModal('Native Tomatoes', '₱55.00/kg', '₱65.00/kg', '-₱3.00')">
+              <div>
+                <div class="price-item-name">Native Tomatoes</div>
+                <div class="price-sub">Direct Farm Avg: ₱55/kg</div>
+              </div>
+              <div class="price-val-wrapper">
+                <div class="price-value">₱65.00</div>
+                <div class="price-trend down">▼ -₱3.00</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Verified Producers Spotlight -->
+        <section id="sectionProducers">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+              Featured Local Producers
+            </h2>
+            <button class="btn-link" onclick="window.location.href='Register as Buyer.html'">View all nearby</button>
+          </div>
+
+          <!-- Producer 1 -->
+          <div class="lead-card feed-item" data-title="Badiang Greens Farm Organic Vegetables">
+            <div class="lead-header">
+              <div class="lead-buyer">Badiang Greens Farm</div>
+              <span class="lead-badge">VERIFIED ORGANIC</span>
+            </div>
+            <div class="lead-req">Specializes in fresh leafy greens, pesticide-free pechay, and kangkong harvested daily.</div>
+            <div class="lead-details-row">
+              <span>📍 Badiang, San Jose de Buenavista (0.8 km)</span>
+              <span>⭐ 4.9 Rating (48 reviews)</span>
+            </div>
+            <div class="lead-actions">
+              <button class="btn-action primary" onclick="window.location.href='Register as Buyer.html'">Browse Farm Listings</button>
+              <button class="btn-action secondary" onclick="openInquireModal('Badiang Greens Farm')">Message Producer</button>
+            </div>
+          </div>
+
+          <!-- Producer 2 -->
+          <div class="lead-card feed-item" data-title="Buenavista Fresh Catch Seafood Fish">
+            <div class="lead-header">
+              <div class="lead-buyer">Buenavista Fresh Catch</div>
+              <span class="lead-badge" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">DAILY MORNING CATCH</span>
+            </div>
+            <div class="lead-req">Providing fresh Bangus, Tilapia, and local seafood straight from coastal fishers.</div>
+            <div class="lead-details-row">
+              <span>📍 Poblacion, San Jose de Buenavista (1.2 km)</span>
+              <span>⭐ 4.8 Rating (36 reviews)</span>
+            </div>
+            <div class="lead-actions">
+              <button class="btn-action primary" onclick="window.location.href='Register as Buyer.html'">Browse Farm Listings</button>
+              <button class="btn-action secondary" onclick="openInquireModal('Buenavista Fresh Catch')">Message Producer</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Agricultural Advisories & News -->
+        <section id="sectionAdvisory">
+          <div class="section-title-wrapper">
+            <h2 class="section-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Consumer Tips & Food Advisories
+            </h2>
+          </div>
+
+          <div class="advisories-scroll">
+            <div class="advisory-card feed-item" data-title="Organic Produce Buying Guide Consumer Tips">
+              <div>
+                <span class="advisory-tag">CONSUMER GUIDE</span>
+                <div class="advisory-title">Benefits of Buying Direct-to-Consumer</div>
+                <div class="advisory-desc">Learn why buying directly from local farmers guarantees fresher produce, lower carbon footprint, and support for rural livelihoods.</div>
+              </div>
+              <button class="btn-action secondary" style="font-size: 11px;" onclick="openAdvisoryModal('Direct-to-Consumer Benefits', '1. Maximum freshness: Produce reaches your table within 24 hours of harvest.<br>2. Fair pricing: Eliminates middleman markups.<br>3. Community impact: 100% of proceeds directly support local farmers in San Jose.')">Read Guide</button>
+            </div>
+
+            <div class="advisory-card feed-item" data-title="Seasonal Harvest Schedule Fresh Vegetables" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+              <div>
+                <span class="advisory-tag">SEASONAL GUIDE</span>
+                <div class="advisory-title">August Harvest Calendar</div>
+                <div class="advisory-desc">Discover which fruits and vegetables are currently at peak harvest season in Western Visayas.</div>
+              </div>
+              <button class="btn-action secondary" style="font-size: 11px;" onclick="openAdvisoryModal('August Harvest Highlights', '• Leafy Greens (Pechay, Kangkong, Mustard)<br>• Ripe Guimaras Mangoes & Bananas<br>• Fresh Root Crops & Local Squash (Kalabasa)')">View Calendar</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Generic Interactive Modal Backdrop -->
+    <div class="modal-backdrop" id="appModalBackdrop" onclick="closeAppModal()">
+      <div class="app-modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title" id="modalTitle">Modal Header</div>
+          <button class="modal-close-btn" onclick="closeAppModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          Modal Content Goes Here...
+        </div>
+      </div>
+    </div>
+
+   <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="Register as Buyer.html" class="nav-item active">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="Buyer Messages.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Messages</span>
+      </a>
+      <a href="Buyer Discoveries.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Discover</span>
+      </a>
+      <a href="Buyer Profile.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script>
+    // Universal Modal Helper
+    function showModal(title, contentHtml) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBody').innerHTML = contentHtml;
+      document.getElementById('appModalBackdrop').classList.add('active');
+    }
+
+    function closeAppModal() {
+      document.getElementById('appModalBackdrop').classList.remove('active');
+    }
+
+    // Filter Chips Interactive Switching
+    function selectFilter(btn, category) {
+      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const pSec = document.getElementById('sectionPrice');
+      const prSec = document.getElementById('sectionProducers');
+      const aSec = document.getElementById('sectionAdvisory');
+
+      if (category === 'all') {
+        pSec.style.display = 'block';
+        prSec.style.display = 'block';
+        aSec.style.display = 'block';
+      } else if (category === 'price') {
+        pSec.style.display = 'block';
+        prSec.style.display = 'none';
+        aSec.style.display = 'none';
+      } else if (category === 'producers') {
+        pSec.style.display = 'none';
+        prSec.style.display = 'block';
+        aSec.style.display = 'none';
+      } else if (category === 'advisory') {
+        pSec.style.display = 'none';
+        prSec.style.display = 'none';
+        aSec.style.display = 'block';
+      }
+    }
+
+    // Real-Time Search Filter
+    function filterFeed(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.feed-item');
+
+      items.forEach(item => {
+        const title = item.getAttribute('data-title').toLowerCase();
+        if (title.includes(q)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal Action Functions
+    function openLocationModal() {
+      showModal('Select Shopping Zone', `
+        <p>Current Zone: <b>San Jose de Buenavista</b></p>
+        <p style="margin-top:10px; color:var(--text-muted); font-size:12px;">Switching your zone updates local food availability and nearby producers.</p>
+        <select class="modal-input">
+          <option>San Jose de Buenavista</option>
+          <option>Sibalom</option>
+          <option>Hamtic</option>
+          <option>Belison</option>
+        </select>
+        <button class="btn-action primary" style="width:100%; margin-top:14px;" onclick="alert('Shopping zone updated!'); closeAppModal();">Update Location Zone</button>
+      `);
+    }
+
+    function openPriceIndexModal() {
+      showModal('Comprehensive Consumer Price Index', `
+        <table style="width:100%; text-align:left; border-collapse:collapse; font-size:12px;">
+          <tr style="border-bottom:1px solid var(--border-color); font-weight:800; color:var(--text-muted);">
+            <th style="padding:6px 0;">CROP</th>
+            <th>DIRECT FARM</th>
+            <th>RETAIL AVG</th>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px 0;">Fresh Pechay</td><td>₱25/bdl</td><td>₱30/bdl</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px 0;">Sitaw</td><td>₱40/kg</td><td>₱45/kg</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px 0;">Native Tomatoes</td><td>₱55/kg</td><td>₱65/kg</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:8px 0;">Eggplant (Talong)</td><td>₱28/kg</td><td>₱35/kg</td></tr>
+          <tr><td style="padding:8px 0;">Kalabasa</td><td>₱20/kg</td><td>₱26/kg</td></tr>
+        </table>
+        <button class="btn-action secondary" style="width:100%; margin-top:14px;" onclick="closeAppModal()">Close Index</button>
+      `);
+    }
+
+    function openPriceDetailModal(crop, farmgate, retail, trend) {
+      showModal(`${crop} Price Overview`, `
+        <p><b>Direct Farm Price:</b> ${farmgate}</p>
+        <p><b>Retail Market Avg:</b> ${retail}</p>
+        <p><b>7-Day Trend:</b> ${trend}</p>
+        <div style="background:#edf7ee; padding:10px; border-radius:8px; margin-top:10px; font-size:12px; color:var(--primary-green);">
+          💡 <b>Buyer Tip:</b> Buying direct from local farms saves you roughly 15% to 20% compared to standard retail markets.
+        </div>
+        <button class="btn-action primary" style="width:100%; margin-top:14px;" onclick="window.location.href='Register as Buyer.html'">Browse Available ${crop}</button>
+      `);
+    }
+
+    function openInquireModal(producerName) {
+      showModal(`Message ${producerName}`, `
+        <p>Send a direct message regarding availability, bundle sizes, or pickup schedules.</p>
+        <textarea class="modal-input" rows="3" placeholder="e.g. Do you have fresh stock available for tomorrow?"></textarea>
+        <button class="btn-action primary" style="width:100%; margin-top:14px;" onclick="alert('Message sent to ${producerName}. Check your Inquiries tab for replies.'); closeAppModal();">Send Inquiry</button>
+      `);
+    }
+
+    function openAdvisoryModal(title, bodyText) {
+      showModal(title, `
+        <div style="line-height:1.5;">${bodyText}</div>
+        <button class="btn-action secondary" style="width:100%; margin-top:14px;" onclick="closeAppModal()">Got it</button>
+      `);
+    }
+  </script>
+
+</body>
+</html>

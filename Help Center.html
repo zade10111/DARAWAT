@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Help Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* Help Center Hero Section */
+    .help-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .help-hero {
+        padding: 56px 40px;
+      }
+    }
+
+    .help-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .help-title { font-size: 36px; }
+    }
+
+    .help-subtitle {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 24px;
+    }
+
+    .help-search-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      max-width: 650px;
+      margin: 0 auto 16px auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .help-search-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-dark);
+    }
+
+    .help-search-btn {
+      background-color: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .help-search-btn:hover {
+      background-color: var(--primary-green-light);
+    }
+
+    .help-suggestions {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.85);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .suggestion-chip {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .suggestion-chip:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Section Headings */
+    .section-container {
+      margin-bottom: 36px;
+    }
+
+    .section-main-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-main-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* 8. User Type Help Filter Cards */
+    .user-type-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    @media (min-width: 768px) {
+      .user-type-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .user-type-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .user-type-card:hover, .user-type-card.active {
+      transform: translateY(-2px);
+      border-color: var(--primary-green);
+      box-shadow: 0 6px 16px rgba(6, 78, 41, 0.08);
+    }
+
+    .user-type-card.active {
+      background: #f0fdf4;
+    }
+
+    .ut-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ut-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ut-list li {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ut-list li::before {
+      content: '•';
+      color: var(--primary-green);
+      font-weight: 800;
+    }
+
+    /* 2. Help Center Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .cat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #eaf6ec;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .cat-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .cat-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* 3. Popular Questions & FAQ Accordion */
+    .faq-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 768px) {
+      .faq-section { padding: 32px; }
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: #f8faf8;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item.active {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .faq-question svg {
+      transition: transform 0.3s ease;
+      stroke: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+      stroke: var(--primary-green);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 16px 16px 16px;
+    }
+
+    /* 4. Quick Guides (Step-by-Step Cards) */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .guides-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .guide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guide-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guide-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .guide-steps-list li {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .guide-steps-list li strong {
+      color: var(--text-dark);
+    }
+
+    .guide-step-num {
+      background: #eaf6ec;
+      color: var(--primary-green);
+      font-weight: 800;
+      font-size: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* 5. Troubleshooting Accordion/Cards */
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .trouble-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .trouble-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .trouble-problem {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--danger-red);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trouble-solutions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .trouble-solutions li {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trouble-solutions li::before {
+      content: '→';
+      color: var(--primary-green);
+      font-weight: 800;
+    }
+
+    /* 6. Report a Problem Form Card */
+    .report-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 768px) {
+      .report-card { padding: 32px; }
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .form-grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .form-label span { color: var(--danger-red); }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-dark);
+      background: #f8faf8;
+      outline: none;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .form-error {
+      font-size: 11px;
+      color: var(--danger-red);
+      display: none;
+    }
+
+    .form-group.error .form-input, 
+    .form-group.error .form-select, 
+    .form-group.error .form-textarea {
+      border-color: var(--danger-red);
+    }
+
+    .form-group.error .form-error { display: block; }
+
+    .success-alert {
+      background: #edf7ee;
+      border: 1px solid #bbf7d0;
+      color: #16a34a;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      display: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      background: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(6, 78, 41, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover { background: var(--primary-green-light); }
+
+    /* 7. Contact Support Bottom Box */
+    .contact-support-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    .cs-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cs-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    .cs-info-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .cs-pill {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cs-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--primary-green);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cs-btn:hover {
+      transform: translateY(-2px);
+      background: #f0fdf4;
+    }
+
+    /* Search No Results State */
+    .no-search-results {
+      text-align: center;
+      padding: 32px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .no-search-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+   <nav class="drawer-menu">
+    <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;"></div> <!-- Spacer -->
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- 1. HELP CENTER HERO -->
+      <section class="help-hero">
+        <h1 class="help-title">How Can We Help You?</h1>
+        <p class="help-subtitle">“Find answers, learn how DARAWAT works, or get help with your account and local product discovery.”</p>
+        
+        <div class="help-search-box">
+          <input type="text" id="helpSearchInput" class="help-search-input" placeholder="Search for a question or topic…" onkeyup="handleHelpSearch()">
+          <button class="help-search-btn" onclick="handleHelpSearch()">Search</button>
+        </div>
+
+        <div class="help-suggestions">
+          <span>Popular searches:</span>
+          <span class="suggestion-chip" onclick="searchByChip('producer')">How do I find a producer?</span>
+          <span class="suggestion-chip" onclick="searchByChip('register')">How do I register?</span>
+          <span class="suggestion-chip" onclick="searchByChip('product')">How do I add a product?</span>
+          <span class="suggestion-chip" onclick="searchByChip('contact')">How do I contact a producer?</span>
+          <span class="suggestion-chip" onclick="searchByChip('payment')">Can I pay online?</span>
+        </div>
+      </section>
+
+      <!-- 8. USER TYPE HELP (Filter Section) -->
+      <section class="section-container">
+        <h2 class="section-main-title">Select Your Role</h2>
+        <p class="section-main-subtitle">Choose your user type to quickly filter relevant help articles and guides.</p>
+
+        <div class="user-type-grid">
+          <div class="user-type-card" id="roleConsumer" onclick="filterByUserType('consumer')">
+            <h3 class="ut-title"><span>👤</span> I'm a Consumer</h3>
+            <ul class="ut-list">
+              <li>Find products</li>
+              <li>Find producers</li>
+              <li>Use the map</li>
+              <li>Contact producers</li>
+              <li>Report problems</li>
+            </ul>
+          </div>
+
+          <div class="user-type-card" id="roleProducer" onclick="filterByUserType('producer')">
+            <h3 class="ut-title"><span>🌾</span> I'm a Producer</h3>
+            <ul class="ut-list">
+              <li>Create my profile</li>
+              <li>Add products</li>
+              <li>Manage products</li>
+              <li>Update information</li>
+              <li>Connect with consumers</li>
+            </ul>
+          </div>
+
+          <div class="user-type-card" id="roleVisitor" onclick="filterByUserType('visitor')">
+            <h3 class="ut-title"><span>🔍</span> I'm a Visitor</h3>
+            <ul class="ut-list">
+              <li>Understand DARAWAT</li>
+              <li>Explore local products</li>
+              <li>Learn how the platform works</li>
+              <li>Contact DARAWAT</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- No Search Results Container -->
+      <div class="no-search-results" id="noSearchResults">
+        <p class="no-search-text">We couldn't find an answer for that search.</p>
+        <a href="Contact Us.html" class="cs-btn" style="display:inline-flex; padding: 8px 16px; font-size: 12.5px;">Contact Support</a>
+      </div>
+
+      <!-- 2. HELP CENTER CATEGORIES -->
+      <section class="section-container searchable-block" data-keywords="account profile login register producer">
+        <h2 class="section-main-title">Help Categories</h2>
+        <p class="section-main-subtitle">Browse support topics by category.</p>
+
+        <div class="categories-grid">
+          <div class="category-card" onclick="scrollToSection('faq-section')">
+            <div class="cat-icon">👤</div>
+            <h3 class="cat-title">Account & Profile</h3>
+            <p class="cat-desc">Help with creating accounts, logging in, updating details, and managing producer profiles.</p>
+          </div>
+
+          <div class="category-card" onclick="scrollToSection('faq-section')">
+            <div class="cat-icon">🔎</div>
+            <h3 class="cat-title">Finding Products</h3>
+            <p class="cat-desc">Learn how to search for goods, browse categories, use filters, and locate nearby producers.</p>
+          </div>
+
+          <div class="category-card" onclick="scrollToSection('guides-section')">
+            <div class="cat-icon">🌾</div>
+            <h3 class="cat-title">For Producers</h3>
+            <p class="cat-desc">Guidance on registering, creating profiles, showcasing products, and managing availability.</p>
+          </div>
+
+          <div class="category-card" onclick="scrollToSection('faq-section')">
+            <div class="cat-icon">🛍️</div>
+            <h3 class="cat-title">For Consumers</h3>
+            <p class="cat-desc">How to discover local products, check locations, contact producers, and arrange transactions.</p>
+          </div>
+
+          <div class="category-card" onclick="scrollToSection('faq-section')">
+            <div class="cat-icon">🗺️</div>
+            <h3 class="cat-title">Maps & Location</h3>
+            <p class="cat-desc">Understanding producer locations, map navigation, and proximity features in San Jose de Buenavista.</p>
+          </div>
+
+          <div class="category-card" onclick="scrollToSection('trouble-section')">
+            <div class="cat-icon">🛠️</div>
+            <h3 class="cat-title">Technical Support</h3>
+            <p class="cat-desc">Troubleshooting website issues, loading errors, search glitches, and reporting platform bugs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. POPULAR QUESTIONS -->
+      <section class="section-container searchable-block" id="faq-section" data-keywords="faq questions pay payment shopping cart delivery producer near me">
+        <div class="faq-section">
+          <h2 class="section-main-title">Popular Questions</h2>
+          <p class="section-main-subtitle">Frequently asked questions about using DARAWAT.</p>
+
+          <div class="faq-list" id="faqListContainer">
+            
+            <div class="faq-item searchable-item" id="faq-1" data-keywords="find local producer search category">
+              <button class="faq-question" onclick="toggleFaq('faq-1')">
+                <span>How do I find a local producer?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Search for a product or browse the available categories. You can then view producer information and location details.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-2" data-keywords="contact producer message inquiry">
+              <button class="faq-question" onclick="toggleFaq('faq-2')">
+                <span>How do I contact a producer?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Open the producer's profile or product information and use the available contact method provided by the producer.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-3" data-keywords="pay payment online gcash maya credit card">
+              <button class="faq-question" onclick="toggleFaq('faq-3')">
+                <span>Can I pay for products through DARAWAT?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                No. DARAWAT does not process online payments. Consumers and producers arrange payment and other transaction details directly with each other.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-4" data-keywords="shopping cart add to cart checkout e-commerce">
+              <button class="faq-question" onclick="toggleFaq('faq-4')">
+                <span>Does DARAWAT have a shopping cart?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                No. DARAWAT is designed for product and producer discovery and direct connection rather than traditional e-commerce checkout.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-5" data-keywords="become a producer register account">
+              <button class="faq-question" onclick="toggleFaq('faq-5')">
+                <span>How do I become a producer?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Register for a producer account and provide the required producer and livelihood information.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-6" data-keywords="add a product dashboard listing">
+              <button class="faq-question" onclick="toggleFaq('faq-6')">
+                <span>How do I add a product?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                After accessing the producer dashboard, use the product management feature to provide the product name, description, category, price, availability, and images where applicable.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-7" data-keywords="edit product information pricing availability">
+              <button class="faq-question" onclick="toggleFaq('faq-7')">
+                <span>Can I edit my product information?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Yes. Producers should be able to update their product information when details such as availability or pricing change.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-8" data-keywords="report incorrect information error bug">
+              <button class="faq-question" onclick="toggleFaq('faq-8')">
+                <span>How can I report incorrect information?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Use the reporting/support option or contact the DARAWAT team and provide the relevant producer, product, or page information.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-9" data-keywords="delivery shipping courier">
+              <button class="faq-question" onclick="toggleFaq('faq-9')">
+                <span>Does DARAWAT provide delivery?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                DARAWAT itself does not automatically provide delivery. Consumers and producers should discuss and arrange pickup or delivery directly.
+              </div>
+            </div>
+
+            <div class="faq-item searchable-item" id="faq-10" data-keywords="producers near my location map barangay">
+              <button class="faq-question" onclick="toggleFaq('faq-10')">
+                <span>Can I find producers near my location?</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer">
+                Yes, when location information is available. DARAWAT's map and location features help users discover producers within or near their community.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. STEP-BY-STEP GUIDES (Quick Guides) -->
+      <section class="section-container searchable-block" id="guides-section" data-keywords="guides how to product producer register contact">
+        <h2 class="section-main-title">Quick Guides</h2>
+        <p class="section-main-subtitle">Step-by-step walkthroughs for common platform actions.</p>
+
+        <div class="guides-grid">
+          
+          <!-- Guide 1 -->
+          <div class="guide-card">
+            <h3 class="guide-title"><span>🔍</span> Guide 1 — Finding a Product</h3>
+            <ul class="guide-steps-list">
+              <li><span class="guide-step-num">1</span><div><strong>Search:</strong> Search for a product in the search bar.</div></li>
+              <li><span class="guide-step-num">2</span><div><strong>Browse:</strong> Explore available results and categories.</div></li>
+              <li><span class="guide-step-num">3</span><div><strong>Select:</strong> Open the specific product or producer listing.</div></li>
+              <li><span class="guide-step-num">4</span><div><strong>Check:</strong> Review product specifications and producer details.</div></li>
+              <li><span class="guide-step-num">5</span><div><strong>Contact:</strong> Contact the producer directly.</div></li>
+            </ul>
+          </div>
+
+          <!-- Guide 2 -->
+          <div class="guide-card">
+            <h3 class="guide-title"><span>🌾</span> Guide 2 — Finding a Producer</h3>
+            <ul class="guide-steps-list">
+              <li><span class="guide-step-num">1</span><div><strong>Open Producer Discovery:</strong> Navigate to producer listings.</div></li>
+              <li><span class="guide-step-num">2</span><div><strong>Search or Filter:</strong> Filter by municipality or category.</div></li>
+              <li><span class="guide-step-num">3</span><div><strong>Select a Producer:</strong> Choose a local producer card.</div></li>
+              <li><span class="guide-step-num">4</span><div><strong>View Their Profile:</strong> Read about their farm or livelihood.</div></li>
+              <li><span class="guide-step-num">5</span><div><strong>Check Their Location:</strong> View barangay and proximity map.</div></li>
+              <li><span class="guide-step-num">6</span><div><strong>Contact the Producer:</strong> Reach out via direct communication.</div></li>
+            </ul>
+          </div>
+
+          <!-- Guide 3 -->
+          <div class="guide-card">
+            <h3 class="guide-title"><span>📝</span> Guide 3 — Registering as a Producer</h3>
+            <ul class="guide-steps-list">
+              <li><span class="guide-step-num">1</span><div><strong>Create an Account:</strong> Sign up for a producer account.</div></li>
+              <li><span class="guide-step-num">2</span><div><strong>Select Producer:</strong> Choose producer role status.</div></li>
+              <li><span class="guide-step-num">3</span><div><strong>Provide Your Information:</strong> Input name, phone, and address.</div></li>
+              <li><span class="guide-step-num">4</span><div><strong>Create Your Producer Profile:</strong> Upload farm/business info.</div></li>
+              <li><span class="guide-step-num">5</span><div><strong>Add Your Products:</strong> List available goods and pricing.</div></li>
+              <li><span class="guide-step-num">6</span><div><strong>Make Discoverable:</strong> Publish listings for community consumers.</div></li>
+            </ul>
+          </div>
+
+          <!-- Guide 4 -->
+          <div class="guide-card">
+            <h3 class="guide-title"><span>💬</span> Guide 4 — Contacting a Producer</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700;">
+              Find Product → Open Producer → View Contact Info → Send Inquiry → Discuss Details → Arrange Transaction
+            </p>
+            <ul class="guide-steps-list">
+              <li><span class="guide-step-num">i</span><div><strong>Important Note:</strong> The actual transaction is handled directly between the consumer and producer. DARAWAT does not process orders or payments.</div></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. TROUBLESHOOTING -->
+      <section class="section-container searchable-block" id="trouble-section" data-keywords="troubleshooting error loading map search account button problem">
+        <h2 class="section-main-title">Having a Problem?</h2>
+        <p class="section-main-subtitle">Quick troubleshooting solutions for common technical issues.</p>
+
+        <div class="trouble-grid">
+          
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “The website isn't loading.”</div>
+            <ul class="trouble-solutions">
+              <li>Check your internet connection.</li>
+              <li>Refresh the page.</li>
+              <li>Try another browser.</li>
+              <li>Clear browser cache if necessary.</li>
+            </ul>
+          </div>
+
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “The map isn't showing.”</div>
+            <ul class="trouble-solutions">
+              <li>Check your internet connection.</li>
+              <li>Allow location access if required.</li>
+              <li>Refresh the page.</li>
+              <li>Verify if the producer provided location info.</li>
+            </ul>
+          </div>
+
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “I can't find a product.”</div>
+            <ul class="trouble-solutions">
+              <li>Check your spelling.</li>
+              <li>Try a broader search term.</li>
+              <li>Browse product categories.</li>
+              <li>Try searching for the producer instead.</li>
+            </ul>
+          </div>
+
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “The producer information is incorrect.”</div>
+            <ul class="trouble-solutions">
+              <li>Report the information directly to DARAWAT support using the form below.</li>
+            </ul>
+          </div>
+
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “My account isn't working.”</div>
+            <ul class="trouble-solutions">
+              <li>Verify your login credentials and contact support if the problem continues.</li>
+            </ul>
+          </div>
+
+          <div class="trouble-card">
+            <div class="trouble-problem">❌ “A button or feature isn't working.”</div>
+            <ul class="trouble-solutions">
+              <li>Refresh the page and report the issue if it persists.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6. REPORT A PROBLEM FORM -->
+      <section class="section-container searchable-block" data-keywords="report problem issue bug support ticket">
+        <div class="report-card">
+          <h2 class="section-main-title" style="margin-bottom: 4px;">Report a Problem</h2>
+          <p class="section-main-subtitle">“Found something that doesn't look right? Help us improve DARAWAT by reporting an issue.”</p>
+
+          <div class="success-alert" id="reportSuccessAlert">
+            ✓ Thank you! Your issue report has been submitted. Our support team will review it shortly.
+          </div>
+
+          <form id="reportForm" onsubmit="handleReportSubmit(event)" novalidate>
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="repGroupFullName">
+                <label class="form-label">Full Name <span>*</span></label>
+                <input type="text" id="repFullName" class="form-input" placeholder="e.g. Juan Dela Cruz">
+                <span class="form-error">Please enter your full name.</span>
+              </div>
+
+              <div class="form-group" id="repGroupEmail">
+                <label class="form-label">Email <span>*</span></label>
+                <input type="email" id="repEmail" class="form-input" placeholder="e.g. juandelacruz@example.com">
+                <span class="form-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="repGroupUserType">
+                <label class="form-label">User Type <span>*</span></label>
+                <select id="repUserType" class="form-select">
+                  <option value="">Select User Type</option>
+                  <option value="Consumer">Consumer</option>
+                  <option value="Producer">Producer</option>
+                  <option value="Visitor">Visitor</option>
+                </select>
+                <span class="form-error">Please select your user type.</span>
+              </div>
+
+              <div class="form-group" id="repGroupCategory">
+                <label class="form-label">Problem Category <span>*</span></label>
+                <select id="repCategory" class="form-select">
+                  <option value="">Select Category</option>
+                  <option value="Account">Account</option>
+                  <option value="Product">Product</option>
+                  <option value="Producer">Producer</option>
+                  <option value="Map/Location">Map/Location</option>
+                  <option value="Website">Website</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="form-error">Please select a problem category.</span>
+              </div>
+            </div>
+
+            <div class="form-group" id="repGroupDescription" style="margin-bottom: 16px;">
+              <label class="form-label">Description <span>*</span></label>
+              <textarea id="repDescription" class="form-textarea" rows="4" placeholder="Describe the issue in detail..."></textarea>
+              <span class="form-error">Please describe the problem (at least 10 characters).</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 24px;">
+              <label class="form-label">Optional Screenshot / Image Upload</label>
+              <input type="file" id="repScreenshot" class="form-input" accept="image/*" style="padding: 8px;">
+              <span style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Attach a screenshot if applicable (future backend upload ready).</span>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Report</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 7. CONTACT SUPPORT BOTTOM SECTION -->
+      <section class="section-container">
+        <div class="contact-support-box">
+          <h2 class="cs-title">Still Need Help?</h2>
+          <p class="cs-desc">
+            “Can't find the answer you're looking for? Contact the DARAWAT team and we'll do our best to assist you.”
+          </p>
+
+          <div class="cs-info-pills">
+            <span class="cs-pill">📧 support@darawat.ph</span>
+            <span class="cs-pill">📞 +63 (917) 555-0192</span>
+            <span class="cs-pill">💬 Messenger Chat</span>
+            <span class="cs-pill">📍 San Jose de Buenavista, Antique</span>
+          </div>
+
+          <a href="Contact Us.html" class="cs-btn">
+            Contact Us
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+   
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // FAQ Accordion Toggle Function
+    function toggleFaq(faqId) {
+      const item = document.getElementById(faqId);
+      const isOpen = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      if (!isOpen) {
+        item.classList.add('active');
+      }
+    }
+
+    // Scroll to section helper
+    function scrollToSection(sectionId) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // 9. SEARCH FUNCTIONALITY (Dynamic filtering across FAQs, categories, guides, and troubleshooting)
+    function handleHelpSearch() {
+      const query = document.getElementById('helpSearchInput').value.toLowerCase().trim();
+      
+      const faqItems = document.querySelectorAll('.searchable-item');
+      const blocks = document.querySelectorAll('.searchable-block');
+      const noResultsBox = document.getElementById('noSearchResults');
+
+      if (!query) {
+        // Reset all visibility if search is empty
+        faqItems.forEach(item => item.style.display = 'block');
+        blocks.forEach(b => b.style.display = 'block');
+        noResultsBox.style.display = 'none';
+        return;
+      }
+
+      let matchCount = 0;
+
+      // Filter FAQs specifically
+      faqItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const keywords = item.getAttribute('data-keywords') || '';
+        if (text.includes(query) || keywords.includes(query)) {
+          item.style.display = 'block';
+          matchCount++;
+          // Automatically open matching FAQ for better user experience
+          item.classList.add('active');
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('active');
+        }
+      });
+
+      // Filter larger blocks/categories/guides based on query keywords
+      blocks.forEach(block => {
+        const blockText = block.innerText.toLowerCase();
+        const blockKeywords = block.getAttribute('data-keywords') || '';
+        if (blockText.includes(query) || blockKeywords.includes(query)) {
+          block.style.display = 'block';
+          matchCount++;
+        } else {
+          // If query targets specific terms, hide irrelevant blocks unless they contain matched FAQs
+          if (block.querySelector('#faqListContainer')) {
+            // Keep FAQ container block visible if any FAQ matched
+            block.style.display = (block.querySelectorAll('.searchable-item[style*="display: block"]').length > 0) ? 'block' : 'none';
+          } else {
+            block.style.display = 'block'; // Keep accessible
+          }
+        }
+      });
+
+      if (matchCount === 0) {
+        noSearchResults.style.display = 'block';
+      } else {
+        noSearchResults.style.display = 'none';
+      }
+    }
+
+    function searchByChip(keyword) {
+      document.getElementById('helpSearchInput').value = keyword;
+      handleHelpSearch();
+      scrollToSection('faq-section');
+    }
+
+    // 8. USER TYPE HELP FILTERING
+    function filterByUserType(role) {
+      document.querySelectorAll('.user-type-card').forEach(c => c.classList.remove('active'));
+      const card = document.getElementById(`role${role.charAt(0).toUpperCase() + role.slice(1)}`);
+      if (card) card.classList.add('active');
+
+      const faqItems = document.querySelectorAll('.searchable-item');
+      
+      faqItems.forEach(item => {
+        const kw = item.getAttribute('data-keywords') || '';
+        if (role === 'consumer' && (kw.includes('find') || kw.includes('contact') || kw.includes('pay') || kw.includes('shopping') || kw.includes('delivery'))) {
+          item.style.display = 'block';
+        } else if (role === 'producer' && (kw.includes('producer') || kw.includes('register') || kw.includes('add') || kw.includes('edit'))) {
+          item.style.display = 'block';
+        } else if (role === 'visitor' && (kw.includes('find') || kw.includes('pay') || kw.includes('shopping'))) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      scrollToSection('faq-section');
+    }
+
+    // 6. REPORT A PROBLEM FORM VALIDATION & API READINESS
+    function handleReportSubmit(event) {
+      event.preventDefault();
+
+      let isValid = true;
+      document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+      document.getElementById('reportSuccessAlert').style.display = 'none';
+
+      const fullName = document.getElementById('repFullName').value.trim();
+      const email = document.getElementById('repEmail').value.trim();
+      const userType = document.getElementById('repUserType').value;
+      const category = document.getElementById('repCategory').value;
+      const description = document.getElementById('repDescription').value.trim();
+      const screenshot = document.getElementById('repScreenshot').files[0];
+
+      if (!fullName) {
+        document.getElementById('repGroupFullName').classList.add('error');
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        document.getElementById('repGroupEmail').classList.add('error');
+        isValid = false;
+      }
+
+      if (!userType) {
+        document.getElementById('repGroupUserType').classList.add('error');
+        isValid = false;
+      }
+
+      if (!category) {
+        document.getElementById('repGroupCategory').classList.add('error');
+        isValid = false;
+      }
+
+      if (!description || description.length < 10) {
+        document.getElementById('repGroupDescription').classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Payload structure ready for future backend/API integration (e.g., fetch('/api/report', { method: 'POST', body: ... }))
+      const reportPayload = {
+        fullName,
+        email,
+        userType,
+        category,
+        description,
+        hasAttachment: !!screenshot,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log("Report form payload ready for backend/API integration:", reportPayload);
+
+      const successAlert = document.getElementById('reportSuccessAlert');
+      successAlert.style.display = 'block';
+      document.getElementById('reportForm').reset();
+      successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

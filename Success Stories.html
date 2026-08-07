@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Success Stories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Drawer Side Navigation Menu */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-drawer {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active {
+      transform: translateX(280px);
+    }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-drawer-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .drawer-menu {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 13.5px;
+      font-weight: 700;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .drawer-item:hover {
+      background-color: #f1f7f3;
+      color: var(--primary-green);
+    }
+
+    /* Page Header Section */
+    .page-header-section {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px 0;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .page-title {
+        font-size: 34px;
+      }
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Share Story Bar */
+    .action-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 16px 20px;
+      border-radius: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-text h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .toolbar-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .primary-btn {
+      background-color: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .primary-btn:hover {
+      background-color: var(--primary-green-light);
+    }
+
+    /* Success Stories Grid */
+    .stories-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .story-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      border-color: #cbd5e1;
+    }
+
+    .story-img-wrap {
+      width: 100%;
+      height: 200px;
+      position: relative;
+    }
+
+    .story-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-category-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(6, 78, 41, 0.85);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .story-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .story-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .story-author-info {
+      font-size: 12px;
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .story-excerpt {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .story-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card-actions-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .view-details-btn {
+      background-color: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .view-details-btn:hover {
+      background-color: var(--primary-green-light);
+    }
+
+    .like-action-btn {
+      background: #f1f7f3;
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-green);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .like-action-btn:hover {
+      background: #e2ece5;
+    }
+
+    /* Back Button */
+    .back-action-wrap {
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .back-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    /* Modals System */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 650px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8faf8;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: var(--font-family);
+      font-size: 14px;
+      color: var(--text-dark);
+      background: #fafcf9;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--primary-green);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .profile-auto-box {
+      background: #f1f7f3;
+      border: 1px dashed var(--primary-green);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #f8faf8;
+    }
+
+    .secondary-btn {
+      background-color: #ffffff;
+      color: var(--text-dark);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .secondary-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    /* Detailed View Specific Elements */
+    .modal-story-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .modal-story-category {
+      display: inline-block;
+      background: #f1f7f3;
+      color: var(--primary-green);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      width: fit-content;
+    }
+
+    .modal-story-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .modal-story-author {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .modal-story-fulltext {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .comments-section {
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comments-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .comment-item {
+      background: #f8faf8;
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .comment-author {
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 2px;
+    }
+
+    .comment-text {
+      color: var(--text-dark);
+    }
+
+    .comment-input-row {
+      display: flex;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+      <nav class="drawer-menu">
+        <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-btn notification-btn" aria-label="Notifications" onclick="window.location.href='Buyer Notifications.html'">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <div class="back-action-wrap">
+        <button class="back-btn" onclick="history.back()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+      </div>
+
+      <div class="page-header-section">
+        <h1 class="page-title">Community Success Stories</h1>
+        <p class="page-subtitle">Discover how local farmers, fishers, and artisan producers across Antique are growing their livelihoods through direct connections with consumers on DARAWAT.</p>
+      </div>
+
+      <!-- Share Your Story Action Bar -->
+      <div class="action-toolbar">
+        <div class="toolbar-text">
+          <h3>Got a success story to share?</h3>
+          <p>Inspire the community by publishing your own farming, fishing, or buying journey.</p>
+        </div>
+        <button class="primary-btn" onclick="openShareModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+          Share Your Story
+        </button>
+      </div>
+
+      <!-- Dynamic Stories Grid -->
+      <div class="stories-grid" id="storiesGrid"></div>
+
+    </main>
+
+  </div>
+
+  <!-- Share Your Story Modal -->
+  <div class="modal-backdrop" id="shareModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Share Your Success Story</h3>
+        <button class="modal-close" onclick="closeShareModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Category: Choose from list or type custom option -->
+        <div class="form-group">
+          <label class="form-label">Category (Select or type your own)</label>
+          <input type="text" class="form-input" id="shareCategory" list="categoryOptions" placeholder="Select or type a category...">
+          <datalist id="categoryOptions">
+            <option value="Organic Farming">
+            <option value="Fisheries & Catch">
+            <option value="Fruit Orchards">
+            <option value="Consumer Impact">
+            <option value="Artisan Producer">
+            <option value="Livestock Raising">
+            <option value="Direct Market Delivery">
+          </datalist>
+        </div>
+
+        <!-- Auto-filled Name & Location from Profile Info -->
+        <div class="form-group">
+          <label class="form-label">Your Name / Farm Name & Location (Auto-filled from Profile)</label>
+          <div class="profile-auto-box" id="profileInfoDisplay">Loading profile info...</div>
+        </div>
+
+        <!-- Story Headline Title -->
+        <div class="form-group">
+          <label class="form-label">Story Headline Title</label>
+          <input type="text" class="form-input" id="shareTitle" placeholder="e.g. How direct orders expanded our harvest reach">
+        </div>
+
+        <!-- Image Upload Feature -->
+        <div class="form-group">
+          <label class="form-label">Upload Photo</label>
+          <input type="file" class="form-input" id="shareImageFile" accept="image/*" onchange="previewImage(event)">
+          <input type="hidden" id="shareImageBase64">
+        </div>
+
+        <!-- Full Story Details -->
+        <div class="form-group">
+          <label class="form-label">Full Story Details & Experience</label>
+          <textarea class="form-textarea" id="shareDetails" placeholder="Tell us about your experience connecting through DARAWAT..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeShareModal()">Cancel</button>
+        <button class="primary-btn" onclick="submitUserStory()">Publish Story</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed View Modal with Likes & Comments Feature -->
+  <div class="modal-backdrop" id="detailsModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Story Overview</h3>
+        <button class="modal-close" onclick="closeDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImg" src="" alt="" class="modal-story-img">
+        <span id="modalCategory" class="modal-story-category">Category</span>
+        <h2 id="modalTitle" class="modal-story-title">Title</h2>
+        <div id="modalAuthor" class="modal-story-author">Author</div>
+        <p id="modalFullText" class="modal-story-fulltext">Full details...</p>
+
+        <!-- Interactive Comments & Community Feedback Section -->
+        <div class="comments-section">
+          <div class="comments-title">Community Feedback & Comments (<span id="commentCount">0</span>)</div>
+          <div class="comment-list" id="commentList"></div>
+          <div class="comment-input-row">
+            <input type="text" class="form-input" id="commentInput" placeholder="Write a supportive comment...">
+            <button class="primary-btn" onclick="postComment()">Post</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simulated user profile info (Normally retrieved from local storage or user session profile)
+    const userProfile = {
+      name: "Juan Dela Cruz",
+      farmName: "Dela Cruz Integrated Farm",
+      location: "San Jose de Buenavista, Antique"
+    };
+
+    // Initial default database of stories
+    const initialStories = [
+      {
+        id: 1,
+        category: "Organic Farming",
+        image: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600",
+        author: "Badiang Greens Farm • San Jose de Buenavista",
+        title: "How Organic Pechay Farming Thrived Without Middlemen",
+        excerpt: "Before joining DARAWAT, our morning harvests often faced spoilage if local markets were saturated. Now, families and local eateries reserve fresh leafy vegetables directly from our farm before sunrise.",
+        details: "Before joining DARAWAT, our morning harvests often faced spoilage if local markets were saturated. Through direct digital listings, families and local eateries can now reserve fresh leafy vegetables directly from our farm before sunrise. This partnership has increased our daily yield utilization to nearly 100% and established predictable weekly incomes.",
+        date: "Published April 2026",
+        badge: "⭐ Featured Producer",
+        likes: 24,
+        comments: [
+          { author: "Elena Cruz", text: "Incredible work! Your pechay is always so fresh when delivered." },
+          { author: "Mark Ramos", text: "So glad to see local farms thriving directly!" }
+        ]
+      },
+      {
+        id: 2,
+        category: "Fisheries & Catch",
+        image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600",
+        author: "Buenavista Fresh Catch • Coastal Zone",
+        title: "Bringing the Day's Fresh Catch Straight to Household Kitchens",
+        excerpt: "Direct messaging transformed how we sell our daily catch. Consumers love knowing precisely when their Bangus was hauled, ensuring unmatched freshness and better daily income for our fishing group.",
+        details: "Direct messaging transformed how we sell our daily catch. Consumers love knowing precisely when their Bangus was hauled from coastal waters, ensuring unmatched freshness and better daily income for our fishing group without dealing with multi-layered commercial brokers.",
+        date: "Published March 2026",
+        badge: "⭐ Featured Fisher",
+        likes: 18,
+        comments: [
+          { author: "Auntie Linda", text: "The bangus was still cold from the sea! Excellent service." }
+        ]
+      },
+      {
+        id: 3,
+        category: "Fruit Orchards",
+        image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=600",
+        author: "Reyes Fruit Stand • Sibalom Border",
+        title: "Expanding Orchard Reach Across Municipalities",
+        excerpt: "The location filter and real-time inventory updates helped buyers from neighboring towns find our seasonal mango harvests easily. Our turnover rate doubled in just one harvest season.",
+        details: "The location filter and real-time inventory updates helped buyers from neighboring towns find our seasonal mango harvests easily. Our turnover rate doubled in just one harvest season, allowing us to expand our orchard plots and hire additional neighborhood hands.",
+        date: "Published February 2026",
+        badge: "⭐ Community Partner",
+        likes: 31,
+        comments: []
+      },
+      {
+        id: 4,
+        category: "Consumer Impact",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+        author: "Juan Dela Cruz • Consumer Member",
+        title: "Eating Fresher While Supporting Local Livelihoods",
+        excerpt: "As a home cook, sourcing fresh ingredients straight from nearby growers gives me peace of mind. Knowing my purchases directly empower farmers in my community makes every meal more meaningful.",
+        details: "As a home cook, sourcing fresh ingredients straight from nearby growers gives me complete peace of mind regarding quality and chemical-free produce. Knowing my purchases directly empower hard-working farmers in my community makes every meal more meaningful and connects me closer to local culture.",
+        date: "Published January 2026",
+        badge: "⭐ Active Buyer",
+        likes: 42,
+        comments: [
+          { author: "Chef Ben", text: "Totally agree! Direct sourcing makes all the culinary difference." }
+        ]
+      }
+    ];
+
+    // Load from localStorage or defaults
+    let stories = JSON.parse(localStorage.getItem('darawat_community_stories')) || initialStories;
+    let activeStoryIndex = null;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderStories();
+      const profileString = `${userProfile.farmName} (${userProfile.name}) • ${userProfile.location}`;
+      document.getElementById('profileInfoDisplay').innerText = profileString;
+    });
+
+    // Render the grid of stories dynamically
+    function renderStories() {
+      const grid = document.getElementById('storiesGrid');
+      grid.innerHTML = '';
+
+      stories.forEach((story, index) => {
+        const card = document.createElement('div');
+        card.className = 'story-card';
+        card.innerHTML = `
+          <div class="story-img-wrap">
+            <span class="story-category-tag">${escapeHtml(story.category)}</span>
+            <img src="${escapeHtml(story.image)}" alt="${escapeHtml(story.title)}" class="story-img">
+          </div>
+          <div class="story-content">
+            <div class="story-author-info">${escapeHtml(story.author)}</div>
+            <h2 class="story-title">${escapeHtml(story.title)}</h2>
+            <p class="story-excerpt">${escapeHtml(story.excerpt)}</p>
+            
+            <div class="card-actions-row">
+              <button class="view-details-btn" onclick="openDetailsModal(${index})">View Details & Comments</button>
+              <button class="like-action-btn" onclick="likeStory(${index})">
+                ❤️ <span id="like-count-${index}">${story.likes}</span>
+              </button>
+            </div>
+
+            <div class="story-footer" style="margin-top: 12px;">
+              <span>${escapeHtml(story.date)}</span>
+              <span>${escapeHtml(story.badge)}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Toggle Mobile Drawer
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Handle image file upload into Base64 preview format
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('shareImageBase64').value = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Share Story Modal Functions
+    function openShareModal() {
+      document.getElementById('shareCategory').value = '';
+      document.getElementById('shareTitle').value = '';
+      document.getElementById('shareImageFile').value = '';
+      document.getElementById('shareImageBase64').value = '';
+      document.getElementById('shareDetails').value = '';
+      document.getElementById('shareModal').classList.add('active');
+    }
+
+    function closeShareModal() {
+      document.getElementById('shareModal').classList.remove('active');
+    }
+
+    function submitUserStory() {
+      const category = document.getElementById('shareCategory').value.trim() || "Community Story";
+      const author = `${userProfile.farmName} • ${userProfile.location}`;
+      const title = document.getElementById('shareTitle').value.trim() || "My Success Journey";
+      const customImg = document.getElementById('shareImageBase64').value;
+      const defaultImg = "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600";
+      const image = customImg ? customImg : defaultImg;
+      const details = document.getElementById('shareDetails').value.trim() || "Shared experience using DARAWAT.";
+      
+      const newStory = {
+        id: Date.now(),
+        category,
+        image,
+        author,
+        title,
+        excerpt: details.length > 130 ? details.substring(0, 130) + "..." : details,
+        details,
+        date: "Published " + new Date().toLocaleString('default', { month: 'long', year: 'numeric' }),
+        badge: "⭐ Community Member",
+        likes: 1,
+        comments: []
+      };
+
+      stories.unshift(newStory);
+      localStorage.setItem('darawat_community_stories', JSON.stringify(stories));
+      renderStories();
+      closeShareModal();
+    }
+
+    // Like Action Feature
+    function likeStory(index) {
+      stories[index].likes += 1;
+      localStorage.setItem('darawat_community_stories', JSON.stringify(stories));
+      document.getElementById(`like-count-${index}`).innerText = stories[index].likes;
+    }
+
+    // Detailed Modal with Comments Feature
+    function openDetailsModal(index) {
+      activeStoryIndex = index;
+      const story = stories[index];
+      
+      document.getElementById('modalImg').src = story.image;
+      document.getElementById('modalImg').alt = story.title;
+      document.getElementById('modalCategory').innerText = story.category;
+      document.getElementById('modalTitle').innerText = story.title;
+      document.getElementById('modalAuthor').innerText = story.author;
+      document.getElementById('modalFullText').innerText = story.details;
+
+      renderComments(story.comments);
+      document.getElementById('detailsModal').classList.add('active');
+    }
+
+    function closeDetailsModal() {
+      document.getElementById('detailsModal').classList.remove('active');
+      activeStoryIndex = null;
+    }
+
+    function renderComments(commentsArr) {
+      const list = document.getElementById('commentList');
+      document.getElementById('commentCount').innerText = commentsArr.length;
+      list.innerHTML = '';
+
+      if (commentsArr.length === 0) {
+        list.innerHTML = '<div style="font-size: 12px; color: var(--text-muted); font-style: italic;">No comments yet. Be the first to share your thoughts!</div>';
+        return;
+      }
+
+      commentsArr.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML = `
+          <div class="comment-author">${escapeHtml(c.author)}</div>
+          <div class="comment-text">${escapeHtml(c.text)}</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function postComment() {
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (!text || activeStoryIndex === null) return;
+
+      const newComment = {
+        author: userProfile.name,
+        text: text
+      };
+
+      stories[activeStoryIndex].comments.push(newComment);
+      localStorage.setItem('darawat_community_stories', JSON.stringify(stories));
+      
+      renderComments(stories[activeStoryIndex].comments);
+      input.value = '';
+    }
+
+    // HTML escape utility
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

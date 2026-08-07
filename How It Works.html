@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - How It Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* How It Works Specific Styles */
+    .hiw-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px 24px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .hiw-hero {
+        padding: 56px 40px;
+      }
+    }
+
+    .hiw-hero-title {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .hiw-hero-title { font-size: 38px; }
+    }
+
+    .hiw-hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 16px;
+    }
+
+    .hiw-hero-desc {
+      font-size: 14px;
+      opacity: 0.95;
+      max-width: 750px;
+      margin: 0 auto 28px auto;
+      line-height: 1.6;
+    }
+
+    .hiw-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--primary-green);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .hiw-hero-btn:hover {
+      transform: translateY(-2px);
+      background: #f0fdf4;
+    }
+
+    /* Process Flow Banner */
+    .flow-banner {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .flow-steps-pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .flow-pill {
+      background: #eaf6ec;
+      color: var(--primary-green);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 800;
+      border: 1px solid #bbf7d0;
+    }
+
+    .flow-arrow {
+      color: var(--text-muted);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    /* Section Headers */
+    .section-container {
+      margin-bottom: 48px;
+    }
+
+    .section-main-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-main-subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Step Grid Layout */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .step-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary-green);
+      background: #eaf6ec;
+      padding: 4px 10px;
+      border-radius: 6px;
+      width: max-content;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .step-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+    }
+
+    .step-list li {
+      font-size: 12px;
+      color: var(--text-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-list li::before {
+      content: '•';
+      color: var(--primary-green);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .step-note {
+      background: #f8faf8;
+      border-left: 3px solid var(--primary-green);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* Comparison Section: Does & Does Not */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .comparison-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid var(--border-color);
+    }
+
+    .comparison-card.provides {
+      border-top: 4px solid var(--accent-green);
+    }
+
+    .comparison-card.does-not {
+      border-top: 4px solid var(--danger-red);
+    }
+
+    .comparison-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comparison-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .comparison-list li {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Connection Mapping Architecture Section */
+    .connection-map-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      text-align: center;
+    }
+
+    .conn-flow-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .conn-flow-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
+    .conn-column {
+      background: #f8faf8;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .conn-col-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .conn-steps-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .conn-step-bubble {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      width: 100%;
+      max-width: 240px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .conn-down-arrow {
+      color: var(--text-muted);
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    /* Safety & Awareness Banner */
+    .safety-banner {
+      background: #fefce8;
+      border: 1px solid #fde047;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 48px;
+      color: #854d0e;
+    }
+
+    .safety-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .safety-text {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .safety-text:last-child {
+      margin-bottom: 0;
+    }
+
+    /* FAQ Accordion Section */
+    .faq-section {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .faq-section { padding: 32px; }
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: #f8faf8;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item.active {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .faq-question svg {
+      transition: transform 0.3s ease;
+      stroke: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+      stroke: var(--primary-green);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 150px;
+      padding: 0 16px 16px 16px;
+    }
+
+    /* Call To Action Box */
+    .cta-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 24px auto;
+      line-height: 1.5;
+    }
+
+    .cta-buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: #ffffff;
+      color: var(--primary-green);
+    }
+
+    .cta-btn.primary:hover {
+      background: #f0fdf4;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+  <nav class="drawer-menu">
+    <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;"></div> <!-- Spacer -->
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- 1. Hero Section -->
+      <section class="hiw-hero">
+        <h1 class="hiw-hero-title">How DARAWAT Works</h1>
+        <div class="hiw-hero-subtitle">Discover Local. Connect Directly. Support Local.</div>
+        <p class="hiw-hero-desc">
+          DARAWAT makes it easier for consumers to discover local products and producers in their community. Browse available products, learn about local producers, and contact them directly to ask questions, check availability, and arrange your purchase.
+        </p>
+        <a href="Register as Buyer.html" class="hiw-hero-btn">
+          Explore Local Products
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+
+      <!-- Visual Flow Banner -->
+      <div class="flow-banner">
+        <span style="font-size: 13px; font-weight: 800; color: var(--text-dark);">THE PLATFORM PROCESS JOURNEY</span>
+        <div class="flow-steps-pill-wrap">
+          <span class="flow-pill">DISCOVER</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">EXPLORE</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">CONNECT</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">ARRANGE</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">SUPPORT LOCAL</span>
+        </div>
+      </div>
+
+      <!-- 2. FOR CONSUMERS SECTION -->
+      <section class="section-container">
+        <h2 class="section-main-title">
+          <span>🛒</span> For Consumers
+        </h2>
+        <p class="section-main-subtitle">A simple guide for community consumers looking to discover local products and producers.</p>
+
+        <div class="steps-grid">
+          <!-- Step 01 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 01</span>
+            <h3 class="step-title">Search & Discover</h3>
+            <p class="step-desc">
+              Consumers browse or search for local products and producers available on DARAWAT. Note that DARAWAT helps users discover local products rather than functioning as a traditional online shopping website.
+            </p>
+            <ul class="step-list">
+              <li>Search by Product</li>
+              <li>Search by Producer</li>
+              <li>Filter by Category</li>
+              <li>Browse by Location / Barangay</li>
+            </ul>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 02</span>
+            <h3 class="step-title">Explore Products & Producers</h3>
+            <p class="step-desc">
+              Users can select a product or producer to view complete profile details and listing information.
+            </p>
+            <ul class="step-list">
+              <li>Product name & description</li>
+              <li>Producer name & category</li>
+              <li>Price & availability status</li>
+              <li>Photos & contact info</li>
+            </ul>
+            <div class="step-note">
+              “Product information and availability may vary. Contact the producer directly for the latest information.”
+            </div>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 03</span>
+            <h3 class="step-title">Check the Location</h3>
+            <p class="step-desc">
+              Use DARAWAT's location and map functionality to understand where the producer is located and find nearby sources.
+            </p>
+            <ul class="step-list">
+              <li>Producer barangay & address</li>
+              <li>General location map view</li>
+              <li>Distance and proximity insights</li>
+            </ul>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 04</span>
+            <h3 class="step-title">Contact the Producer</h3>
+            <p class="step-desc">
+              Instead of an “Add to Cart” or checkout button, consumers use direct communication channels labeled **Contact Producer**.
+            </p>
+            <ul class="step-list">
+              <li>Ask about availability & pricing</li>
+              <li>Confirm product details & quantity</li>
+              <li>Discuss pickup or delivery arrangements</li>
+              <li>Messenger, Phone, Email, or Chat</li>
+            </ul>
+          </div>
+
+          <!-- Step 05 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 05</span>
+            <h3 class="step-title">Arrange the Transaction</h3>
+            <p class="step-desc">
+              Once the consumer and producer agree on the product, price, and arrangements, they coordinate directly.
+            </p>
+            <ul class="step-list">
+              <li>Pickup, local delivery, or meetup</li>
+              <li>Direct payment handling between parties</li>
+            </ul>
+            <div class="step-note" style="border-left-color: var(--danger-red);">
+              DARAWAT does NOT process or collect online payments.
+            </div>
+          </div>
+
+          <!-- Step 06 -->
+          <div class="step-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #bbf7d0;">
+            <span class="step-badge" style="background: #ffffff; color: var(--primary-green);">STEP 06</span>
+            <h3 class="step-title">Support Local Producers</h3>
+            <p class="step-desc">
+              After successfully connecting with a producer, the consumer helps support local livelihoods and strengthens the local community economy.
+            </p>
+            <div style="margin-top: auto; font-size: 12px; font-weight: 800; color: var(--primary-green); text-align: center; padding-top: 12px;">
+              Discover Local → Connect Directly → Support Local
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FOR PRODUCERS SECTION -->
+      <section class="section-container">
+        <h2 class="section-main-title">
+          <span>🌾</span> For Producers
+        </h2>
+        <p class="section-main-subtitle">A clear guide for local farmers, fisherfolk, livestock raisers, and producers on joining DARAWAT.</p>
+
+        <div class="steps-grid">
+          <!-- Producer Step 01 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 01</span>
+            <h3 class="step-title">Register as a Producer</h3>
+            <p class="step-desc">
+              A local producer creates an account and provides essential business or farm information to join the platform.
+            </p>
+            <ul class="step-list">
+              <li>Producer / Business Name</li>
+              <li>Contact details & phone</li>
+              <li>Location & Barangay</li>
+              <li>Type of livelihood</li>
+            </ul>
+          </div>
+
+          <!-- Producer Step 02 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 02</span>
+            <h3 class="step-title">Create Your Producer Profile</h3>
+            <p class="step-desc">
+              Build an informative and trustworthy profile showcasing your livelihood, background, and location.
+            </p>
+            <ul class="step-list">
+              <li>Profile image or farm photo</li>
+              <li>Detailed livelihood description</li>
+              <li>Barangay & municipal zoning</li>
+            </ul>
+          </div>
+
+          <!-- Producer Step 03 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 03</span>
+            <h3 class="step-title">Showcase Your Products</h3>
+            <p class="step-desc">
+              Add products you currently offer to help consumers discover your goods. 
+            </p>
+            <ul class="step-list">
+              <li>Product name & category</li>
+              <li>Description, price, & stock</li>
+              <li>Clear photos & availability</li>
+            </ul>
+            <div class="step-note">
+              Purpose is to showcase and help consumers discover products, not to create an online checkout cart.
+            </div>
+          </div>
+
+          <!-- Producer Step 04 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 04</span>
+            <h3 class="step-title">Get Discovered</h3>
+            <p class="step-desc">
+              Products and producer profiles become visible to consumers searching and filtering on DARAWAT.
+            </p>
+            <ul class="step-list">
+              <li>Discovered via search terms</li>
+              <li>Categorized by food and goods</li>
+              <li>Filtered by location & barangay</li>
+            </ul>
+          </div>
+
+          <!-- Producer Step 05 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 05</span>
+            <h3 class="step-title">Connect With Consumers</h3>
+            <p class="step-desc">
+              When an interested consumer finds your product, they reach out directly via your provided contact channels.
+            </p>
+            <ul class="step-list">
+              <li>Answer product availability inquiries</li>
+              <li>Discuss pricing, quantities, & details</li>
+              <li>Coordinate pickup or meeting arrangements</li>
+            </ul>
+          </div>
+
+          <!-- Producer Step 06 -->
+          <div class="step-card">
+            <span class="step-badge">STEP 06</span>
+            <h3 class="step-title">Arrange the Transaction</h3>
+            <p class="step-desc">
+              Communicate directly with the consumer to agree on how and where the transaction will take place.
+            </p>
+            <ul class="step-list">
+              <li>Direct terms agreement</li>
+              <li>Flexible fulfillment discussion</li>
+            </ul>
+            <div class="step-note" style="border-left-color: var(--danger-red);">
+              DARAWAT does not process online payments. Transaction terms are decided by you and the consumer.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HOW THE CONNECTION WORKS (Architecture Diagram) -->
+      <section class="connection-map-card">
+        <h2 class="section-main-title" style="justify-content: center; margin-bottom: 4px;">Platform Connection Architecture</h2>
+        <p class="section-main-subtitle">How consumer discovery meets producer offerings on DARAWAT.</p>
+
+        <div class="conn-flow-wrapper">
+          <!-- Consumer Column -->
+          <div class="conn-column">
+            <div class="conn-col-title">Consumer Flow</div>
+            <div class="conn-steps-stack">
+              <div class="conn-step-bubble">Search</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Discover Product</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">View Producer</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Check Location</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Contact Producer</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Discuss Details</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble" style="background: #eaf6ec; color: var(--primary-green); border-color: #bbf7d0;">Arrange Transaction</div>
+            </div>
+          </div>
+
+          <!-- Producer Column -->
+          <div class="conn-column">
+            <div class="conn-col-title">Producer Flow</div>
+            <div class="conn-steps-stack">
+              <div class="conn-step-bubble">Register</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Create Profile</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Add Products</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Get Discovered</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Receive Inquiry</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble">Communicate With Consumer</div>
+              <div class="conn-down-arrow">↓</div>
+              <div class="conn-step-bubble" style="background: #eaf6ec; color: var(--primary-green); border-color: #bbf7d0;">Arrange Transaction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. WHAT DARAWAT DOES AND DOES NOT DO -->
+      <section class="section-container">
+        <h2 class="section-main-title">What DARAWAT Does & Does Not Do</h2>
+        <p class="section-main-subtitle">Clear boundaries ensuring transparency: DARAWAT is a discovery platform, not an e-commerce checkout store.</p>
+
+        <div class="comparison-grid">
+          <!-- Provides Card -->
+          <div class="comparison-card provides">
+            <h3 class="comparison-title" style="color: var(--primary-green);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              DARAWAT Provides
+            </h3>
+            <ul class="comparison-list">
+              <li>✅ Product discovery</li>
+              <li>✅ Producer discovery</li>
+              <li>✅ Location / map information</li>
+              <li>✅ Product information</li>
+              <li>✅ Producer profiles</li>
+              <li>✅ Search and filtering</li>
+              <li>✅ Direct communication / contact</li>
+              <li>✅ Local producer visibility</li>
+              <li>✅ Community connection</li>
+            </ul>
+          </div>
+
+          <!-- Does Not Provide Card -->
+          <div class="comparison-card does-not">
+            <h3 class="comparison-title" style="color: var(--danger-red);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              DARAWAT Does NOT Provide
+            </h3>
+            <ul class="comparison-list">
+              <li>❌ Online payment processing</li>
+              <li>❌ Shopping cart</li>
+              <li>❌ Online checkout</li>
+              <li>❌ Payment gateway</li>
+              <li>❌ Automatic payment collection</li>
+              <li>❌ Credit / debit card processing</li>
+              <li>❌ GCash / Maya checkout</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. SAFETY & USER AWARENESS -->
+      <section class="safety-banner">
+        <h3 class="safety-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Safety & User Awareness Notice
+        </h3>
+        <p class="safety-text">
+          Before completing a transaction, consumers and producers should confirm the product details, price, availability, location, pickup or delivery arrangements, and other transaction details directly with each other.
+        </p>
+        <p class="safety-text">
+          DARAWAT provides a platform for discovering and connecting with local producers. Users should exercise appropriate care when arranging transactions. DARAWAT does not guarantee transactions or payments.
+        </p>
+      </section>
+
+      <!-- 7. FAQ SECTION -->
+      <section class="faq-section">
+        <h2 class="section-main-title">Frequently Asked Questions</h2>
+        <p class="section-main-subtitle">Clear answers regarding platform operations and transactions.</p>
+
+        <div class="faq-list">
+          
+          <!-- FAQ 1 -->
+          <div class="faq-item" id="faq-hiw-1">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-1')">
+              <span>Is DARAWAT an online shopping website?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              No. DARAWAT is primarily a platform for discovering local producers and products and connecting consumers directly with them.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item" id="faq-hiw-2">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-2')">
+              <span>Can I pay online through DARAWAT?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              No. DARAWAT does not currently process online payments. Payment arrangements are handled directly between the consumer and producer.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item" id="faq-hiw-3">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-3')">
+              <span>How do I buy a product?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              Find a product, view the producer's information, contact the producer, confirm availability and price, and arrange the transaction directly with them.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item" id="faq-hiw-4">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-4')">
+              <span>Can I find producers near me?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              Yes. DARAWAT uses location and map features to help users discover nearby producers when location information is available.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item" id="faq-hiw-5">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-5')">
+              <span>Can producers sell products on DARAWAT?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              Producers can showcase their products and make their information discoverable to consumers. Transactions are arranged directly between producers and consumers.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item" id="faq-hiw-6">
+            <button class="faq-question" onclick="toggleFaq('faq-hiw-6')">
+              <span>Does DARAWAT deliver products?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              DARAWAT does not provide delivery services. Delivery or pickup arrangements should be discussed directly between the consumer and producer.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 8. FINAL CALL TO ACTION -->
+      <section class="cta-box">
+        <h2 class="cta-title">Ready to Discover Local Products?</h2>
+        <p class="cta-desc">
+          Explore DARAWAT and connect with local producers in your community.
+        </p>
+        <div class="cta-buttons-wrap">
+          <a href="Register as Buyer.html" class="cta-btn primary">Explore Products</a>
+          <a href="Register as Buyer.html" class="cta-btn secondary">Find Producers</a>
+        </div>
+      </section>
+
+    </main>
+
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // FAQ Accordion Toggle Function
+    function toggleFaq(faqId) {
+      const item = document.getElementById(faqId);
+      const isOpen = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      if (!isOpen) {
+        item.classList.add('active');
+      }
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

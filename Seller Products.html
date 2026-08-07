@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Create New Listing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #f6f8f6;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #e2e8f0;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      background: #f6f8f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 40px;
+    }
+
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eef2f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .page-header-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 16px;
+      }
+    }
+
+    .form-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .form-label span {
+      color: var(--danger-red);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      font-family: var(--font-family);
+      font-size: 14px;
+      color: var(--text-dark);
+      background: #f8faf8;
+      outline: none;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .image-upload-box {
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      background: #f8faf8;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .image-upload-box:hover {
+      border-color: var(--primary-green);
+      background: #edf7ee;
+    }
+
+    .upload-icon {
+      margin-bottom: 8px;
+      color: var(--primary-green);
+    }
+
+    .upload-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .upload-subtext {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .image-preview {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      accent-color: var(--primary-green);
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary-green);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(6, 78, 41, 0.2);
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-green-light);
+    }
+
+    .btn-cancel {
+      width: 100%;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <header class="navbar">
+      <div class="navbar-container">
+        <a href="Register as Seller.html" class="back-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </a>
+        <span class="page-header-title">Create Listing</span>
+        <div style="width: 50px;"></div>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <form id="listingForm" onsubmit="handleFormSubmit(event)">
+
+        <div class="form-card">
+          <h2 class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Product Photo
+          </h2>
+          <div class="image-upload-box" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div class="upload-text">Upload Produce Image</div>
+            <div class="upload-subtext">Supports PNG, JPG, JPEG (Max 5MB)</div>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+            <img id="imagePreview" class="image-preview" alt="Preview">
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h2 class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Product Information
+          </h2>
+
+          <div class="form-group">
+            <label class="form-label">Product Name <span>*</span></label>
+            <input type="text" id="prodName" class="form-input" placeholder="e.g. Fresh Pechay / Organic Tomatoes" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Category <span>*</span></label>
+              <select id="prodCategory" class="form-select" required>
+                <option value="">Select Category</option>
+                <option value="Leafy Vegetables">Leafy Vegetables</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Root Crops">Root Crops</option>
+                <option value="Fish & Seafood">Fish & Seafood</option>
+                <option value="Poultry & Eggs">Poultry & Eggs</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Unit <span>*</span></label>
+              <select id="prodUnit" class="form-select" required>
+                <option value="kg">per kg</option>
+                <option value="bundle">per bundle</option>
+                <option value="piece">per piece</option>
+                <option value="tray">per tray</option>
+                <option value="sack/bag">per sack/bag</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Price (₱) <span>*</span></label>
+              <input type="number" id="prodPrice" step="0.01" class="form-input" placeholder="0.00" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Available Quantity <span>*</span></label>
+              <input type="number" id="prodQty" class="form-input" placeholder="e.g. 50" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Expiry Date / Best Before <span>*</span></label>
+            <input type="date" id="prodExpiry" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="prodDesc" class="form-textarea" rows="3" placeholder="Describe fresh harvesting details, organic methods, or pickup instructions..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h2 class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Fulfillment Options
+          </h2>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" checked> Farm Pickup
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" checked> Local Delivery
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Meetup Point
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Publish Listing</button>
+        <a href="Register as Seller.html" class="btn-cancel">Cancel and Return</a>
+
+      </form>
+    </main>
+
+  </div>
+
+  <script>
+    let uploadedImageBase64 = 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=600'; // Default fallback image
+
+    // Image Preview Handler
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          uploadedImageBase64 = e.target.result; // Save base64 string
+          const preview = document.getElementById('imagePreview');
+          preview.src = uploadedImageBase64;
+          preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Form Submit Action (Realtime LocalStorage Sync)
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      // Format expiry date display text
+      const rawDate = document.getElementById('prodExpiry').value;
+      const formattedDate = rawDate ? new Date(rawDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Soon';
+
+      const name = document.getElementById('prodName').value;
+      const category = document.getElementById('prodCategory').value;
+      const priceVal = document.getElementById('prodPrice').value;
+      const unit = document.getElementById('prodUnit').value;
+      const qty = document.getElementById('prodQty').value;
+
+      // Build new product object matching dashboard schema
+      const newProduct = {
+        id: Date.now(), // Unique ID using timestamp
+        name: name,
+        category: category,
+        price: `₱${parseFloat(priceVal).toFixed(2)} / ${unit}`,
+        expiry: formattedDate,
+        views: 0,
+        inquiries: 0,
+        stock: `${qty} ${unit}`,
+        img: uploadedImageBase64
+      };
+
+      // Retrieve existing products or initialize empty array
+      let products = JSON.parse(localStorage.getItem('darawat_products')) || [];
+      
+      // Push new product into the array
+      products.unshift(newProduct);
+
+      // Save back to LocalStorage
+      localStorage.setItem('darawat_products', JSON.stringify(products));
+
+      alert('Product listing created successfully! Returning to dashboard...');
+      window.location.href = 'Register as Seller.html';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Producer Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #f6f8f6;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #e2e8f0;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      background: #f6f8f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px;
+      }
+    }
+
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eef2f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .menu-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #15803d;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-dropdown-wrapper {
+      position: relative;
+    }
+
+    .user-profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 20px;
+      transition: background-color 0.2s;
+    }
+
+    .user-profile-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .avatar-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-dropdown-menu {
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 230px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 8px;
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .profile-dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-user-header {
+      padding: 8px 12px 12px 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 6px;
+    }
+
+    .dropdown-user-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .dropdown-user-role {
+      font-size: 11px;
+      color: var(--primary-green);
+      font-weight: 600;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f1f7f3;
+      color: var(--primary-green);
+    }
+
+    .dropdown-item svg {
+      stroke: var(--text-muted);
+      transition: stroke 0.2s;
+    }
+
+    .dropdown-item:hover svg {
+      stroke: var(--primary-green);
+    }
+
+    .dropdown-item.logout {
+      color: var(--danger-red);
+    }
+
+    .dropdown-item.logout svg {
+      stroke: var(--danger-red);
+    }
+
+    .dropdown-item.logout:hover {
+      background-color: #fef2f2;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-drawer {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active {
+      transform: translateX(280px);
+    }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-drawer-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .drawer-menu {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 14px;
+      font-weight: 700;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .drawer-item:hover {
+      background-color: #f1f7f3;
+      color: var(--primary-green);
+    }
+
+    .drawer-item svg {
+      stroke: var(--text-muted);
+      transition: stroke 0.2s;
+    }
+
+    .drawer-item:hover svg {
+      stroke: var(--primary-green);
+    }
+
+    .hero-card {
+      background: linear-gradient(90deg, #04381d 0%, #08522b 55%, #136939 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      color: #ffffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    @media (min-width: 768px) {
+      .hero-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .hero-content {
+      padding: 24px 20px;
+      z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        padding: 32px 36px;
+      }
+    }
+
+    .welcome-text {
+      font-size: 13px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .user-name-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .user-name {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    @media (min-width: 768px) {
+      .user-name {
+        font-size: 32px;
+      }
+    }
+
+    .verified-tag {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .farm-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    .location-text {
+      font-size: 12px;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-image-wrapper {
+        width: 45%;
+        height: 200px;
+      }
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .view-all-link {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-decoration: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .stat-card {
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-card.green { background-color: #edf7ee; }
+    .stat-card.blue { background-color: #eef6fc; }
+    .stat-card.orange { background-color: #fff8eb; }
+    .stat-card.purple { background-color: #f6f0fb; }
+
+    .stat-icon {
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-subtext {
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .stat-card.green .stat-subtext { color: #16a34a; }
+    .stat-card.blue .stat-subtext { color: var(--text-muted); }
+    .stat-card.orange .stat-subtext { color: #d97706; }
+    .stat-card.purple .stat-subtext { color: var(--text-muted); }
+
+    .create-listing-btn {
+      background-color: var(--primary-green);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(6, 78, 41, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .create-listing-btn:hover {
+      background-color: var(--primary-green-light);
+    }
+
+    .create-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .plus-icon-circle {
+      width: 32px;
+      height: 32px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .create-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .create-subtitle {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .listings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .listings-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .listing-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid #edf2f0;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .listing-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-color: #cbd5e1;
+    }
+
+    @media (min-width: 768px) {
+      .listing-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .listing-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .listing-img {
+        width: 100%;
+        height: 140px;
+      }
+    }
+
+    .listing-details {
+      flex: 1;
+    }
+
+    .listing-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .listing-category {
+      font-size: 11px;
+      font-weight: 600;
+      color: #16a34a;
+      margin-bottom: 4px;
+    }
+
+    .listing-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .listing-expiry {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .listing-status-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    @media (min-width: 768px) {
+      .listing-status-group {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #f1f5f9;
+      }
+    }
+
+    .status-tag {
+      background: #eef8f0;
+      color: #16a34a;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-metric {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .arrow-right-icon {
+      stroke: #94a3b8;
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .arrow-right-icon {
+        display: none;
+      }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .product-modal {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.active .product-modal {
+      transform: translateY(0);
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .modal-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .modal-category {
+      font-size: 12px;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 12px;
+    }
+
+    .modal-grid-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: #f8faf8;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .info-box {
+      font-size: 11px;
+    }
+
+    .info-box-label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .info-box-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-top: 2px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-modal {
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-modal.primary {
+      background: var(--primary-green);
+      color: #fff;
+    }
+
+    .btn-modal.secondary {
+      background: #f1f5f9;
+      color: var(--text-dark);
+    }
+
+    .btn-modal.danger {
+      background: #fef2f2;
+      color: var(--danger-red);
+      border: 1px solid #fecaca;
+    }
+
+    .expirations-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .expiration-card {
+      background: #ffffff;
+      border: 1px solid #edf2f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      min-width: 140px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exp-icon {
+      font-size: 18px;
+    }
+
+    .exp-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .exp-status {
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .exp-status.danger { color: #dc2626; }
+    .exp-status.neutral { color: var(--text-muted); }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+    }
+
+    .nav-item.active {
+      color: var(--primary-green);
+    }
+
+    .nav-item-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .center-fab {
+      position: relative;
+      top: -14px;
+      background: var(--primary-green);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(6, 78, 41, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="drawer-menu">
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="menu-btn" aria-label="Toggle Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div class="nav-actions">
+          <button class="notification-btn" aria-label="Notifications" onclick="window.location.href='Seller Notification.html'">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge">3</span>
+          </button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="user-profile-btn" aria-label="User Profile" onclick="toggleProfileDropdown(event)">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Juan Dela Cruz" class="avatar-img">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdown">
+              <div class="dropdown-user-header">
+                <div class="dropdown-user-name">Juan Dela Cruz</div>
+                <div class="dropdown-user-role">Verified Producer</div>
+              </div>
+
+              <a href="Seller Profile.html" class="dropdown-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>View Profile</span>
+              </a>
+
+              <a href="Seller Account Setting.html" class="dropdown-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Account Settings</span>
+              </a>
+
+              <a href="Seller Order History.html" class="dropdown-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>Order History</span>
+              </a>
+
+              <hr style="border:none; border-top:1px solid var(--border-color); margin:6px 0;">
+
+              <a href="Welcome Screen.html" class="dropdown-item logout" onclick="alert('Logging out...')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Log Out</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <main class="content-area">
+
+      <section class="hero-card">
+        <div class="hero-content">
+          <span class="welcome-text">Welcome back,</span>
+          <div class="user-name-wrapper">
+            <h1 class="user-name">Juan Dela Cruz</h1>
+            <span class="verified-tag">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+              Verified Producer
+            </span>
+          </div>
+          <div class="farm-name">Badiang Greens Farm</div>
+          <div class="location-text">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Badiang, San Jose de Buenavista
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600" alt="Farmer with produce" class="hero-img">
+        </div>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Dashboard Overview</h2>
+          <a href="#" class="view-all-link">View all</a>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card green">
+            <div class="stat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <div class="stat-label">Active Listings</div>
+            <div class="stat-value" id="statActiveCount">0</div>
+            <div class="stat-subtext">View listings</div>
+          </div>
+
+          <div class="stat-card blue">
+            <div class="stat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="stat-label">Profile Views</div>
+            <div class="stat-value">128</div>
+            <div class="stat-subtext">This week</div>
+          </div>
+
+          <div class="stat-card orange">
+            <div class="stat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="stat-label">Messages</div>
+            <div class="stat-value">8</div>
+            <div class="stat-subtext">Unread</div>
+          </div>
+
+          <div class="stat-card purple">
+            <div class="stat-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="stat-label">Total Views</div>
+            <div class="stat-value">356</div>
+            <div class="stat-subtext">This month</div>
+          </div>
+        </div>
+      </section>
+
+      <a href="Seller Products.html" class="create-listing-btn">
+        <div class="create-left">
+          <div class="plus-icon-circle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#064e29" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div>
+            <div class="create-title">Create New Listing</div>
+            <div class="create-subtitle">Post a new product for consumers to discover</div>
+          </div>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+      <!-- Dynamic Active Listings Container -->
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">My Active Listings</h2>
+          <a href="#" class="view-all-link">View all</a>
+        </div>
+
+        <div class="listings-list" id="listingsContainer">
+          <!-- Realtime items from localStorage will appear here -->
+        </div>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Listing Expirations</h2>
+          <a href="#" class="view-all-link">View calendar</a>
+        </div>
+
+        <div class="expirations-scroll">
+          <div class="expiration-card">
+            <span class="exp-icon">🥬</span>
+            <div>
+              <div class="exp-title">Leafy Vegetables</div>
+              <div class="exp-status danger">1 expiring</div>
+            </div>
+          </div>
+          <div class="expiration-card">
+            <span class="exp-icon">🍎</span>
+            <div>
+              <div class="exp-title">Fruits</div>
+              <div class="exp-status neutral">0 expiring</div>
+            </div>
+          </div>
+          <div class="expiration-card">
+            <span class="exp-icon">🐟</span>
+            <div>
+              <div class="exp-title">Fish & Seafood</div>
+              <div class="exp-status neutral">0 expiring</div>
+            </div>
+          </div>
+          <div class="expiration-card">
+            <span class="exp-icon">🥚</span>
+            <div>
+              <div class="exp-title">Eggs</div>
+              <div class="exp-status neutral">0 expiring</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-backdrop" id="productModalBackdrop" onclick="closeProductModal()">
+      <div class="product-modal" onclick="event.stopPropagation()">
+        <img id="modalImg" src="" alt="Produce" class="modal-hero-img">
+        <div class="modal-body">
+          <div class="modal-title-row">
+            <h3 class="modal-title" id="modalName">Fresh Pechay</h3>
+            <span class="modal-price" id="modalPrice">₱25.00 / bundle</span>
+          </div>
+          <div class="modal-category" id="modalCategory">Leafy Vegetables</div>
+
+          <div class="modal-grid-info">
+            <div class="info-box">
+              <span class="info-box-label">Stock Quantity</span>
+              <div class="info-box-val" id="modalStock">50 bundles</div>
+            </div>
+            <div class="info-box">
+              <span class="info-box-label">Expiry Date</span>
+              <div class="info-box-val" id="modalExpiry">May 8, 2025</div>
+            </div>
+            <div class="info-box">
+              <span class="info-box-label">Buyer Views</span>
+              <div class="info-box-val" id="modalViews">45</div>
+            </div>
+            <div class="info-box">
+              <span class="info-box-label">Inquiries</span>
+              <div class="info-box-val" id="modalInquiries">3</div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn-modal primary" onclick="alert('Opening editor...'); closeProductModal();">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Edit Listing Details
+            </button>
+            <button class="btn-modal secondary" onclick="markAsSoldOut()">
+              Mark as Sold Out
+            </button>
+            <button class="btn-modal danger" onclick="deleteCurrentProduct()">
+              Delete Listing
+            </button>
+            <button class="btn-modal secondary" style="background:transparent;" onclick="closeProductModal()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="Register as Seller.html" class="nav-item active">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="Seller Manage Buyers.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Messages</span>
+      </a>
+      <a href="Seller Products.html" class="nav-item">
+        <div class="center-fab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <span>New Listing</span>
+      </a>
+      <a href="Seller Discoveries.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Discover</span>
+      </a>
+      <a href="Seller Profile.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script>
+    // 1. Load products from LocalStorage
+    let products = JSON.parse(localStorage.getItem('darawat_products')) || [];
+    let activeModalProductId = null;
+
+    // 2. Render Products Function
+    function renderProducts() {
+      const container = document.getElementById('listingsContainer');
+      container.innerHTML = '';
+
+      // Update Active Listings Counter in Dashboard Overview
+      document.getElementById('statActiveCount').innerText = products.length;
+
+      if (products.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 20px;">No active listings found. Click "Create New Listing" above to add products.</p>';
+        return;
+      }
+
+      products.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'listing-item';
+        item.onclick = () => openProductModal(p.id);
+
+        item.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" class="listing-img">
+          <div class="listing-details">
+            <div class="listing-name">${p.name}</div>
+            <div class="listing-category">${p.category}</div>
+            <div class="listing-price">${p.price}</div>
+            <div class="listing-expiry">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Expires • ${p.expiry}
+            </div>
+          </div>
+          <div class="listing-status-group">
+            <span class="status-tag">ACTIVE</span>
+            <div class="stat-metric">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              ${p.views} views
+            </div>
+            <div class="stat-metric">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              ${p.inquiries} inquiries
+            </div>
+          </div>
+          <svg class="arrow-right-icon" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // 3. UI Toggles & Modals
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function toggleProfileDropdown(event) {
+      event.stopPropagation();
+      const dropdown = document.getElementById('profileDropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('profileDropdown');
+      if (dropdown && dropdown.classList.contains('active')) {
+        dropdown.classList.remove('active');
+      }
+    });
+
+    function openProductModal(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+
+      activeModalProductId = p.id;
+      document.getElementById('modalName').innerText = p.name;
+      document.getElementById('modalCategory').innerText = p.category;
+      document.getElementById('modalPrice').innerText = p.price;
+      document.getElementById('modalExpiry').innerText = p.expiry;
+      document.getElementById('modalViews').innerText = p.views;
+      document.getElementById('modalInquiries').innerText = p.inquiries;
+      document.getElementById('modalStock').innerText = p.stock;
+      document.getElementById('modalImg').src = p.img;
+
+      document.getElementById('productModalBackdrop').classList.add('active');
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModalBackdrop').classList.remove('active');
+    }
+
+    // 4. CRUD Actions (LocalStorage manipulation)
+    function deleteCurrentProduct() {
+      if(confirm('Are you sure you want to remove this listing?')) {
+        products = products.filter(item => item.id !== activeModalProductId);
+        localStorage.setItem('darawat_products', JSON.stringify(products));
+        renderProducts();
+        closeProductModal();
+        alert('Listing deleted successfully.');
+      }
+    }
+
+    function markAsSoldOut() {
+      products = products.map(item => {
+        if(item.id === activeModalProductId) {
+          item.stock = '0 (Sold Out)';
+        }
+        return item;
+      });
+      localStorage.setItem('darawat_products', JSON.stringify(products));
+      renderProducts();
+      closeProductModal();
+      alert('Status updated: Marked as Sold Out');
+    }
+
+    // Listen to storage changes across pages in real-time
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'darawat_products') {
+        products = JSON.parse(e.newValue) || [];
+        renderProducts();
+      }
+    });
+
+    // Initial render call on page load
+    renderProducts();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Community Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --card-bg: #ffffff;
+      --warning-bg: #fefce8;
+      --warning-border: #fde047;
+      --warning-text: #854d0e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero Section */
+    .guidelines-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 36px;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .guidelines-hero {
+        padding: 56px 40px;
+      }
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 36px; }
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-size: 13.5px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto 24px auto;
+      line-height: 1.6;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--primary-green);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      background: #f0fdf4;
+    }
+
+    /* Section Headings */
+    .section-container {
+      margin-bottom: 40px;
+    }
+
+    .section-main-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-main-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* 2. Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .value-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: transform 0.2s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .value-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .value-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .value-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Rule Cards & Grid Layouts */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .rules-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .rule-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .rule-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rule-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-list li.allowed::before {
+      content: '✅';
+      font-size: 12px;
+    }
+
+    .rule-list li.prohibited::before {
+      content: '❌';
+      font-size: 12px;
+    }
+
+    .rule-note {
+      background: #f8faf8;
+      border-left: 3px solid var(--primary-green);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      margin-top: 14px;
+      font-weight: 600;
+    }
+
+    /* Prohibited Content Grid (Section 9) */
+    .prohibited-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .prohibited-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .prohibited-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .prohibited-card {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .prohibited-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--danger-red);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prohibited-desc {
+      font-size: 12px;
+      color: #7f1d1d;
+      line-height: 1.4;
+    }
+
+    /* Safety & Emergency Banners */
+    .safety-banner {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      color: var(--warning-text);
+    }
+
+    .safety-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .safety-text {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .safety-text:last-child { margin-bottom: 0; }
+
+    /* Moderation Steps Grid */
+    .mod-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .mod-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .mod-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .mod-num {
+      background: #eaf6ec;
+      color: var(--primary-green);
+      font-weight: 800;
+      font-size: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px auto;
+    }
+
+    .mod-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .mod-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Report Form Card (Section 10) */
+    .report-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 768px) {
+      .report-card { padding: 32px; }
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .form-grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .form-label span { color: var(--danger-red); }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-dark);
+      background: #f8faf8;
+      outline: none;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .form-error {
+      font-size: 11px;
+      color: var(--danger-red);
+      display: none;
+    }
+
+    .form-group.error .form-input, 
+    .form-group.error .form-select, 
+    .form-group.error .form-textarea {
+      border-color: var(--danger-red);
+    }
+
+    .form-group.error .form-error { display: block; }
+
+    .success-alert {
+      background: #edf7ee;
+      border: 1px solid #bbf7d0;
+      color: #16a34a;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      display: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      background: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(6, 78, 41, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover { background: var(--primary-green-light); }
+
+    /* Final CTA Box */
+    .cta-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+      margin-top: 40px;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    .cta-buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: #ffffff;
+      color: var(--primary-green);
+    }
+
+    .cta-btn.primary:hover {
+      background: #f0fdf4;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+   <nav class="drawer-menu">
+      <a href="FAQ.html" class="drawer-item">
+        <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;"></div> <!-- Spacer -->
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- 1. HERO SECTION -->
+      <section class="guidelines-hero">
+        <h1 class="hero-title">DARAWAT Community Guidelines</h1>
+        <p class="hero-subtitle">“A respectful community starts with everyone.”</p>
+        <p class="hero-desc">
+          DARAWAT is built to help local producers and consumers discover, connect, and support one another. These guidelines help keep our community safe, respectful, honest, and useful for everyone.
+        </p>
+        <a href="#coreValues" class="hero-btn">
+          I Understand the Guidelines
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </section>
+
+      <!-- 2. OUR COMMUNITY VALUES -->
+      <section class="section-container" id="coreValues">
+        <h2 class="section-main-title">Our Community Values</h2>
+        <p class="section-main-subtitle">The foundational principles that guide interaction across our discovery platform.</p>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3 class="value-title">Respect</h3>
+            <p class="value-desc">Treat every producer, consumer, and community member with respect.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🔎</div>
+            <h3 class="value-title">Honesty</h3>
+            <p class="value-desc">Provide accurate information about products, prices, availability, and producer details.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🛡️</div>
+            <h3 class="value-title">Safety</h3>
+            <p class="value-desc">Protect yourself and others when communicating and arranging transactions.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🌱</div>
+            <h3 class="value-title">Support Local</h3>
+            <p class="value-desc">Use DARAWAT to help promote local products, producers, and livelihoods.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">💬</div>
+            <h3 class="value-title">Responsible Communication</h3>
+            <p class="value-desc">Communicate clearly and respectfully when contacting other users.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. BE RESPECTFUL & 4. PROVIDE HONEST INFORMATION -->
+      <section class="section-container">
+        <div class="rules-grid">
+          
+          <!-- Be Respectful -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>🤝</span> Be Respectful</h3>
+            <ul class="rule-list" style="margin-bottom: 12px;">
+              <li class="allowed">Treat others respectfully</li>
+              <li class="allowed">Use appropriate language</li>
+              <li class="allowed">Respect different opinions</li>
+              <li class="allowed">Communicate professionally</li>
+              <li class="allowed">Avoid harassment or intimidation</li>
+              <li class="allowed">Respect personal boundaries</li>
+            </ul>
+            <ul class="rule-list">
+              <li class="prohibited">Harassment</li>
+              <li class="prohibited">Threats</li>
+              <li class="prohibited">Bullying</li>
+              <li class="prohibited">Hate speech</li>
+              <li class="prohibited">Discrimination</li>
+              <li class="prohibited">Abusive or insulting behavior</li>
+            </ul>
+            <div class="rule-note">
+              “Disagreement is okay. Harassment is not.”
+            </div>
+          </div>
+
+          <!-- Provide Honest Information -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>🔎</span> Provide Honest Information</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+              Producers should provide accurate information about their products. Do not allow users to intentionally provide:
+            </p>
+            <ul class="rule-list" style="margin-bottom: 14px;">
+              <li class="prohibited">Fake product information</li>
+              <li class="prohibited">Misleading descriptions</li>
+              <li class="prohibited">Fake prices</li>
+              <li class="prohibited">Fake availability</li>
+              <li class="prohibited">False producer identities</li>
+              <li class="prohibited">Misleading product images</li>
+              <li class="prohibited">False claims about products</li>
+            </ul>
+            <div class="rule-note">
+              “If a product is no longer available, update its availability or remove the listing.”
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. PRODUCT LISTING GUIDELINES & 6. COMMUNICATION GUIDELINES -->
+      <section class="section-container">
+        <div class="rules-grid">
+          
+          <!-- Product Listing Guidelines -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>📋</span> Product Listing Guidelines</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px; font-weight: 700;">Listings should:</p>
+            <ul class="rule-list" style="margin-bottom: 14px;">
+              <li class="allowed">Use an accurate product name</li>
+              <li class="allowed">Include a clear description</li>
+              <li class="allowed">Provide accurate pricing when applicable</li>
+              <li class="allowed">Use appropriate product photos</li>
+              <li class="allowed">Indicate availability accurately</li>
+              <li class="allowed">Select the correct category</li>
+              <li class="allowed">Provide accurate producer/location info</li>
+            </ul>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700;">Prohibited listings:</p>
+            <ul class="rule-list" style="margin-bottom: 12px;">
+              <li class="prohibited">Illegal products</li>
+              <li class="prohibited">Dangerous goods / Stolen goods</li>
+              <li class="prohibited">Counterfeit goods / Fraudulent offers</li>
+              <li class="prohibited">Misleading ads / Inappropriate content</li>
+            </ul>
+            <div class="rule-note" style="border-left-color: var(--danger-red);">
+              “DARAWAT reserves the right to review or remove content that violates community guidelines or applicable rules.”
+            </div>
+          </div>
+
+          <!-- Communication Guidelines -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>💬</span> Communication Guidelines</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px; font-weight: 700;">DO When Contacting Users:</p>
+            <ul class="rule-list" style="margin-bottom: 14px;">
+              <li class="allowed">Introduce yourself clearly</li>
+              <li class="allowed">Ask questions respectfully</li>
+              <li class="allowed">Confirm product details & availability</li>
+              <li class="allowed">Discuss price & quantity clearly</li>
+              <li class="allowed">Agree on pickup or delivery arrangements</li>
+            </ul>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700;">DON'T:</p>
+            <ul class="rule-list">
+              <li class="prohibited">Spam users or send unwanted messages</li>
+              <li class="prohibited">Threaten or send inappropriate content</li>
+              <li class="prohibited">Request unnecessary personal info</li>
+              <li class="prohibited">Impersonate another person</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7. TRANSACTION SAFETY -->
+      <section class="safety-banner">
+        <h3 class="safety-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Stay Safe When Arranging Transactions
+        </h3>
+        <p class="safety-text">
+          “DARAWAT helps consumers and producers connect, but transactions are arranged directly between the users.”
+        </p>
+        <p class="safety-text" style="font-weight: 700; margin-bottom: 6px;">Recommended Practices:</p>
+        <ul class="rule-list" style="margin-bottom: 12px;">
+          <li class="allowed">Confirm the producer's identity</li>
+          <li class="allowed">Confirm product availability & price</li>
+          <li class="allowed">Confirm quantity & pickup/delivery details</li>
+          <li class="allowed">Meet in a safe and appropriate location when possible</li>
+          <li class="allowed">Keep communication clear</li>
+        </ul>
+        <p class="safety-text" style="font-weight: 700; color: var(--danger-red);">
+          “DARAWAT does not process online payments or act as a payment intermediary.” DARAWAT does not guarantee transactions.
+        </p>
+      </section>
+
+      <!-- 8. PRIVACY & PERSONAL INFORMATION -->
+      <section class="section-container">
+        <div class="rule-card" style="border-left: 4px solid #0284c7;">
+          <h3 class="rule-card-title"><span>🔒</span> Privacy & Personal Information</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+            Protect your personal information. Users should avoid publicly sharing sensitive data.
+          </p>
+          <ul class="rule-list" style="margin-bottom: 14px;">
+            <li class="prohibited">Passwords & One-time passwords (OTP)</li>
+            <li class="prohibited">Bank account information</li>
+            <li class="prohibited">Credit or debit card information</li>
+            <li class="prohibited">Sensitive personal information</li>
+          </ul>
+          <div class="rule-note" style="border-left-color: #0284c7;">
+            “Only share information that is necessary for communication or arranging a transaction. Never ask another user for their password or verification code.”
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. PROHIBITED CONTENT -->
+      <section class="section-container">
+        <h2 class="section-main-title">Prohibited Content</h2>
+        <p class="section-main-subtitle">Strictly forbidden content categories across the DARAWAT platform.</p>
+
+        <div class="prohibited-grid">
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Fraud & Scams</h4>
+            <p class="prohibited-desc">No fake offers, fraudulent activity, or attempts to deceive users.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Illegal Products</h4>
+            <p class="prohibited-desc">No listings for products that are prohibited by applicable laws.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Counterfeit Products</h4>
+            <p class="prohibited-desc">No fake or counterfeit products presented as authentic.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Dangerous Content</h4>
+            <p class="prohibited-desc">No content that promotes dangerous or harmful activity.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Hate & Harassment</h4>
+            <p class="prohibited-desc">No hateful, threatening, discriminatory, or abusive content.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Spam</h4>
+            <p class="prohibited-desc">No repetitive ads, irrelevant promotions, or unsolicited messages.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Impersonation</h4>
+            <p class="prohibited-desc">Do not pretend to be another person, producer, or DARAWAT rep.</p>
+          </div>
+          <div class="prohibited-card">
+            <h4 class="prohibited-title">🚫 Misleading Info</h4>
+            <p class="prohibited-desc">Do not intentionally provide false or deceptive information.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. PRODUCER RESPONSIBILITIES & 12. CONSUMER RESPONSIBILITIES -->
+      <section class="section-container">
+        <div class="rules-grid">
+          
+          <!-- For Producers -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>🌾</span> For Producers</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px; font-weight: 700;">Producers are responsible for:</p>
+            <ul class="rule-list">
+              <li class="allowed">Keeping product info accurate & updated</li>
+              <li class="allowed">Providing honest descriptions & clear pricing</li>
+              <li class="allowed">Responding respectfully to inquiries</li>
+              <li class="allowed">Providing accurate location information</li>
+              <li class="allowed">Following applicable laws & regulations</li>
+            </ul>
+            <div class="rule-note">
+              Do not promise products that cannot reasonably be provided.
+            </div>
+          </div>
+
+          <!-- For Consumers -->
+          <div class="rule-card">
+            <h3 class="rule-card-title"><span>👤</span> For Consumers</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px; font-weight: 700;">Consumers are expected to:</p>
+            <ul class="rule-list">
+              <li class="allowed">Communicate respectfully & ask reasonable questions</li>
+              <li class="allowed">Respect producer availability</li>
+              <li class="allowed">Confirm details before arranging transactions</li>
+              <li class="allowed">Avoid harassment or spam</li>
+              <li class="allowed">Report suspicious activity & protect personal info</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 13. COMMUNITY CONTRIBUTION -->
+      <section class="section-container">
+        <div class="rule-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #bbf7d0;">
+          <h3 class="rule-card-title" style="color: var(--primary-green);"><span>🌱</span> Help Us Build a Better Local Community</h3>
+          <p style="font-size: 13.5px; color: var(--text-dark); line-height: 1.6; margin-bottom: 12px;">
+            Every user contributes to DARAWAT's community. Support legitimate local producers, provide accurate information, treat people respectfully, report problems responsibly, and help keep the platform useful.
+          </p>
+          <div style="font-size: 13px; font-weight: 800; color: var(--primary-green); font-style: italic;">
+            “When we support local producers, we help strengthen our community.”
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. MODERATION & ENFORCEMENT -->
+      <section class="section-container">
+        <h2 class="section-main-title">Moderation & Enforcement</h2>
+        <p class="section-main-subtitle">Transparent actions taken when community guidelines are violated.</p>
+
+        <div class="mod-grid" style="margin-bottom: 16px;">
+          <div class="mod-card">
+            <div class="mod-num">01</div>
+            <div class="mod-title">Warning</div>
+            <div class="mod-desc">For minor or first-time violations.</div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-num">02</div>
+            <div class="mod-title">Content Removal</div>
+            <div class="mod-desc">Violating content may be removed.</div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-num">03</div>
+            <div class="mod-title">Account Restriction</div>
+            <div class="mod-desc">Temporary loss of feature access.</div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-num">04</div>
+            <div class="mod-title">Account Suspension</div>
+            <div class="mod-desc">Temporary suspension for repeated issues.</div>
+          </div>
+          <div class="mod-card">
+            <div class="mod-num">05</div>
+            <div class="mod-title">Account Removal</div>
+            <div class="mod-desc">Termination for severe or repeated violations.</div>
+          </div>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); text-align: center; font-style: italic;">
+          “Actions may depend on the severity and circumstances of the violation. Reports do not automatically result in removal.”
+        </p>
+      </section>
+
+      <!-- 15. EMERGENCY / SERIOUS SAFETY ISSUES -->
+      <section class="section-container">
+        <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 14px; padding: 18px; color: #991b1b; font-size: 13px; line-height: 1.5;">
+          <strong>🚨 Emergency / Serious Safety Issues:</strong><br>
+          “If you believe there is an immediate threat to someone's safety or an emergency, contact the appropriate local authorities rather than relying only on DARAWAT's reporting system.” (DARAWAT is not an emergency response service).
+        </div>
+      </section>
+
+      <!-- 10. REPORT A PROBLEM -->
+      <section class="section-container" id="reportSection">
+        <div class="report-card">
+          <h2 class="section-main-title" style="margin-bottom: 4px;">See Something That Violates the Guidelines?</h2>
+          <p class="section-main-subtitle">“If you encounter suspicious, abusive, misleading, or inappropriate content, please report it to the DARAWAT team.”</p>
+
+          <div class="success-alert" id="guidelinesReportSuccess">
+            ✓ Thank you! Your report has been submitted successfully. Our team will review it.
+          </div>
+
+          <form id="guidelinesReportForm" onsubmit="handleGuidelinesReport(event)" novalidate>
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="gRepGroupFullName">
+                <label class="form-label">Name <span>*</span></label>
+                <input type="text" id="gRepFullName" class="form-input" placeholder="e.g. Juan Dela Cruz">
+                <span class="form-error">Please enter your name.</span>
+              </div>
+
+              <div class="form-group" id="gRepGroupEmail">
+                <label class="form-label">Email <span>*</span></label>
+                <input type="email" id="gRepEmail" class="form-input" placeholder="e.g. juandelacruz@example.com">
+                <span class="form-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="gRepGroupCategory">
+                <label class="form-label">Report Category <span>*</span></label>
+                <select id="gRepCategory" class="form-select">
+                  <option value="">Select Category</option>
+                  <option value="Harassment">Harassment</option>
+                  <option value="Scam/Fraud">Scam/Fraud</option>
+                  <option value="Misleading Product">Misleading Product</option>
+                  <option value="Inappropriate Content">Inappropriate Content</option>
+                  <option value="Fake Account">Fake Account</option>
+                  <option value="Incorrect Information">Incorrect Information</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="form-error">Please select a report category.</span>
+              </div>
+
+              <div class="form-group" id="gRepGroupTarget">
+                <label class="form-label">Related Product / Producer (Optional)</label>
+                <input type="text" id="gRepTarget" class="form-input" placeholder="e.g. Farm Name or Product">
+              </div>
+            </div>
+
+            <div class="form-group" id="gRepGroupDescription" style="margin-bottom: 16px;">
+              <label class="form-label">Description <span>*</span></label>
+              <textarea id="gRepDescription" class="form-textarea" rows="4" placeholder="Provide details about the violation..."></textarea>
+              <span class="form-error">Please provide a description (at least 10 characters).</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 24px;">
+              <label class="form-label">Optional Screenshot / Image</label>
+              <input type="file" id="gRepScreenshot" class="form-input" accept="image/*" style="padding: 8px;">
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Report</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 16. FINAL MESSAGE -->
+      <section class="cta-box">
+        <h2 class="cta-title">Let's Keep DARAWAT Safe, Respectful, and Local.</h2>
+        <p class="cta-desc">
+          “By using DARAWAT, you help create a community where local producers and consumers can connect with trust, respect, and responsibility.”
+        </p>
+        <div class="cta-buttons-wrap">
+          <a href="Register as Buyer.html" class="cta-btn primary">Explore DARAWAT</a>
+          <a href="Contact Us.html" class="cta-btn secondary">Contact Us</a>
+        </div>
+      </section>
+
+    </main>
+
+   
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Guidelines Report Form Validation & API Readiness
+    function handleGuidelinesReport(event) {
+      event.preventDefault();
+
+      let isValid = true;
+      document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+      document.getElementById('guidelinesReportSuccess').style.display = 'none';
+
+      const name = document.getElementById('gRepFullName').value.trim();
+      const email = document.getElementById('gRepEmail').value.trim();
+      const category = document.getElementById('gRepCategory').value;
+      const target = document.getElementById('gRepTarget').value.trim();
+      const description = document.getElementById('gRepDescription').value.trim();
+      const screenshot = document.getElementById('gRepScreenshot').files[0];
+
+      if (!name) {
+        document.getElementById('gRepGroupFullName').classList.add('error');
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        document.getElementById('gRepGroupEmail').classList.add('error');
+        isValid = false;
+      }
+
+      if (!category) {
+        document.getElementById('gRepGroupCategory').classList.add('error');
+        isValid = false;
+      }
+
+      if (!description || description.length < 10) {
+        document.getElementById('gRepGroupDescription').classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Payload structure ready for future backend/API integration (e.g., fetch('/api/guidelines-report', { method: 'POST', body: ... }))
+      const reportPayload = {
+        name,
+        email,
+        category,
+        relatedTarget: target || 'N/A',
+        description,
+        hasAttachment: !!screenshot,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log("Guidelines report payload ready for backend/API integration:", reportPayload);
+
+      const successAlert = document.getElementById('guidelinesReportSuccess');
+      successAlert.style.display = 'block';
+      document.getElementById('guidelinesReportForm').reset();
+      successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

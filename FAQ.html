@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Frequently Asked Questions (FAQ)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --card-bg: #ffffff;
+      --focus-ring: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* FAQ Hero Section */
+    .faq-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .faq-hero { padding: 56px 40px; }
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 36px; }
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 12px;
+    }
+
+    .hero-desc {
+      font-size: 13.5px;
+      opacity: 0.95;
+      max-width: 750px;
+      margin: 0 auto 24px auto;
+      line-height: 1.6;
+    }
+
+    /* FAQ Search Bar */
+    .faq-search-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .faq-search-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 14px 20px 14px 48px;
+      border-radius: 14px;
+      font-family: var(--font-family);
+      font-size: 14px;
+      color: var(--text-dark);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+
+    .faq-search-input:focus {
+      background: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .faq-search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* FAQ Categories Bar */
+    .faq-categories-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+      scrollbar-width: thin;
+    }
+
+    .faq-categories-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .faq-categories-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .cat-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: var(--font-family);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .cat-btn:hover {
+      background: #f1f7f3;
+      color: var(--primary-green);
+      border-color: #cbd5e1;
+    }
+
+    .cat-btn.active {
+      background: var(--primary-green);
+      color: #ffffff;
+      border-color: var(--primary-green);
+      box-shadow: 0 4px 12px rgba(6, 78, 41, 0.2);
+    }
+
+    /* FAQ Accordion List */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: #cbd5e1;
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      text-align: left;
+      font-family: var(--font-family);
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .faq-question-btn { padding: 20px 24px; font-size: 15px; }
+    }
+
+    .faq-question-btn svg {
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      color: var(--primary-green);
+    }
+
+    .faq-item.open .faq-question-btn svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #f8faf8;
+      border-top: 0px solid var(--border-color);
+    }
+
+    .faq-item.open .faq-answer-wrapper {
+      max-height: 500px;
+      border-top-width: 1px;
+    }
+
+    .faq-answer-content {
+      padding: 16px 20px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .faq-answer-content { padding: 20px 24px; }
+    }
+
+    .faq-answer-content p {
+      margin-bottom: 10px;
+    }
+
+    .faq-answer-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer-content ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .faq-answer-content li {
+      margin-bottom: 4px;
+    }
+
+    /* Empty State */
+    .faq-empty-state {
+      display: none;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .faq-empty-state.visible {
+      display: block;
+    }
+
+    .empty-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .empty-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Helpful Links Section */
+    .helpful-links-section {
+      margin-top: 40px;
+    }
+
+    .section-header-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .helpful-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .helpful-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .helpful-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .helpful-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text-dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .helpful-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+    }
+
+    .helpful-card-icon {
+      font-size: 22px;
+    }
+
+    .helpful-card-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .helpful-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Call To Action Box */
+    .cta-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+      margin-top: 40px;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    .cta-buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: #ffffff;
+      color: var(--primary-green);
+    }
+
+    .cta-btn.primary:hover {
+      background: #f0fdf4;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer" aria-label="Main Navigation Drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn icon-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="drawer-menu">
+      <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar" role="banner">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Navigation Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'" role="button" tabindex="0" aria-label="DARAWAT Home">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area" id="mainContent" role="main">
+
+      <!-- 1. FAQ HERO SECTION -->
+      <section class="faq-hero">
+        <h1 class="hero-title">Frequently Asked Questions</h1>
+        <div class="hero-subtitle">“Everything you need to know about DARAWAT.”</div>
+        <p class="hero-desc">
+          Find quick answers about discovering local products, connecting with producers, using DARAWAT's features, and staying safe on the platform.
+        </p>
+        <div class="faq-search-wrapper">
+          <svg class="faq-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="What do you want to know?" aria-label="Search FAQs">
+        </div>
+      </section>
+
+      <!-- 2. FAQ CATEGORIES -->
+      <div class="faq-categories-container" role="tablist" aria-label="FAQ Categories">
+        <button class="cat-btn active" role="tab" aria-selected="true" onclick="filterCategory('all', this)">✨ All Questions</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('general', this)">🌱 General</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('producers', this)">🧑‍🌾 For Producers</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('consumers', this)">🛍️ For Consumers</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('payments', this)">💳 Payments & Transactions</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('maps', this)">🗺️ Maps & Location</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('communication', this)">💬 Communication</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('safety', this)">🛡️ Safety</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('accounts', this)">👤 Accounts</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('features', this)">⚙️ Website Features</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('privacy', this)">🔒 Privacy & Legal</button>
+        <button class="cat-btn" role="tab" aria-selected="false" onclick="filterCategory('technical', this)">🛠️ Technical</button>
+      </div>
+
+      <!-- FAQ Accordion List -->
+      <div class="faq-list" id="faqList">
+
+        <!-- GENERAL -->
+        <div class="faq-item" data-category="general">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What is DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT is a web-based local product and livelihood discovery platform designed to connect local producers with consumers. It helps users discover products and producers within their community.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Who can use DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT is designed for local consumers and producers who want to discover, showcase, and connect around locally available products.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Where does DARAWAT operate?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT is initially focused on connecting communities and local producers in San Jose de Buenavista, Antique.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What can I do on DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“You can discover products, explore producer profiles, search for local products, view location information, and connect with producers.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Is DARAWAT an online shopping website?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Not exactly. DARAWAT is primarily a product discovery and connection platform. It helps consumers find local producers but does not currently operate as a traditional online checkout marketplace.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NO ONLINE PAYMENT -->
+        <div class="faq-item" data-category="payments">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I pay for products through DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“No. DARAWAT currently does not process online payments.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="payments">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT have GCash or Maya checkout?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“No. DARAWAT does not currently provide GCash, Maya, credit/debit card, or other online payment checkout.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="payments">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT have a shopping cart?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“No. DARAWAT does not currently use a shopping cart or checkout system.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="payments">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How do I pay a producer?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Payment arrangements are made directly between the consumer and producer. Before completing a transaction, confirm the price, product availability, payment method, and other details directly with the producer.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="payments">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT guarantee my transaction?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT helps users discover and connect with producers but does not guarantee transactions, payments, product quality, delivery, or the behavior of individual users.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCERS -->
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How can I become a producer on DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Create a producer account or follow the producer registration process available on DARAWAT.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I add my own products?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“If your producer account has product-listing functionality, you can add products and provide information such as product name, description, price, availability, images, and location.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What information should I provide about my products?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Provide accurate and useful information, including the product name, description, price when applicable, availability, images, and other details that help consumers understand your product.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I update my product information?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes, if product editing is available in your producer account. Keep your information updated so consumers can see accurate product details and availability.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I remove a product?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes, where product management functionality is available. Removing unavailable products helps keep DARAWAT's listings useful and accurate.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="producers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I promote my local business or livelihood?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT is designed to help local producers showcase their products and connect with potential consumers.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONSUMERS -->
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How do I find products near me?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Use DARAWAT's search, categories, filters, and location/map features to discover available local products and producers.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I search for a specific product?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes. Use the search function to find products or producers based on available information.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I see where a producer is located?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes. Producer location information may be displayed through their profile or DARAWAT's map features, depending on the information provided and the website's available functionality.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I contact a producer?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes. Use the contact information or communication options provided on the producer's profile.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What should I ask a producer before buying?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“You may want to confirm product availability, price, quantity, pickup or delivery arrangements, payment method, and other important details before agreeing to a transaction.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="consumers">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I request delivery?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Delivery arrangements depend on the individual producer. Contact the producer directly to ask whether delivery is available and discuss the details.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAPS & LOCATION -->
+        <div class="faq-item" data-category="maps">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Why does DARAWAT use maps?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Maps help users discover producers and products based on location and make it easier to understand where local producers are located.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="maps">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT track my location?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT should only request device location when a location-based feature requires it. Users can manage location permissions through their browser or device settings.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="maps">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Do I have to share my location?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Not necessarily. Some location-based features may require location access, but users can choose whether to grant browser or device location permission.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="maps">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Why is a producer's location different from mine?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Producer locations come from information provided through the platform and may not represent your current location. Confirm important location details directly with the producer.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCOUNTS -->
+        <div class="faq-item" data-category="accounts">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Do I need an account to use DARAWAT?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Some DARAWAT features may be available without an account, while features such as managing a producer profile may require an account.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="accounts">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How do I update my profile?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Open your account or profile settings and update the available information.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="accounts">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>I forgot my password. What should I do?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Use the password recovery option provided on the login page. If password recovery is not available, contact DARAWAT support.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="accounts">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I delete my account?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“If account deletion is available, use the account settings. Otherwise, <a href="Contact Us.html" style="color: var(--primary-green); font-weight: 700;">contact DARAWAT support</a> to request account deletion.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMUNICATION -->
+        <div class="faq-item" data-category="communication">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How do I contact a producer?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Open the producer's profile and use the available contact or communication option.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="communication">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I send spam or repeated messages?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“No. DARAWAT users should communicate respectfully and avoid spam, harassment, or unwanted repeated messages.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="communication">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What should I do if someone is harassing me?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Stop communicating with the person if necessary and report the issue through DARAWAT's reporting system. For immediate safety concerns, contact the appropriate local authorities.”</p>
+              <a href="Help Center.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 10px; background: var(--primary-green); color: #ffffff;">Report a Problem</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAFETY -->
+        <div class="faq-item" data-category="safety">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>How can I stay safe when dealing with a producer?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>Follow these safety guidelines:</p>
+              <ul>
+                <li>Confirm product details and price</li>
+                <li>Verify who you are dealing with</li>
+                <li>Avoid sharing unnecessary personal information</li>
+                <li>Be cautious with suspicious offers</li>
+                <li>Choose appropriate meeting locations</li>
+                <li>Report suspicious behavior</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="safety">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Should I share my password or OTP?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“No. Never share your password, OTP, verification code, or other sensitive account credentials with another person.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="safety">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What if a product listing looks suspicious?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Do not proceed if you believe a listing may be fraudulent or unsafe. Report the listing to DARAWAT so it can be reviewed.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="safety">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What if I encounter a scam?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Report the account, listing, or activity through DARAWAT's reporting system and provide as much useful information as possible.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WEBSITE FEATURES -->
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Why can't I find a product?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>Possible reasons:</p>
+              <ul>
+                <li>The product is not listed</li>
+                <li>The producer removed it</li>
+                <li>The product is unavailable</li>
+                <li>Your search terms do not match</li>
+                <li>Filters may be limiting the results</li>
+              </ul>
+              <p style="margin-top: 8px; font-weight: 700;">“Try a different search term or browse another category.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Why did a product disappear?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“A product may no longer appear because the producer removed it, changed its availability, or the listing was restricted or removed.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I report incorrect product information?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Yes. Report inaccurate or misleading product information through the reporting system.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I review a producer?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT may introduce reviews or ratings in a future version. If this feature is added, this FAQ will be updated.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Is DARAWAT accessible?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT aims to make the platform easier to use for people with different abilities and needs. We continuously work to improve accessibility.”</p>
+              <a href="Accessibility.html" style="color: var(--primary-green); font-weight: 700; text-decoration: underline;">View Accessibility page</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="features">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Can I increase the text size?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“If the accessibility controls are available, use the text-size controls to increase or decrease the displayed text size.”</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIVACY & LEGAL -->
+        <div class="faq-item" data-category="privacy">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>What information does DARAWAT collect?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT may collect information needed to provide its features, depending on how you use the platform. See the Privacy Policy for detailed information.”</p>
+              <a href="Privacy Policy.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 10px; background: var(--primary-green); color: #ffffff;">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="privacy">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT use cookies?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT may use cookies or similar browser technologies depending on the website's implementation. See the Cookie Policy for detailed information.”</p>
+              <a href="Cookie Policy.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 10px; background: var(--primary-green); color: #ffffff;">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="privacy">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Does DARAWAT sell my personal information?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“DARAWAT's handling of personal information is described in its Privacy Policy. Review the Privacy Policy for the most accurate and current information.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="privacy">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Where can I read DARAWAT's Terms & Conditions?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Visit the Terms & Conditions page for the complete rules governing use of DARAWAT.”</p>
+              <a href="Terms and Conditions.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 10px; background: var(--primary-green); color: #ffffff;">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="privacy">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Where can I find the Community Guidelines?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Visit the Community Guidelines page to learn about respectful behavior and prohibited content.”</p>
+              <a href="Community Guidelines.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 10px; background: var(--primary-green); color: #ffffff;">Community Guidelines</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TECHNICAL -->
+        <div class="faq-item" data-category="technical">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>Why isn't DARAWAT working correctly?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>Try these troubleshooting steps:</p>
+              <ul>
+                <li>Refresh the page</li>
+                <li>Check your internet connection</li>
+                <li>Try another browser</li>
+                <li>Clear browser cache if necessary</li>
+                <li>Try again later</li>
+              </ul>
+              <p style="margin-top: 8px;">If the problem continues, <a href="Contact Us.html" style="color: var(--primary-green); font-weight: 700;">contact support</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="technical">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>The map isn't loading. What should I do?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>Try these steps:</p>
+              <ul>
+                <li>Refresh the page</li>
+                <li>Check your internet connection</li>
+                <li>Check browser permissions</li>
+                <li>Try another browser</li>
+                <li>Try again later</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="technical">
+          <button class="faq-question-btn" onclick="toggleAccordion(this)" aria-expanded="false">
+            <span>The website looks strange on my phone. What should I do?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-content">
+              <p>“Make sure your browser is updated and try refreshing the page. DARAWAT is designed to be responsive across different screen sizes, but technical issues may occasionally occur.”</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty State for Search -->
+      <div class="faq-empty-state" id="faqEmptyState">
+        <div class="empty-title">No matching questions found</div>
+        <p class="empty-desc">“Try a different search term or browse the categories above.”</p>
+        <button class="cta-btn primary" onclick="clearSearch()" style="background: var(--primary-green); color: #ffffff; border: none; cursor: pointer;">Clear Search</button>
+      </div>
+
+      <!-- Helpful Links Section -->
+      <div class="helpful-links-section">
+        <h2 class="section-header-title">Helpful Links</h2>
+        <div class="helpful-grid">
+          <a href="Help Center.html" class="helpful-card">
+            <div class="helpful-card-icon">📖</div>
+            <div class="helpful-card-title">Help Center</div>
+            <div class="helpful-card-desc">For detailed guides and troubleshooting.</div>
+          </a>
+          <a href="Community Guidelines.html" class="helpful-card">
+            <div class="helpful-card-icon">🤝</div>
+            <div class="helpful-card-title">Community Guidelines</div>
+            <div class="helpful-card-desc">For community rules and behavior.</div>
+          </a>
+          <a href="Privacy Policy.html" class="helpful-card">
+            <div class="helpful-card-icon">🔒</div>
+            <div class="helpful-card-title">Privacy Policy</div>
+            <div class="helpful-card-desc">For information about personal data.</div>
+          </a>
+          <a href="Contact Us.html" class="helpful-card">
+            <div class="helpful-card-icon">💬</div>
+            <div class="helpful-card-title">Contact Us</div>
+            <div class="helpful-card-desc">For questions not answered in the FAQ.</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <section class="cta-box">
+        <h2 class="cta-title">I still can't find my answer. What should I do?</h2>
+        <p class="cta-desc">
+          “Visit the Help Center or Contact Us page and send us your question or concern.”
+        </p>
+        <div class="cta-buttons-wrap">
+          <a href="Help Center.html" class="cta-btn primary">Help Center</a>
+          <a href="Contact Us.html" class="cta-btn secondary">Contact Us</a>
+        </div>
+      </section>
+
+    </main>
+
+   
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Accordion Toggle Function
+    function toggleAccordion(button) {
+      const item = button.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Optional: Close other accordions in same view for clean UX, or leave open. Let's toggle independent.
+      item.classList.toggle('open', !isOpen);
+      button.setAttribute('aria-expanded', !isOpen);
+    }
+
+    // Category Filtering State
+    let currentCategory = 'all';
+
+    function filterCategory(category, btnElement) {
+      currentCategory = category;
+      
+      // Update active tab styling
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      btnElement.classList.add('active');
+      btnElement.setAttribute('aria-selected', 'true');
+
+      // Clear search input when switching categories for best clarity
+      document.getElementById('faqSearchInput').value = '';
+
+      applyFilters();
+    }
+
+    // Real-time Search & Category Filtering Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('faqSearchInput');
+      
+      searchInput.addEventListener('input', () => {
+        applyFilters();
+      });
+    });
+
+    function applyFilters() {
+      const query = document.getElementById('faqSearchInput').value.toLowerCase().trim();
+      const faqItems = document.querySelectorAll('.faq-item');
+      let visibleCount = 0;
+
+      faqItems.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const questionText = item.querySelector('.faq-question-btn span').textContent.toLowerCase();
+        const answerText = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+
+        const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+        const matchesSearch = (query === '' || questionText.includes(query) || answerText.includes(query));
+
+        if (matchesCategory && matchesSearch) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('open'); // Close hidden items
+        }
+      });
+
+      const emptyState = document.getElementById('faqEmptyState');
+      if (visibleCount === 0) {
+        emptyState.classList.add('visible');
+      } else {
+        emptyState.classList.remove('visible');
+      }
+    }
+
+    function clearSearch() {
+      document.getElementById('faqSearchInput').value = '';
+      applyFilters();
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* About Us Page Styling Components */
+    .about-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .about-hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 48px 40px;
+      }
+    }
+
+    .about-hero-content {
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    .about-hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .about-hero-title { font-size: 36px; }
+    }
+
+    .about-hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 14px;
+    }
+
+    .about-hero-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .about-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--primary-green);
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .about-hero-btn:hover {
+      transform: translateY(-2px);
+      background: #f0fdf4;
+    }
+
+    .about-hero-img-wrap {
+      width: 100%;
+      max-width: 400px;
+      height: 220px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .about-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section Headings */
+    .section-block {
+      margin-bottom: 40px;
+    }
+
+    .section-header-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-header-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Our Story Card */
+    .story-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      line-height: 1.6;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      .story-card { padding: 32px; }
+    }
+
+    .story-card p {
+      margin-bottom: 14px;
+    }
+
+    .story-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-highlight {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    /* Mission & Vision Cards Grid */
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .mission-vision-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .mv-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary-green);
+    }
+
+    .mv-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mv-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* What DARAWAT Does Grid */
+    .features-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .features-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .features-cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .feature-item-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .feature-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #eaf6ec;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .feature-item-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .feature-item-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Who We Serve Grid */
+    .serve-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .serve-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .serve-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .serve-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .serve-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .serve-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .serve-list li::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 800;
+    }
+
+    /* Our Community Card */
+    .community-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--text-dark);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .community-card { padding: 32px; }
+    }
+
+    .community-grid-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .community-grid-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .community-bullet {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary-green);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* How DARAWAT Works - 4 Step Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .process-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .process-step-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      position: relative;
+    }
+
+    .process-step-number {
+      font-size: 24px;
+      font-weight: 800;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .process-step-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .process-step-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Our Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    .value-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: transform 0.2s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .value-emoji {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .value-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .value-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Call To Action Box */
+    .cta-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+      margin-top: 20px;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 24px auto;
+      line-height: 1.5;
+    }
+
+    .cta-buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: #ffffff;
+      color: var(--primary-green);
+    }
+
+    .cta-btn.primary:hover {
+      background: #f0fdf4;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; cursor: pointer; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand" onclick="goBackToSource()" style="cursor:pointer;">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="drawer-menu">
+      <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="goBackToSource()">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;"></div> <!-- Spacer -->
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- 1. Hero / Introduction -->
+      <section class="about-hero">
+        <div class="about-hero-content">
+          <h1 class="about-hero-title">About DARAWAT</h1>
+          <div class="about-hero-subtitle">Connecting Local Producers. Empowering Communities.</div>
+          <p class="about-hero-desc">
+            DARAWAT is a web-based local product and livelihood discovery platform designed to connect local producers with consumers in San Jose de Buenavista, Antique. We make discovering fresh local goods simple while strengthening our local community economy.
+          </p>
+          <a href="#" onclick="goBackToSource(); return false;" class="about-hero-btn">
+            Explore Local Products
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="about-hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600" alt="Local Agriculture Producer" class="about-hero-img">
+        </div>
+      </section>
+
+      <!-- 2. Our Story -->
+      <section class="section-block">
+        <h2 class="section-header-title">Our Story</h2>
+        <p class="section-header-desc">The driving force behind why DARAWAT came to life.</p>
+        
+        <div class="story-card">
+          <p>
+            In many communities like San Jose de Buenavista, <span class="story-highlight">local producers—such as farmers, fisherfolk, livestock raisers, and small agri-entrepreneurs</span>—often face significant hurdles in reaching consumers directly. Traditional selling methods can severely limit their market reach, while consumers frequently struggle to discover nearby producers and locally available products because information is scattered or difficult to access.
+          </p>
+          <p>
+            We realized that community livelihoods flourish best when connections are frictionless. That is why DARAWAT was created: to provide a centralized digital platform that bridges this gap. By giving producers a digital showcase and consumers an intuitive way to explore local goods, we are keeping community commerce vibrant, transparent, and mutually supportive.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Our Mission & 4. Our Vision Grid -->
+      <section class="mission-vision-grid">
+        <!-- Mission Card -->
+        <div class="mv-card">
+          <div>
+            <h3 class="mv-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              Our Mission
+            </h3>
+            <p class="mv-text">
+              “Our mission is to empower local producers by providing a digital platform that makes their products more visible and accessible to consumers while helping strengthen local livelihoods and communities.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Vision Card -->
+        <div class="mv-card">
+          <div>
+            <h3 class="mv-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Our Vision
+            </h3>
+            <p class="mv-text">
+              “Our vision is to build a connected local marketplace where producers and consumers can easily discover, support, and grow together through technology.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. What DARAWAT Does -->
+      <section class="section-block">
+        <h2 class="section-header-title">What DARAWAT Does</h2>
+        <p class="section-header-desc">Core platform capabilities built to bridge producers and neighbors.</p>
+
+        <div class="features-cards-grid">
+          <div class="feature-item-card">
+            <div class="feature-icon-wrapper">📍</div>
+            <h3 class="feature-item-title">Discover Nearby Producers</h3>
+            <p class="feature-item-desc">Help consumers find authentic producers and fresh products directly within their community.</p>
+          </div>
+
+          <div class="feature-item-card">
+            <div class="feature-icon-wrapper">🌾</div>
+            <h3 class="feature-item-title">Support Local Producers</h3>
+            <p class="feature-item-desc">Give farmers, fisherfolk, livestock raisers, and poultry/egg producers an effective way to reach everyday consumers.</p>
+          </div>
+
+          <div class="feature-item-card">
+            <div class="feature-icon-wrapper">🔎</div>
+            <h3 class="feature-item-title">Easy Product Discovery</h3>
+            <p class="feature-item-desc">Allow users to search, filter, and explore locally harvested products effortlessly.</p>
+          </div>
+
+          <div class="feature-item-card">
+            <div class="feature-icon-wrapper">🗺️</div>
+            <h3 class="feature-item-title">Location-Based Discovery</h3>
+            <p class="feature-item-desc">Utilize location and mapping features to help users identify nearby farms and source providers.</p>
+          </div>
+
+          <div class="feature-item-card">
+            <div class="feature-icon-wrapper">🤝</div>
+            <h3 class="feature-item-title">Connect Communities</h3>
+            <p class="feature-item-desc">Create meaningful digital connections and direct lines of communication between producers and consumers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Who We Serve -->
+      <section class="section-block">
+        <h2 class="section-header-title">Who We Serve</h2>
+        <p class="section-header-desc">Tailored experiences designed for both sides of our local marketplace.</p>
+
+        <div class="serve-grid">
+          <!-- For Consumers -->
+          <div class="serve-card">
+            <h3 class="serve-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              For Consumers
+            </h3>
+            <ul class="serve-list">
+              <li>Discover fresh local products</li>
+              <li>Find nearby producers in your zone</li>
+              <li>View detailed producer and stock information</li>
+              <li>Search and filter items with ease</li>
+              <li>Contact producers directly</li>
+              <div>Support local businesses and community livelihoods</div>
+            </ul>
+          </div>
+
+          <!-- For Producers -->
+          <div class="serve-card">
+            <h3 class="serve-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              For Producers
+            </h3>
+            <ul class="serve-list">
+              <li>Showcase your farm products and goods</li>
+              <li>Provide background on your livelihood or business</li>
+              <li>Reach potential customers in your area</li>
+              <li>Increase online visibility without technical hassle</li>
+              <div>Connect directly with community consumers</div>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Our Community -->
+      <section class="section-block">
+        <h2 class="section-header-title">Our Community</h2>
+        <p class="section-header-desc">Rooted deeply in San Jose de Buenavista, Antique.</p>
+
+        <div class="community-card">
+          <p style="margin-bottom: 12px;">
+            DARAWAT is built specifically around the heart and spirit of San Jose de Buenavista, Antique. Our platform champions grassroots growth by harnessing accessible technology to uplift local commerce.
+          </p>
+          <div class="community-grid-list">
+            <div class="community-bullet">🌱 Supporting local livelihoods</div>
+            <div class="community-bullet">🏷️ Promoting authentic local products</div>
+            <div class="community-bullet">🤝 Strengthening producer-consumer bonds</div>
+            <div class="community-bullet">💻 Improving local product discovery</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. How DARAWAT Works -->
+      <section class="section-block">
+        <h2 class="section-header-title">How DARAWAT Works</h2>
+        <p class="section-header-desc">A simple 4-step process to connect with your local market.</p>
+
+        <div class="process-grid">
+          <div class="process-step-card">
+            <div class="process-step-number">01</div>
+            <h3 class="process-step-title">Discover</h3>
+            <p class="process-step-desc">Consumers search for products or local producers within their municipality.</p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">02</div>
+            <h3 class="process-step-title">Explore</h3>
+            <p class="process-step-desc">Users view comprehensive producer profiles, stock updates, and product details.</p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">03</div>
+            <h3 class="process-step-title">Connect</h3>
+            <p class="process-step-desc">Consumers can easily contact or message producers to arrange inquiries or purchases.</p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="process-step-number">04</div>
+            <h3 class="process-step-title">Support Local</h3>
+            <p class="process-step-desc">Enjoy fresh goods while directly supporting producers and community livelihoods.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Our Values -->
+      <section class="section-block">
+        <h2 class="section-header-title">Our Values</h2>
+        <p class="section-header-desc">The principles that guide every feature we build.</p>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-emoji">🤝</div>
+            <h3 class="value-title">Community</h3>
+            <p class="value-desc">Supporting and connecting local community members.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-emoji">🌱</div>
+            <h3 class="value-title">Local Empowerment</h3>
+            <p class="value-desc">Helping local producers gain greater visibility.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-emoji">💡</div>
+            <h3 class="value-title">Innovation</h3>
+            <p class="value-desc">Using technology to improve traditional discovery.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-emoji">🔍</div>
+            <h3 class="value-title">Accessibility</h3>
+            <p class="value-desc">Making producer information easy to find.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-emoji">❤️</div>
+            <h3 class="value-title">Local Support</h3>
+            <p class="value-desc">Encouraging support for local livelihoods.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Call to Action -->
+      <section class="cta-box">
+        <h2 class="cta-title">Discover Local. Support Local.</h2>
+        <p class="cta-desc">
+          Explore DARAWAT and discover the hardworking producers and fresh products right within your community.
+        </p>
+        <div class="cta-buttons-wrap">
+          <a href="#" onclick="goBackToSource(); return false;" class="cta-btn primary">Explore Products</a>
+          <a href="#" onclick="goBackToSource(); return false;" class="cta-btn secondary">Find Producers</a>
+          <a href="Contact Us.html" class="cta-btn secondary">Contact Us</a>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

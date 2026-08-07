@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Seller Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #f6f8f6;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    /* Profile Header & Cover Card */
+    .profile-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .cover-banner {
+      height: 140px;
+      background: linear-gradient(90deg, #04381d 0%, #08522b 55%, #136939 100%);
+      position: relative;
+    }
+
+    .cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .profile-header-body {
+      padding: 0 20px 24px 20px;
+      position: relative;
+    }
+
+    .avatar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: -45px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .verified-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: var(--accent-green);
+      color: #ffffff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: var(--primary-green);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+    }
+
+    /* User Info Details */
+    .user-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .farm-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 4px;
+    }
+
+    .meta-location {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .seller-bio {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* Seller Metrics Grid */
+    .seller-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #f8faf8;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Tabbed Navigation */
+    .tab-bar {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      gap: 24px;
+    }
+
+    .tab-item {
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-item.active {
+      color: var(--primary-green);
+      border-bottom-color: var(--primary-green);
+    }
+
+    /* Tab Content Views */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Grid for Listings */
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 600px) {
+      .listings-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .listings-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .product-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent-green);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .product-price {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding-top: 8px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    /* EDIT PROFILE MODAL STYLING */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    /* Custom File Picker Buttons */
+    .image-upload-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .preview-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+    }
+
+    .file-input-btn {
+      background: #f1f5f9;
+      border: 1px dashed #94a3b8;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .file-input-btn:hover {
+      background: #e2e8f0;
+    }
+
+    /* Hide standard input element */
+    input[type="file"] {
+      display: none;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+    }
+
+    .nav-item.active {
+      color: var(--primary-green);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Go Back" onclick="window.history.back()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span class="nav-title">Producer Profile</span>
+        <button class="icon-btn" aria-label="Share Profile" onclick="alert('Profile link copied!')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="content-area">
+
+      <!-- Profile Header Card -->
+      <section class="profile-card">
+        <div class="cover-banner">
+          <img id="displayCover" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800" alt="Farm Background" class="cover-img">
+        </div>
+        
+        <div class="profile-header-body">
+          <div class="avatar-row">
+            <div class="avatar-container">
+              <img id="displayAvatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Juan Dela Cruz" class="avatar-img">
+              <span class="verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+            </div>
+            
+            <div class="header-actions">
+              <button class="btn btn-outline" onclick="openEditModal()">Edit Profile</button>
+              <button class="btn btn-primary" onclick="alert('Opening conversation...')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Message
+              </button>
+            </div>
+          </div>
+
+          <h1 class="user-name" id="displayName">Juan Dela Cruz</h1>
+          <div class="farm-title" id="displayFarm">Badiang Greens Farm</div>
+          <div class="meta-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#0f4d2a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span id="displayLocation">Badiang, San Jose de Buenavista, Antique</span>
+          </div>
+
+          <p class="seller-bio" id="displayBio">
+            We offer organically grown, freshly harvested leafy vegetables directly from our farm. Dedicated to bringing quality fresh produce to our local community!
+          </p>
+
+          <!-- Metrics -->
+          <div class="seller-stats-bar">
+            <div>
+              <div class="stat-number">12</div>
+              <div class="stat-label">Active Products</div>
+            </div>
+            <div>
+              <div class="stat-number">4.9 ★</div>
+              <div class="stat-label">Rating (48)</div>
+            </div>
+            <div>
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Response Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('products', this)">Products (12)</div>
+        <div class="tab-item" onclick="switchTab('about', this)">About Farm</div>
+        <div class="tab-item" onclick="switchTab('reviews', this)">Reviews (48)</div>
+      </div>
+
+      <!-- Tab Content: Products Grid -->
+      <div id="tab-products" class="tab-content active">
+        <section class="listings-grid">
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=400" alt="Fresh Pechay" class="product-img">
+            <div class="product-body">
+              <span class="product-category">Leafy Vegetables</span>
+              <h3 class="product-title">Fresh Pechay</h3>
+              <div class="product-price">₱25.00 / bundle</div>
+              <div class="product-footer">
+                <span>Stock: 50 bundles</span>
+                <span>1 day left</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1567375698348-5d9d5ae99de0?auto=format&fit=crop&q=80&w=400" alt="Sitaw" class="product-img">
+            <div class="product-body">
+              <span class="product-category">Vegetables</span>
+              <h3 class="product-title">Sitaw (String Beans)</h3>
+              <div class="product-price">₱40.00 / kg</div>
+              <div class="product-footer">
+                <span>Stock: 20 kg</span>
+                <span>2 days left</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=400" alt="Talong" class="product-img">
+            <div class="product-body">
+              <span class="product-category">Vegetables</span>
+              <h3 class="product-title">Talong (Eggplant)</h3>
+              <div class="product-price">₱30.00 / kg</div>
+              <div class="product-footer">
+                <span>Stock: 35 kg</span>
+                <span>1 day left</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Tab Content: About -->
+      <div id="tab-about" class="tab-content">
+        <div style="background:#fff; border-radius:14px; padding:20px; border:1px solid var(--border-color);">
+          <h3>Farm Details</h3>
+          <p style="font-size:13px; color:#475569; margin-top:6px;">Supplying high quality organic leafy crops directly to San Jose de Buenavista.</p>
+        </div>
+      </div>
+
+      <!-- Tab Content: Reviews -->
+      <div id="tab-reviews" class="tab-content">
+        <div style="background:#fff; border-radius:14px; padding:20px; border:1px solid var(--border-color);">
+          <strong style="font-size:13px;">Maria S. ★★★★★</strong>
+          <p style="font-size:12px; color:#475569; margin-top:2px;">Very fresh pechay!</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Nav Bar -->
+    <nav class="bottom-nav">
+      <a href="Register as Seller.html" class="nav-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item active">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- EDIT PROFILE MODAL (WITH LOCAL FILE PICKER) -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Profile</h3>
+        <button class="close-btn" onclick="closeEditModal()">✕</button>
+      </div>
+
+      <form id="editProfileForm" onsubmit="saveProfileInfo(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="inputName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Farm Name</label>
+          <input type="text" id="inputFarm" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="inputLocation" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Bio / Description</label>
+          <textarea id="inputBio" class="form-control" required></textarea>
+        </div>
+
+        <!-- Profile Picture File Picker -->
+        <div class="form-group">
+          <label>Profile Picture</label>
+          <div class="image-upload-wrapper">
+            <img id="avatarPreview" src="" class="preview-thumb" alt="Avatar Preview">
+            <label class="file-input-btn">
+              📷 Choose from Device
+              <input type="file" id="avatarFile" accept="image/*" onchange="previewImage(this, 'avatarPreview')">
+            </label>
+          </div>
+        </div>
+
+        <!-- Cover Photo File Picker -->
+        <div class="form-group">
+          <label>Cover Banner Image</label>
+          <div class="image-upload-wrapper">
+            <img id="coverPreview" src="" class="preview-thumb" style="width:70px;" alt="Cover Preview">
+            <label class="file-input-btn">
+              🖼️ Choose from Device
+              <input type="file" id="coverFile" accept="image/*" onchange="previewImage(this, 'coverPreview')">
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" onclick="closeEditModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Tab Switcher
+    function switchTab(tabName, element) {
+      document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+      element.classList.add('active');
+
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById('tab-' + tabName).classList.add('active');
+    }
+
+    // Modal Control Functions
+    function openEditModal() {
+      // Pre-fill text inputs
+      document.getElementById('inputName').value = document.getElementById('displayName').innerText;
+      document.getElementById('inputFarm').value = document.getElementById('displayFarm').innerText;
+      document.getElementById('inputLocation').value = document.getElementById('displayLocation').innerText;
+      document.getElementById('inputBio').value = document.getElementById('displayBio').innerText.trim();
+      
+      // Pre-fill preview thumbnails
+      document.getElementById('avatarPreview').src = document.getElementById('displayAvatar').src;
+      document.getElementById('coverPreview').src = document.getElementById('displayCover').src;
+
+      document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+
+    // Preview File from Storage (PC or Mobile)
+    function previewImage(fileInput, previewElementId) {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById(previewElementId).src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Save Updated Profile Information
+    function saveProfileInfo(event) {
+      event.preventDefault();
+
+      // Update text fields
+      document.getElementById('displayName').innerText = document.getElementById('inputName').value;
+      document.getElementById('displayFarm').innerText = document.getElementById('inputFarm').value;
+      document.getElementById('displayLocation').innerText = document.getElementById('inputLocation').value;
+      document.getElementById('displayBio').innerText = document.getElementById('inputBio').value;
+
+      // Update images from preview thumbnails
+      document.getElementById('displayAvatar').src = document.getElementById('avatarPreview').src;
+      document.getElementById('displayCover').src = document.getElementById('coverPreview').src;
+
+      closeEditModal();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Consumer Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --heart-red: #ef4444;
+      --bookmark-blue: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .notification-btn {
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: #15803d;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-dropdown-wrapper {
+      position: relative;
+    }
+
+    .user-profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 20px;
+      transition: background-color 0.2s;
+    }
+
+    .user-profile-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .avatar-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--primary-green);
+    }
+
+    .profile-dropdown-menu {
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 220px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 8px;
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .profile-dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-user-header {
+      padding: 8px 12px 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 6px;
+    }
+
+    .dropdown-user-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .dropdown-user-role {
+      font-size: 11px;
+      color: var(--primary-green);
+      font-weight: 600;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f1f7f3;
+      color: var(--primary-green);
+    }
+
+    .dropdown-item.logout {
+      color: var(--danger-red);
+    }
+
+    .dropdown-item.logout:hover {
+      background-color: #fef2f2;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active {
+      transform: translateX(280px);
+    }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      border-radius: 50%;
+    }
+
+    .close-drawer-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .drawer-menu {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 13.5px;
+      font-weight: 700;
+      transition: background-color 0.2s;
+    }
+
+    .drawer-item:hover {
+      background-color: #f1f7f3;
+      color: var(--primary-green);
+    }
+
+    .user-greeting-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .greeting-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    @media (min-width: 768px) {
+      .greeting-title { font-size: 28px; }
+    }
+
+    .greeting-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .location-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .search-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 6px 6px 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .search-box:focus-within { border-color: var(--primary-green); }
+
+    .search-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text-dark);
+    }
+
+    .search-btn {
+      background-color: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .search-btn:hover { background-color: var(--primary-green-light); }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .view-all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #eaf6ec;
+      color: #064e29;
+      border: 1px solid #bbf7d0;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 767px) {
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .category-icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover .category-icon-box { transform: translateY(-3px); }
+    .category-card.active .category-icon-box { box-shadow: 0 0 0 2px var(--primary-green); }
+
+    .cat-veg { background-color: #eaf6ec; }
+    .cat-fish { background-color: #e6f3fa; }
+    .cat-fruit { background-color: #fdeef1; }
+    .cat-egg { background-color: #fef6e6; }
+    .cat-livestock { background-color: #f5f0eb; }
+    .cat-craft { background-color: #f3ebf9; }
+
+    .category-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .feature-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-card:nth-child(1) .feature-icon-box { background-color: #eaf6ec; color: #16a34a; }
+    .feature-card:nth-child(2) .feature-icon-box { background-color: #e6f3fa; color: #0284c7; }
+    .feature-card:nth-child(3) .feature-icon-box { background-color: #eaf6ec; color: #16a34a; }
+    .feature-card:nth-child(4) .feature-icon-box { background-color: #e6f3fa; color: #0284c7; }
+
+    .feature-title { font-size: 13px; font-weight: 800; color: var(--text-dark); margin-bottom: 3px; }
+    .feature-desc { font-size: 11px; color: var(--text-muted); }
+
+    .producers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .producers-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .producer-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .producer-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .product-image-wrap { position: relative; flex-shrink: 0; }
+    .producer-left-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; display: block; }
+
+    .card-fav-btn {
+      position: absolute;
+      top: 4px; left: 4px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .card-fav-btn svg { fill: none; stroke: #64748b; }
+    .card-fav-btn.active svg { fill: var(--heart-red); stroke: var(--heart-red); }
+
+    .producer-info { flex: 1; }
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #eef8f0;
+      color: #16a34a;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+
+    .producer-name { font-size: 14px; font-weight: 800; color: var(--text-dark); margin-bottom: 2px; }
+    .producer-location { font-size: 10.5px; color: var(--text-muted); display: flex; gap: 4px; margin-bottom: 6px; }
+    .distance-tag { color: #16a34a; font-weight: 700; }
+    .producer-tags { display: flex; align-items: center; gap: 8px; }
+    .tag-pill { background: #f1f5f9; font-size: 10px; font-weight: 600; color: #475569; padding: 2px 8px; border-radius: 4px; }
+    .time-left { font-size: 10px; color: var(--text-muted); }
+    .arrow-icon { stroke: #94a3b8; width: 16px; height: 16px; flex-shrink: 0; }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-backdrop.active { opacity: 1; visibility: visible; }
+
+    .app-modal {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.active .app-modal { transform: translateY(0); }
+    .btn-modal { padding: 11px; border-radius: 10px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; width: 100%; margin-top: 8px; }
+    .btn-modal.primary { background: var(--primary-green); color: #fff; }
+    .modal-input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 8px; font-family: inherit; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Add this inside your <head> section if you haven't already included Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<nav class="drawer-menu">
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.reload()">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-btn notification-btn" aria-label="Notifications" onclick="window.location.href='Buyer Notifications.html'">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge">2</span>
+          </button>
+
+          <div class="profile-dropdown-wrapper">
+            <button class="user-profile-btn" aria-label="User Profile" onclick="toggleProfileDropdown(event)">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=100&w=300" alt="Juan Dela Cruz" class="avatar-img">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+
+            <div class="profile-dropdown-menu" id="profileDropdown">
+              <div class="dropdown-user-header">
+                <div class="dropdown-user-name">Juan Dela Cruz</div>
+                <div class="dropdown-user-role">Consumer Account</div>
+              </div>
+              <a href="Buyer Profile.html" class="dropdown-item"><span>My Profile</span></a>
+              <a href="Buyer Order History.html" class="dropdown-item"><span>Order History</span></a>
+              <a href="Buyer Account Setting.html" class="dropdown-item"><span>Account Settings</span></a>
+              <hr style="border:none; border-top:1px solid var(--border-color); margin:6px 0;">
+              <a href="Welcome Screen.html" class="dropdown-item logout" onclick="alert('Logging out...')"><span>Log Out</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-area">
+
+      <div class="user-greeting-section">
+        <div>
+          <h1 class="greeting-title">Hello, Juan! 👋</h1>
+          <p class="greeting-subtitle">Discover local producers.<br>Support local livelihoods.</p>
+        </div>
+        <div class="location-dropdown" onclick="openLocationModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0f4d2a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span id="currentLocationText">San Jose de Buenavista</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search products, producers, or categories..." onkeyup="filterProducers(this.value)">
+        <button class="search-btn" onclick="filterProducers(document.getElementById('searchInput').value)">Search</button>
+      </div>
+
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Browse Categories</h2>
+        </div>
+
+        <div class="categories-grid" id="categoriesGrid">
+          <div class="category-card" onclick="filterCategory('Vegetables', this)">
+            <div class="category-icon-box cat-veg">🥬</div>
+            <span class="category-label">Vegetables</span>
+          </div>
+          <div class="category-card" onclick="filterCategory('Fish', this)">
+            <div class="category-icon-box cat-fish">🐟</div>
+            <span class="category-label">Fish & Seafood</span>
+          </div>
+          <div class="category-card" onclick="filterCategory('Fruits', this)">
+            <div class="category-icon-box cat-fruit">🍎</div>
+            <span class="category-label">Fruits</span>
+          </div>
+          <div class="category-card" onclick="filterCategory('Eggs', this)">
+            <div class="category-icon-box cat-egg">🥚</div>
+            <span class="category-label">Eggs</span>
+          </div>
+          <div class="category-card" onclick="filterCategory('Livestock', this)">
+            <div class="category-icon-box cat-livestock">🐐</div>
+            <span class="category-label">Livestock</span>
+          </div>
+          <div class="category-card" onclick="filterCategory('Handicrafts', this)">
+            <div class="category-icon-box cat-craft">🧺</div>
+            <span class="category-label">Handicrafts</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-grid">
+        <div class="feature-card" onclick="alert('All producers on DARAWAT undergo identity and farm inspection verification.')">
+          <div class="feature-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Verified Producers</div>
+            <div class="feature-desc">Trusted and verified local producers.</div>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="alert('Listings automatically show real-time fresh stock availability dates.')">
+          <div class="feature-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Fresh Listings</div>
+            <div class="feature-desc">See the latest available products.</div>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='nearby farms.html'">
+          <div class="feature-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Nearby Producers</div>
+            <div class="feature-desc">Find producers near your location.</div>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='buyer messages.html'">
+          <div class="feature-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Direct Chat</div>
+            <div class="feature-desc">Message or call producers directly.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Fresh Product Listings Section (Synced via LocalStorage) -->
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Fresh Product Listings</h2>
+          <button class="view-all-link" onclick="handleViewAllListings()">
+            View all
+          </button>
+        </div>
+
+        <div class="producers-list" id="producersList">
+          <!-- Real-time dynamic products from LocalStorage will be loaded here -->
+        </div>
+      </section>
+
+    </main>
+
+    <div class="modal-backdrop" id="locationModalBackdrop" onclick="closeLocationModal()">
+      <div class="app-modal" onclick="event.stopPropagation()" style="padding:20px;">
+        <h3 style="font-size:18px; font-weight:800; margin-bottom:4px;">Select Location Zone</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Producers will be filtered based on your selected municipality.</p>
+        <select class="modal-input" id="zoneSelect">
+          <option value="San Jose de Buenavista" selected>San Jose de Buenavista</option>
+          <option value="Sibalom">Sibalom</option>
+          <option value="Hamtic">Hamtic</option>
+          <option value="Belison">Belison</option>
+        </select>
+        <button class="btn-modal primary" style="margin-top:16px;" onclick="confirmLocationChange()">Save Location</button>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="Register as Buyer.html" class="nav-item active">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="Buyer Messages.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Messages</span>
+      </a>
+      <a href="Buyer Discoveries.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Discover</span>
+      </a>
+      <a href="Buyer Profile.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script>
+    const buyerFavorites = new Set();
+
+    // Default buyer mock items if localstorage is empty
+    const defaultBuyerProducts = [
+      {
+        id: 'prod-1',
+        name: 'Fresh Organically Grown Pechay',
+        category: 'Leafy Vegetables',
+        price: '₱25.00 / bundle',
+        expiry: 'August 10, 2026',
+        stock: '50 bundles',
+        img: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600'
+      },
+      {
+        id: 'prod-2',
+        name: 'Fresh Dagupan Milkfish (Bangus)',
+        category: 'Fish & Seafood',
+        price: '₱220.00 / kg',
+        expiry: 'August 08, 2026',
+        stock: '30 kg',
+        img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600'
+      },
+      {
+        id: 'prod-3',
+        name: 'Sweet Guimaras Ripe Mangoes',
+        category: 'Fruits',
+        price: '₱160.00 / kg',
+        expiry: 'August 14, 2026',
+        stock: '100 kg',
+        img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=600'
+      }
+    ];
+
+    // Load products from localStorage or fallback to default
+    let products = JSON.parse(localStorage.getItem('darawat_products'));
+    if (!products || products.length === 0) {
+      products = defaultBuyerProducts;
+      localStorage.setItem('darawat_products', JSON.stringify(products));
+    }
+
+    // Render Buyer Listings Dynamically from localStorage
+    function renderBuyerListings() {
+      const container = document.getElementById('producersList');
+      container.innerHTML = '';
+
+      if (products.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 20px;">No fresh product listings available right now.</p>';
+        return;
+      }
+
+      products.forEach(p => {
+        const isFav = buyerFavorites.has(p.id);
+        const card = document.createElement('div');
+        card.className = 'producer-card producer-item';
+        card.setAttribute('data-category', p.category);
+        card.setAttribute('data-name', p.name);
+
+        card.onclick = () => {
+          navigateToProductDetailsForBuyer({
+            id: p.id,
+            productName: p.name,
+            sellerName: 'Badiang Greens Farm',
+            category: p.category,
+            price: p.price,
+            quantity: p.stock,
+            expiryDate: p.expiry,
+            description: 'Freshly harvested daily quality local produce.',
+            location: 'San Jose de Buenavista',
+            distance: '1.0 km away',
+            image: p.img
+          });
+        };
+
+        card.innerHTML = `
+          <div class="product-image-wrap">
+            <button class="card-fav-btn ${isFav ? 'active' : ''}" id="card-fav-${p.id}" title="Favorite Product" onclick="toggleCardFavorite(event, '${p.id}', '${p.name}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <img src="${p.img}" alt="${p.name}" class="producer-left-img">
+          </div>
+
+          <div class="producer-info">
+            <span class="verified-badge">VERIFIED SELLER</span>
+            <div class="producer-name">${p.name}</div>
+            <div class="producer-location">
+              Local Producer <span class="distance-tag">• 1.0 km</span>
+            </div>
+            <div class="producer-tags">
+              <span class="tag-pill" style="background:#eaf6ec; color:#16a34a; font-weight:800;">${p.price}</span>
+              <span class="time-left">Stock: ${p.stock}</span>
+            </div>
+          </div>
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Profile Dropdown Toggle
+    function toggleProfileDropdown(event) {
+      event.stopPropagation();
+      const dropdown = document.getElementById('profileDropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('profileDropdown');
+      if (dropdown && dropdown.classList.contains('active')) {
+        dropdown.classList.remove('active');
+      }
+    });
+
+    // Search Filtering Function
+    function filterProducers(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.producer-item');
+
+      items.forEach(item => {
+        const name = item.getAttribute('data-name').toLowerCase();
+        const category = item.getAttribute('data-category').toLowerCase();
+        if (name.includes(q) || category.includes(q)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Category Filter Selection
+    function filterCategory(categoryName, element) {
+      document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+      if (element && element.classList.contains('category-card')) {
+        element.classList.add('active');
+      }
+
+      const items = document.querySelectorAll('.producer-item');
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (categoryName === 'All' || cat.toLowerCase().includes(categoryName.toLowerCase())) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function handleViewAllListings() {
+      filterCategory('All', null);
+      document.getElementById('searchInput').value = '';
+      window.scrollTo({ top: document.getElementById('producersList').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    // Location Modal Controls
+    function openLocationModal() {
+      document.getElementById('locationModalBackdrop').classList.add('active');
+    }
+
+    function closeLocationModal() {
+      document.getElementById('locationModalBackdrop').classList.remove('active');
+    }
+
+    function confirmLocationChange() {
+      const zone = document.getElementById('zoneSelect').value;
+      document.getElementById('currentLocationText').innerText = zone;
+      closeLocationModal();
+      alert(`Location switched to ${zone}! Updating local producer feeds...`);
+    }
+
+    // Favorite Button Toggle Handler
+    function toggleCardFavorite(event, productId, productName) {
+      event.stopPropagation();
+      const btn = document.getElementById(`card-fav-${productId}`);
+      
+      if (buyerFavorites.has(productId)) {
+        buyerFavorites.delete(productId);
+        btn.classList.remove('active');
+        alert(`Removed "${productName}" from your Favorites.`);
+      } else {
+        buyerFavorites.add(productId);
+        btn.classList.add('active');
+        alert(`Added "${productName}" to your Favorites!`);
+      }
+    }
+
+    // Navigate to Product Detail file
+    function navigateToProductDetailsForBuyer(data) {
+      sessionStorage.setItem('selectedProductDetail', JSON.stringify(data));
+      window.location.href = 'Product Details for buyer.html';
+    }
+
+    // Real-time synchronization across pages using localStorage events
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'darawat_products') {
+        products = JSON.parse(e.newValue) || [];
+        renderBuyerListings();
+      }
+    });
+
+    // Initial render on load
+    renderBuyerListings();
+  </script>
+
+</body>
+</html>

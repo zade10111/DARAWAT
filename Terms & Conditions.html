@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="DOCTYPE html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Terms & Conditions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+      --card-bg: #ffffff;
+      --focus-ring: #2563eb;
+      --warning-bg: #fefce8;
+      --warning-border: #fde047;
+      --warning-text: #854d0e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* Terms Hero */
+    .terms-hero {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 50%, #136939 100%);
+      border-radius: 20px;
+      color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .terms-hero { padding: 56px 40px; }
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 36px; }
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: #bbf7d0;
+      margin-bottom: 12px;
+    }
+
+    .hero-desc {
+      font-size: 13.5px;
+      opacity: 0.95;
+      max-width: 750px;
+      margin: 0 auto 16px auto;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      font-weight: 700;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .hero-notice {
+      font-size: 12.5px;
+      color: #e2e8f0;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* --- MOBILE-FRIENDLY ACCORDION TOC DROPDOWN BAR --- */
+    .mobile-toc-wrapper {
+      margin-bottom: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      overflow: hidden;
+    }
+
+    @media (min-width: 992px) {
+      .mobile-toc-wrapper {
+        display: none; /* Hidden on desktop since sidebar is used */
+      }
+    }
+
+    .mobile-toc-toggle {
+      width: 100%;
+      background: #f8faf8;
+      border: none;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-green);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .mobile-toc-toggle svg {
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-toc-wrapper.open .mobile-toc-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .mobile-toc-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: #ffffff;
+      border-top: 0px solid var(--border-color);
+    }
+
+    .mobile-toc-wrapper.open .mobile-toc-content {
+      max-height: 400px;
+      overflow-y: auto;
+      border-top-width: 1px;
+      padding: 12px 16px;
+    }
+
+    /* Layout with Desktop Sticky Table of Contents */
+    .terms-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 992px) {
+      .terms-layout {
+        grid-template-columns: 280px 1fr;
+        align-items: start;
+      }
+    }
+
+    /* Sticky TOC Sidebar (Desktop Only) */
+    .toc-sidebar {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      .toc-sidebar {
+        display: block;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        position: sticky;
+        top: 80px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+      }
+    }
+
+    .toc-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .toc-link {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .toc-link:hover, .toc-link.active {
+      background: #eaf6ec;
+      color: var(--primary-green);
+    }
+
+    /* Content Sections */
+    .terms-content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .terms-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    @media (min-width: 768px) {
+      .terms-section { padding: 32px; }
+    }
+
+    .sec-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .sec-text:last-child { margin-bottom: 0; }
+
+    .sec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sec-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .sec-list li.allowed::before {
+      content: '✅';
+      font-size: 12px;
+    }
+
+    .sec-list li.prohibited::before {
+      content: '❌';
+      font-size: 12px;
+    }
+
+    .sec-list li.bullet::before {
+      content: '•';
+      color: var(--primary-green);
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .summary-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .summary-list li {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list li::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 800;
+    }
+
+    /* Warning Banner / Callout */
+    .warning-banner {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--warning-text);
+      margin-bottom: 24px;
+    }
+
+    .warning-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-text {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .warning-text:last-child { margin-bottom: 0; }
+
+    /* Grid layout for moderation / actions */
+    .grid-5 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    .mod-card {
+      background: #f8faf8;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .mod-num {
+      background: #eaf6ec;
+      color: var(--primary-green);
+      font-weight: 800;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px auto;
+    }
+
+    .mod-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .mod-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Call To Action Box */
+    .cta-box {
+      background: linear-gradient(135deg, #04381d 0%, #08522b 100%);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(6, 78, 41, 0.15);
+      margin-top: 24px;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cta-desc {
+      font-size: 13.5px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      line-height: 1.5;
+    }
+
+    .cta-buttons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: #ffffff;
+      color: var(--primary-green);
+    }
+
+    .cta-btn.primary:hover {
+      background: #f0fdf4;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()" aria-hidden="true"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer" aria-label="Main Navigation Drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn icon-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+   <nav class="drawer-menu">
+    <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar" role="banner">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Navigation Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'" role="button" tabindex="0" aria-label="DARAWAT Home">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none" aria-hidden="true">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area" id="mainContent" role="main">
+
+      <!-- 1. TERMS & CONDITIONS HEADER -->
+      <section class="terms-hero">
+        <h1 class="hero-title">Terms & Conditions</h1>
+        <div class="hero-subtitle">“The rules for using DARAWAT.”</div>
+        <p class="hero-desc">
+          These Terms & Conditions explain the rules and responsibilities that apply when you access or use the DARAWAT platform connecting local producers and consumers in San Jose de Buenavista, Antique.
+        </p>
+        <div class="hero-meta">Last Updated: [Insert Date]</div>
+        <div class="hero-notice">
+          “By accessing or using DARAWAT, you acknowledge that you have read and understood these Terms & Conditions.”
+        </div>
+      </section>
+
+      <!-- MOBILE-FRIENDLY ACCORDION TABLE OF CONTENTS (Visible on Mobile Only) -->
+      <div class="mobile-toc-wrapper" id="mobileTocWrapper">
+        <button class="mobile-toc-toggle" onclick="toggleMobileToc()" aria-expanded="false">
+          <span>📖 Table of Contents (Tap to open)</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-toc-content">
+          <ul class="toc-list">
+            <li><a href="#summary" class="toc-link" onclick="toggleMobileToc()">Terms at a Glance</a></li>
+            <li><a href="#acceptance" class="toc-link" onclick="toggleMobileToc()">Acceptance of Terms</a></li>
+            <li><a href="#about" class="toc-link" onclick="toggleMobileToc()">About DARAWAT</a></li>
+            <li><a href="#accounts" class="toc-link" onclick="toggleMobileToc()">User Accounts</a></li>
+            <li><a href="#producers" class="toc-link" onclick="toggleMobileToc()">Producer Responsibilities</a></li>
+            <li><a href="#consumers" class="toc-link" onclick="toggleMobileToc()">Consumer Responsibilities</a></li>
+            <li><a href="#listings" class="toc-link" onclick="toggleMobileToc()">Product Listings</a></li>
+            <li><a href="#transactions" class="toc-link" onclick="toggleMobileToc()">Transactions</a></li>
+            <li><a href="#nopayment" class="toc-link" onclick="toggleMobileToc()">No Online Payment</a></li>
+            <li><a href="#communication" class="toc-link" onclick="toggleMobileToc()">Communication</a></li>
+            <li><a href="#ugc" class="toc-link" onclick="toggleMobileToc()">User-Generated Content</a></li>
+            <li><a href="#ownership" class="toc-link" onclick="toggleMobileToc()">Content Ownership</a></li>
+            <li><a href="#prohibited" class="toc-link" onclick="toggleMobileToc()">Prohibited Activities</a></li>
+            <li><a href="#safety" class="toc-link" onclick="toggleMobileToc()">Safety</a></li>
+            <li><a href="#reporting" class="toc-link" onclick="toggleMobileToc()">Reporting</a></li>
+            <li><a href="#moderation" class="toc-link" onclick="toggleMobileToc()">Moderation</a></li>
+            <li><a href="#accuracy" class="toc-link" onclick="toggleMobileToc()">Information Accuracy</a></li>
+            <li><a href="#thirdparty" class="toc-link" onclick="toggleMobileToc()">Third-Party Services</a></li>
+            <li><a href="#externallinks" class="toc-link" onclick="toggleMobileToc()">External Links</a></li>
+            <li><a href="#ip" class="toc-link" onclick="toggleMobileToc()">Intellectual Property</a></li>
+            <li><a href="#availability" class="toc-link" onclick="toggleMobileToc()">Platform Availability</a></li>
+            <li><a href="#disclaimer" class="toc-link" onclick="toggleMobileToc()">Disclaimer</a></li>
+            <li><a href="#liability" class="toc-link" onclick="toggleMobileToc()">Limitation of Liability</a></li>
+            <li><a href="#policies" class="toc-link" onclick="toggleMobileToc()">Privacy, Cookies & Guidelines</a></li>
+            <li><a href="#suspension" class="toc-link" onclick="toggleMobileToc()">Account Suspension</a></li>
+            <li><a href="#changes" class="toc-link" onclick="toggleMobileToc()">Changes to DARAWAT & Terms</a></li>
+            <li><a href="#governing" class="toc-link" onclick="toggleMobileToc()">Governing Law</a></li>
+            <li><a href="#contact" class="toc-link" onclick="toggleMobileToc()">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Layout (Desktop TOC Sidebar + Content) -->
+      <div class="terms-layout">
+        
+        <!-- Sticky Table of Contents Sidebar (Desktop Only) -->
+        <aside class="toc-sidebar" aria-label="Table of Contents">
+          <h2 class="toc-title">Table of Contents</h2>
+          <nav>
+            <ul class="toc-list">
+              <li><a href="#summary" class="toc-link">Terms at a Glance</a></li>
+              <li><a href="#acceptance" class="toc-link">Acceptance of Terms</a></li>
+              <li><a href="#about" class="toc-link">About DARAWAT</a></li>
+              <li><a href="#accounts" class="toc-link">User Accounts</a></li>
+              <li><a href="#producers" class="toc-link">Producer Responsibilities</a></li>
+              <li><a href="#consumers" class="toc-link">Consumer Responsibilities</a></li>
+              <li><a href="#listings" class="toc-link">Product Listings</a></li>
+              <li><a href="#transactions" class="toc-link">Transactions</a></li>
+              <li><a href="#nopayment" class="toc-link">No Online Payment</a></li>
+              <li><a href="#communication" class="toc-link">Communication</a></li>
+              <li><a href="#ugc" class="toc-link">User-Generated Content</a></li>
+              <li><a href="#ownership" class="toc-link">Content Ownership</a></li>
+              <li><a href="#prohibited" class="toc-link">Prohibited Activities</a></li>
+              <li><a href="#safety" class="toc-link">Safety</a></li>
+              <li><a href="#reporting" class="toc-link">Reporting</a></li>
+              <li><a href="#moderation" class="toc-link">Moderation</a></li>
+              <li><a href="#accuracy" class="toc-link">Information Accuracy</a></li>
+              <li><a href="#thirdparty" class="toc-link">Third-Party Services</a></li>
+              <li><a href="#externallinks" class="toc-link">External Links</a></li>
+              <li><a href="#ip" class="toc-link">Intellectual Property</a></li>
+              <li><a href="#availability" class="toc-link">Platform Availability</a></li>
+              <li><a href="#disclaimer" class="toc-link">Disclaimer</a></li>
+              <li><a href="#liability" class="toc-link">Limitation of Liability</a></li>
+              <li><a href="#policies" class="toc-link">Privacy, Cookies & Guidelines</a></li>
+              <li><a href="#suspension" class="toc-link">Account Suspension</a></li>
+              <li><a href="#changes" class="toc-link">Changes to DARAWAT & Terms</a></li>
+              <li><a href="#governing" class="toc-link">Governing Law</a></li>
+              <li><a href="#contact" class="toc-link">Contact</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="terms-content-area">
+
+          <!-- 2. QUICK SUMMARY -->
+          <section id="summary" class="summary-card">
+            <h2 class="sec-title" style="color: var(--primary-green);">Terms at a Glance</h2>
+            <p class="sec-text" style="color: var(--text-dark);">
+              DARAWAT allows users to discover local products and producers, view product and producer information, use location/map features, contact producers, and connect with members of the local community.
+            </p>
+            <div class="warning-banner" style="margin-top: 16px; margin-bottom: 0; background: #ffffff; border-color: #bbf7d0; color: var(--text-dark);">
+              <div class="warning-title" style="color: var(--primary-green);">⚠️ Important Platform Model Notice</div>
+              <p class="warning-text">
+                DARAWAT is a discovery and connection platform, not a traditional e-commerce checkout platform. DARAWAT does <strong>NOT</strong> provide:
+              </p>
+              <ul class="sec-list" style="margin-top: 6px; margin-bottom: 0;">
+                <li class="prohibited">Shopping cart</li>
+                <li class="prohibited">Checkout</li>
+                <li class="prohibited">Online payment</li>
+                <li class="prohibited">GCash/Maya payment gateway</li>
+                <li class="prohibited">Credit/debit card processing</li>
+                <li class="prohibited">Payment collection</li>
+                <li class="prohibited">Automatic transaction processing</li>
+              </ul>
+              <p class="warning-text" style="margin-top: 10px; font-weight: 700;">
+                Transactions are arranged directly between consumers and producers.
+              </p>
+            </div>
+          </section>
+
+          <!-- 3. ACCEPTANCE OF TERMS -->
+          <section id="acceptance" class="terms-section">
+            <h2 class="sec-title">Acceptance of Terms</h2>
+            <p class="sec-text">
+              By accessing or using DARAWAT, you agree to follow these Terms & Conditions, our Community Guidelines, Privacy Policy, Cookie Policy, and any applicable rules and laws. If you do not agree with these terms, please do not use the platform.
+            </p>
+          </section>
+
+          <!-- 4. ABOUT DARAWAT -->
+          <section id="about" class="terms-section">
+            <h2 class="sec-title">About DARAWAT</h2>
+            <p class="sec-text">
+              “DARAWAT is designed to help consumers discover local products and producers while providing producers with an additional way to showcase their products and connect with potential customers.”
+            </p>
+            <p class="sec-text">
+              DARAWAT facilitates discovery and communication. DARAWAT does not automatically become a seller, buyer, agent, payment processor, or delivery provider simply because users interact through the platform.
+            </p>
+          </section>
+
+          <!-- 5. USER ACCOUNTS -->
+          <section id="accounts" class="terms-section">
+            <h2 class="sec-title">User Accounts</h2>
+            <p class="sec-text">Users are responsible for:</p>
+            <ul class="sec-list">
+              <li class="allowed">Providing accurate information and keeping account details updated</li>
+              <li class="allowed">Protecting their password and not sharing login credentials</li>
+              <li class="allowed">Preventing unauthorized access to their account</li>
+              <li class="allowed">Reporting any suspicious account activity immediately</li>
+            </ul>
+            <p class="sec-text" style="margin-top: 12px;">Users must strictly avoid:</p>
+            <ul class="sec-list">
+              <li class="prohibited">Creating fake accounts</li>
+              <li class="prohibited">Impersonating another person</li>
+              <li class="prohibited">Using another person's account without permission</li>
+              <li class="prohibited">Providing intentionally misleading information</li>
+              <li class="prohibited">Attempting to bypass account security</li>
+            </ul>
+            <p class="sec-text" style="margin-top: 12px; font-style: italic;">
+              If an account registration system exists, access may be subject to eligibility requirements configured by DARAWAT [Insert applicable age requirement if established].
+            </p>
+          </section>
+
+          <!-- 6. PRODUCER RESPONSIBILITIES -->
+          <section id="producers" class="terms-section">
+            <h2 class="sec-title">For Producers</h2>
+            <p class="sec-text">
+              Producers are responsible for ensuring that their listings and profile information are accurate. They should provide accurate producer information, product names, descriptions, prices, availability, photos, categories, location information, and contact details.
+            </p>
+            <p class="sec-text">Producers must not intentionally:</p>
+            <ul class="sec-list">
+              <li class="prohibited">Misrepresent products or post fake products</li>
+              <li class="prohibited">Provide false prices or claim unavailable items are available</li>
+              <li class="prohibited">Upload misleading images or impersonate another producer</li>
+              <li class="prohibited">List prohibited, dangerous, or illegal products</li>
+            </ul>
+            <p class="sec-text" style="margin-top: 12px;">
+              Producers are fully responsible for complying with applicable laws and regulations related to the products or services they offer.
+            </p>
+          </section>
+
+          <!-- 7. CONSUMER RESPONSIBILITIES -->
+          <section id="consumers" class="terms-section">
+            <h2 class="sec-title">For Consumers</h2>
+            <p class="sec-text">Consumers should:</p>
+            <ul class="sec-list">
+              <li class="allowed">Review product information carefully and confirm availability and price</li>
+              <li class="allowed">Ask questions when necessary and communicate respectfully</li>
+              <li class="allowed">Verify transaction details and exercise appropriate caution</li>
+              <li class="allowed">Protect their personal information</li>
+            </ul>
+            <p class="sec-text" style="margin-top: 12px;">Consumers must not:</p>
+            <ul class="sec-list">
+              <li class="prohibited">Harass or spam producers</li>
+              <li class="prohibited">Create fake inquiries or intentionally mislead producers</li>
+              <li class="prohibited">Abuse the communication system</li>
+            </ul>
+          </section>
+
+          <!-- 8. PRODUCT LISTINGS -->
+          <section id="listings" class="terms-section">
+            <h2 class="sec-title">Product Listings</h2>
+            <p class="sec-text">
+              Product listings may include product names, descriptions, prices, availability, images, categories, producer information, and location details.
+            </p>
+            <p class="sec-text">
+              “DARAWAT provides tools for producers to showcase their products. DARAWAT does not independently guarantee that every listing is accurate, available, safe, or suitable for a particular purpose.” We encourage users to verify important information directly with the producer.
+            </p>
+          </section>
+
+          <!-- 9. TRANSACTIONS BETWEEN USERS -->
+          <section id="transactions" class="terms-section">
+            <h2 class="sec-title">Transactions Between Consumers and Producers</h2>
+            <p class="sec-text">
+              “DARAWAT helps users discover and connect with producers, but transactions are arranged directly between consumers and producers.”
+            </p>
+            <p class="sec-text">
+              The consumer and producer are responsible for discussing product details, quantity, price, availability, pickup or delivery, payment methods, meeting locations, and other transaction specifics.
+            </p>
+            <p class="sec-text" style="font-weight: 700; color: var(--danger-red);">
+              DARAWAT does not process payments, collect money on behalf of producers, provide checkout, operate a shopping cart, guarantee payment, guarantee product quality, guarantee delivery, or guarantee that a transaction will occur.
+            </p>
+            <p class="sec-text" style="font-style: italic;">
+              “Users should exercise appropriate care and judgment when arranging transactions with other users.”
+            </p>
+          </section>
+
+          <!-- 10. NO ONLINE PAYMENT -->
+          <section id="nopayment" class="warning-banner">
+            <h3 class="warning-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              DARAWAT Does Not Process Online Payments
+            </h3>
+            <p class="warning-text">
+              “DARAWAT currently does not provide online payment processing.” There is no credit/debit card checkout, no GCash checkout, no Maya checkout, no online payment gateway, no shopping cart, and no payment collection system.
+            </p>
+            <p class="warning-text" style="font-weight: 700;">
+              Payment arrangements are handled directly between the consumer and producer. DARAWAT does not store payment card information.
+            </p>
+          </section>
+
+          <!-- 11. COMMUNICATION -->
+          <section id="communication" class="terms-section">
+            <h2 class="sec-title">Producer-Consumer Communication</h2>
+            <p class="sec-text">
+              Users may communicate through available contact methods including phone, email, Messenger, DARAWAT messaging, or other methods provided by the producer. Users must communicate respectfully and avoid spam, threats, harassment, inappropriate material, scam attempts, or requests for unnecessary sensitive information.
+            </p>
+          </section>
+
+          <!-- 12. USER-GENERATED CONTENT -->
+          <section id="ugc" class="terms-section">
+            <h2 class="sec-title">User-Generated Content</h2>
+            <p class="sec-text">
+              Users may submit content including product descriptions, images, producer profiles, reviews (if implemented), reports, messages, and account details. Users must only upload content they have the right to use and must never upload copyright-infringing, illegal, malicious, fraudulent, hateful, threatening, harassing, or explicit material. DARAWAT reserves the right to review, restrict, or remove content violating platform rules.
+            </p>
+          </section>
+
+          <!-- 13. CONTENT OWNERSHIP -->
+          <section id="ownership" class="terms-section">
+            <h2 class="sec-title">Content Ownership</h2>
+            <p class="sec-text">
+              “If you upload a product photo or description, you retain your ownership rights where applicable. By submitting content to DARAWAT, you grant DARAWAT the necessary permission to display and use that content for operating and promoting the platform, subject to applicable law.”
+            </p>
+          </section>
+
+          <!-- 14. PROHIBITED ACTIVITIES -->
+          <section id="prohibited" class="terms-section">
+            <h2 class="sec-title">Prohibited Activities</h2>
+            <p class="sec-text">Users must not use DARAWAT to:</p>
+            <ul class="sec-list">
+              <li class="prohibited">Commit fraud, scam users, or impersonate others</li>
+              <li class="prohibited">Harass, threaten, or abuse people</li>
+              <li class="prohibited">Distribute illegal or counterfeit products</li>
+              <li class="prohibited">Upload malicious code or attempt unauthorized access</li>
+              <li class="prohibited">Abuse platform features, spam users, or manipulate listings</li>
+              <li class="prohibited">Intentionally provide false information or violate applicable laws</li>
+            </ul>
+            <p class="sec-text" style="margin-top: 12px; font-weight: 700;">
+              “DARAWAT may take appropriate action when prohibited activity is identified.”
+            </p>
+          </section>
+
+          <!-- 15. SAFETY -->
+          <section id="safety" class="warning-banner" style="background: #f0fdf4; border-color: #bbf7d0; color: var(--primary-green);">
+            <h3 class="warning-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              User Safety Guidelines
+            </h3>
+            <p class="warning-text" style="color: var(--text-dark);">
+              Encourage users to verify information before transactions, avoid sharing unnecessary personal information, never share passwords or OTPs, confirm the identity of the person they are dealing with, choose appropriate meeting locations, be cautious of suspicious offers, and report suspicious activity.
+            </p>
+            <p class="warning-text" style="color: var(--text-dark); margin-top: 8px; font-style: italic;">
+              “DARAWAT provides a platform for connection but cannot eliminate all risks associated with interactions between users.”
+            </p>
+          </section>
+
+          <!-- 16. REPORTING VIOLATIONS -->
+          <section id="reporting" class="terms-section">
+            <h2 class="sec-title">Reporting Violations</h2>
+            <p class="sec-text">
+              Users can report fake accounts, fake products, scams, harassment, inappropriate content, incorrect information, suspicious activity, or technical problems. Reports are reviewed and appropriate action is taken.
+            </p>
+            <a href="Help Center.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; margin-top: 8px;">Report a Problem</a>
+          </section>
+
+          <!-- 17. MODERATION & ENFORCEMENT -->
+          <section id="moderation" class="terms-section">
+            <h2 class="sec-title">Moderation & Enforcement</h2>
+            <p class="sec-text">When rules are violated, DARAWAT may take progressive enforcement actions:</p>
+            
+            <div class="grid-5">
+              <div class="mod-card">
+                <div class="mod-num">01</div>
+                <div class="mod-title">Warning</div>
+                <div class="mod-desc">For minor or first-time violations.</div>
+              </div>
+              <div class="mod-card">
+                <div class="mod-num">02</div>
+                <div class="mod-title">Removal</div>
+                <div class="mod-desc">Violating content may be removed.</div>
+              </div>
+              <div class="mod-card">
+                <div class="mod-num">03</div>
+                <div class="mod-title">Restriction</div>
+                <div class="mod-desc">Feature access may be restricted.</div>
+              </div>
+              <div class="mod-card">
+                <div class="mod-num">04</div>
+                <div class="mod-title">Suspension</div>
+                <div class="mod-desc">Temporary account suspension.</div>
+              </div>
+              <div class="mod-card">
+                <div class="mod-num">05</div>
+                <div class="mod-title">Termination</div>
+                <div class="mod-desc">Permanent account termination.</div>
+              </div>
+            </div>
+
+            <p class="sec-text" style="margin-top: 14px; font-style: italic;">
+              “Actions may depend on the severity, frequency, and circumstances of the violation.”
+            </p>
+          </section>
+
+          <!-- 18. ACCURACY OF INFORMATION -->
+          <section id="accuracy" class="terms-section">
+            <h2 class="sec-title">Accuracy of Information</h2>
+            <p class="sec-text">
+              “DARAWAT aims to provide useful and accurate information, but information may change over time.” This includes product availability, prices, producer information, locations, and contact details. Users should confirm important information directly with the producer.
+            </p>
+          </section>
+
+          <!-- 19. THIRD-PARTY SERVICES -->
+          <section id="thirdparty" class="terms-section">
+            <h2 class="sec-title">Third-Party Services</h2>
+            <p class="sec-text">
+              DARAWAT may depend on third-party services for features such as maps, hosting, APIs, authentication, and communication as implemented in the platform. Third-party services have their own terms and policies outside DARAWAT's control.
+            </p>
+          </section>
+
+          <!-- 20. EXTERNAL LINKS -->
+          <section id="externallinks" class="terms-section">
+            <h2 class="sec-title">External Links</h2>
+            <p class="sec-text">
+              DARAWAT may provide links to external websites. External websites have their own rules, and DARAWAT does not control them. Users should review external policies before using them.
+            </p>
+          </section>
+
+          <!-- 21. INTELLECTUAL PROPERTY -->
+          <section id="ip" class="terms-section">
+            <h2 class="sec-title">Intellectual Property</h2>
+            <p class="sec-text">
+              DARAWAT's name, logo, website design, original graphics, platform content, and software/code are protected by applicable intellectual property laws. Users must not copy, reproduce, modify, or redistribute DARAWAT materials without appropriate permission, except where permitted by law.
+            </p>
+          </section>
+
+          <!-- 22. PLATFORM AVAILABILITY -->
+          <section id="availability" class="terms-section">
+            <h2 class="sec-title">Platform Availability</h2>
+            <p class="sec-text">
+              “DARAWAT aims to keep the platform available and functional, but temporary interruptions may occur due to maintenance, technical problems, hosting issues, network problems, or circumstances beyond our control.” (No 100% uptime is promised).
+            </p>
+          </section>
+
+          <!-- 23. DISCLAIMER -->
+          <section id="disclaimer" class="terms-section">
+            <h2 class="sec-title">Disclaimer</h2>
+            <p class="sec-text">
+              DARAWAT provides information and connection tools but does not guarantee product quality, availability, safety, price accuracy, producer/consumer behavior, successful transactions, payment completion, delivery, or user-generated info.
+            </p>
+            <p class="sec-text" style="font-weight: 700;">
+              “Users are responsible for making their own decisions when interacting or arranging transactions with other users.”
+            </p>
+          </section>
+
+          <!-- 24. LIMITATION OF LIABILITY -->
+          <section id="liability" class="terms-section">
+            <h2 class="sec-title">Limitation of Liability</h2>
+            <p class="sec-text">
+              “To the extent permitted by applicable law, DARAWAT and its operators will not be responsible for losses or damages arising from interactions, transactions, communications, or arrangements made directly between users. Nothing in these Terms is intended to exclude rights or protections that cannot legally be excluded.”
+            </p>
+          </section>
+
+          <!-- 25, 26, 27, 28. POLICIES & GUIDELINES -->
+          <section id="policies" class="terms-section">
+            <h2 class="sec-title">Privacy, Cookies, Guidelines & Accessibility</h2>
+            <p class="sec-text">Review our supporting platform policies and guidelines:</p>
+            <div class="cta-buttons-wrap" style="justify-content: flex-start; margin-top: 12px;">
+              <a href="Privacy Policy.html" class="cta-btn primary" style="background: var(--primary-green); color: #ffffff;">View Privacy Policy</a>
+              <a href="Cookie Policy.html" class="cta-btn primary" style="background: var(--primary-green); color: #ffffff;">View Cookie Policy</a>
+              <a href="Community Guidelines.html" class="cta-btn primary" style="background: var(--primary-green); color: #ffffff;">View Community Guidelines</a>
+              <a href="Accessibility.html" class="cta-btn primary" style="background: var(--primary-green); color: #ffffff;">View Accessibility</a>
+            </div>
+          </section>
+
+          <!-- 29. ACCOUNT SUSPENSION OR TERMINATION -->
+          <section id="suspension" class="terms-section">
+            <h2 class="sec-title">Account Suspension or Termination</h2>
+            <p class="sec-text">
+              DARAWAT may restrict or terminate an account due to serious policy violations, fraud, abuse, security threats, repeated violations, illegal activity, or misuse of platform features. Users may contact support if they believe an action was taken incorrectly, though reversal is not guaranteed.
+            </p>
+          </section>
+
+          <!-- 30 & 31. CHANGES -->
+          <section id="changes" class="terms-section">
+            <h2 class="sec-title">Changes to DARAWAT & These Terms</h2>
+            <p class="sec-text">
+              “DARAWAT may add, modify, or remove features as the platform develops.” These Terms & Conditions may also be updated from time to time. When updated, we revise the Last Updated date and communicate significant changes where appropriate.
+            </p>
+          </section>
+
+          <!-- 32. GOVERNING LAW -->
+          <section id="governing" class="terms-section">
+            <h2 class="sec-title">Governing Law</h2>
+            <p class="sec-text">
+              <strong>Governing Law:</strong> [Insert applicable jurisdiction after legal review]<br>
+              “The applicable law and dispute-resolution requirements should be finalized based on the legal structure and location of the DARAWAT project.”
+            </p>
+          </section>
+
+          <!-- 33. CONTACT INFORMATION -->
+          <section id="contact" class="terms-section">
+            <h2 class="sec-title">Questions About These Terms?</h2>
+            <ul class="sec-list" style="margin-bottom: 20px;">
+              <li>📧 Email: [DARAWAT Email]</li>
+              <li>📞 Phone: [DARAWAT Contact Number]</li>
+              <li>📍 Location: San Jose de Buenavista, Antique, Philippines</li>
+            </ul>
+            <a href="Contact Us.html" class="cta-btn primary" style="display: inline-block; text-decoration: none; background: var(--primary-green); color: #ffffff;">Contact Us</a>
+          </section>
+
+          <!-- Final CTA -->
+          <section class="cta-box">
+            <h2 class="cta-title">Discover Local. Support Local.</h2>
+            <p class="cta-desc">
+              “Explore DARAWAT and discover local producers and products in your community.”
+            </p>
+            <div class="cta-buttons-wrap">
+              <a href="Register as Buyer.html" class="cta-btn primary">Explore Products</a>
+              <a href="Contact Us.html" class="cta-btn secondary">Contact Us</a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </main>
+
+   
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // --- MOBILE ACCORDION TOGGLE FUNCTION ---
+    function toggleMobileToc() {
+      const wrapper = document.getElementById('mobileTocWrapper');
+      wrapper.classList.toggle('open');
+      const toggleBtn = wrapper.querySelector('.mobile-toc-toggle');
+      const isOpen = wrapper.classList.contains('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen);
+    }
+
+    // TOC Active Highlighting on Scroll & Auto-Close Mobile Menu on Selection
+    document.addEventListener('DOMContentLoaded', () => {
+      const tocLinks = document.querySelectorAll('.toc-link');
+      const sections = document.querySelectorAll('.terms-section, .summary-card, .warning-banner');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

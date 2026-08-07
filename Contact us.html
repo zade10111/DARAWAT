@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --danger-red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+    }
+
+    /* Contact Us Specific Styles */
+    .contact-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 24px auto 36px auto;
+    }
+
+    .contact-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .contact-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .contact-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Info Cards Grid */
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 640px) {
+      .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .contact-info-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+    }
+
+    .info-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #eaf6ec;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .info-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .info-card-text {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Main Section Layout: Form + Details */
+    .contact-main-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 992px) {
+      .contact-main-layout {
+        grid-template-columns: 1.3fr 0.7fr;
+      }
+    }
+
+    .contact-form-card, .contact-side-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 768px) {
+      .contact-form-card, .contact-side-card {
+        padding: 32px;
+      }
+    }
+
+    .section-heading {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .section-subheading {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .form-label span {
+      color: var(--danger-red);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: var(--text-dark);
+      background: #f8faf8;
+      outline: none;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .form-error {
+      font-size: 11px;
+      color: var(--danger-red);
+      display: none;
+      margin-top: 2px;
+    }
+
+    .form-group.error .form-input, 
+    .form-group.error .form-select, 
+    .form-group.error .form-textarea {
+      border-color: var(--danger-red);
+    }
+
+    .form-group.error .form-error {
+      display: block;
+    }
+
+    .success-alert {
+      background: #edf7ee;
+      border: 1px solid #bbf7d0;
+      color: #16a34a;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(6, 78, 41, 0.2);
+      transition: background-color 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-green-light);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    /* Side Card / Socials & Map */
+    .side-block {
+      margin-bottom: 24px;
+    }
+
+    .side-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .social-links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: #f8faf8;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 13px;
+      font-weight: 700;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    }
+
+    .social-btn:hover {
+      background: #eaf6ec;
+      border-color: #bbf7d0;
+      color: var(--primary-green);
+      transform: translateX(2px);
+    }
+
+    .map-box {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin-top: 12px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .map-placeholder-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .faq-section {
+        padding: 32px;
+      }
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: #f8faf8;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item.active {
+      border-color: var(--primary-green);
+      background: #ffffff;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .faq-question svg {
+      transition: transform 0.3s ease;
+      stroke: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+      stroke: var(--primary-green);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 150px;
+      padding: 0 16px 16px 16px;
+    }
+
+    /* Side Drawer Navigation (Preserved) */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 250;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-drawer {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100%;
+      background: #ffffff;
+      z-index: 300;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-drawer.active { transform: translateX(280px); }
+
+    .drawer-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8faf8;
+    }
+
+    .drawer-brand { display: flex; align-items: center; gap: 8px; }
+    .close-drawer-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 50%; }
+
+    .drawer-menu { padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: var(--text-dark); font-size: 13.5px; font-weight: 700; transition: background-color 0.2s; }
+    .drawer-item:hover { background-color: #f1f7f3; color: var(--primary-green); }
+
+    /* Bottom Nav Bar (Preserved) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--primary-green); }
+    .nav-item-icon { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Backdrop Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Drawer Navigation -->
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+          <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+          <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+          <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+          <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+        </svg>
+        <span class="brand-title">DARAWAT</span>
+      </div>
+      <button class="close-drawer-btn" aria-label="Close Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="drawer-menu">
+      <!-- Back Button -->
+      <a href="#" onclick="goBackToSource(); return false;" class="drawer-item" style="color: var(--primary-green); font-weight: 800;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back</span>
+      </a>
+      <a href="FAQ.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>FAQ</span>
+      </a>
+      <a href="Contact Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Contact Us</span>
+      </a>
+      <a href="About Us.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>About Us</span>
+      </a>
+      <a href="How it Works.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>How it Works</span>
+      </a>
+      <a href="Help Center.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help Center</span>
+      </a>
+      <a href="Community Guidelines.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community Guidelines</span>
+      </a>
+      <a href="Accessibility.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="1"/><path d="M18 8a6 6 0 0 0-12 0"/><path d="M12 12v8"/><path d="M8 16l4-4 4 4"/></svg>
+        <span>Accessibility</span>
+      </a>
+      <a href="Private policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Private Policy</span>
+      </a>
+      <a href="Cookie Policy.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 10 10 0 0 0 0 0z"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="10" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor"/></svg>
+        <span>Cookie Policy</span>
+      </a>
+      <a href="Terms & Conditions.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Terms & Conditions</span>
+      </a>
+      <a href="Success Stories.html" class="drawer-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+        <span>Success Stories</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <button class="icon-btn" aria-label="Open Menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b251d" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div class="logo-container" onclick="window.location.href='Register as Buyer.html'">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </div>
+
+        <div style="width: 32px;"></div> <!-- Spacer for symmetry -->
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- 1. Contact Header -->
+      <section class="contact-header">
+        <h1 class="contact-title">Contact Us</h1>
+        <p class="contact-subtitle">“Have a question, concern, or suggestion? We’d love to hear from you.”</p>
+        <p class="contact-desc">
+          You can reach out to the DARAWAT team anytime for assistance, feedback regarding local product discoveries, technical issues, or general inquiries. We are committed to connecting local producers and consumers seamlessly.
+        </p>
+      </section>
+
+      <!-- 2. Contact Information Cards -->
+      <section class="contact-info-grid">
+        <!-- Address Card -->
+        <div class="info-card">
+          <div class="info-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="info-card-title">Address</h3>
+          <p class="info-card-text">San Jose de Buenavista, Antique, Philippines</p>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="info-card">
+          <div class="info-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="info-card-title">Phone</h3>
+          <p class="info-card-text" id="contactPhoneDisplay">+63 (917) 555-0192</p>
+        </div>
+
+        <!-- Email Card -->
+        <div class="info-card">
+          <div class="info-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3 class="info-card-title">Email</h3>
+          <p class="info-card-text" id="contactEmailDisplay">support@darawat.ph</p>
+        </div>
+
+        <!-- Support Hours Card -->
+        <div class="info-card">
+          <div class="info-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="info-card-title">Support Hours</h3>
+          <p class="info-card-text">Monday – Friday<br>8:00 AM – 5:00 PM</p>
+        </div>
+      </section>
+
+      <!-- 3. Contact Form & 5. Location/Map + 6. Social Media Layout -->
+      <div class="contact-main-layout">
+        
+        <!-- Contact Form Card -->
+        <div class="contact-form-card">
+          <h2 class="section-heading">Send Us a Message</h2>
+          <p class="section-subheading">Fill out the form below and our support team will get back to you shortly.</p>
+
+          <div class="success-alert" id="successAlert">
+            ✓ Thank you! Your message has been sent successfully. We will get back to you soon.
+          </div>
+
+          <form id="contactForm" onsubmit="handleContactSubmit(event)" novalidate>
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="groupFullName">
+                <label class="form-label">Full Name <span>*</span></label>
+                <input type="text" id="fullName" class="form-input" placeholder="e.g. Juan Dela Cruz">
+                <span class="form-error">Please enter your full name.</span>
+              </div>
+
+              <div class="form-group" id="groupEmail">
+                <label class="form-label">Email Address <span>*</span></label>
+                <input type="email" id="email" class="form-input" placeholder="e.g. juandelacruz@example.com">
+                <span class="form-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid-2" style="margin-bottom: 16px;">
+              <div class="form-group" id="groupContactNo">
+                <label class="form-label">Contact Number <span>*</span></label>
+                <input type="text" id="contactNo" class="form-input" placeholder="e.g. 09171234567">
+                <span class="form-error">Please enter your contact number.</span>
+              </div>
+
+              <div class="form-group" id="groupUserType">
+                <label class="form-label">I am a <span>*</span></label>
+                <select id="userType" class="form-select">
+                  <option value="">Select User Type</option>
+                  <option value="Consumer">Consumer</option>
+                  <option value="Producer">Producer</option>
+                  <option value="Visitor">Visitor</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="form-error">Please select your user type.</span>
+              </div>
+            </div>
+
+            <div class="form-group" id="groupSubject" style="margin-bottom: 16px;">
+              <label class="form-label">Subject <span>*</span></label>
+              <input type="text" id="subject" class="form-input" placeholder="e.g. Inquiry about producer registration">
+              <span class="form-error">Please enter a subject.</span>
+            </div>
+
+            <div class="form-group" id="groupMessage" style="margin-bottom: 24px;">
+              <label class="form-label">Message <span>*</span></label>
+              <textarea id="message" class="form-textarea" rows="5" placeholder="Type your message or feedback here..."></textarea>
+              <span class="form-error">Please enter your message (at least 10 characters).</span>
+            </div>
+
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Side Card: Social Media & Location Map -->
+        <div class="contact-side-card">
+          
+          <!-- Social Media Block -->
+          <div class="side-block">
+            <h2 class="section-heading">Connect With Us</h2>
+            <p class="section-subheading" style="margin-bottom: 12px;">Follow our official channels for updates.</p>
+            
+            <div class="social-links-container">
+              <a href="https://facebook.com/darawat.ph" target="_blank" id="socialFacebookLink" class="social-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <span>Facebook Page</span>
+              </a>
+
+              <a href="https://m.me/darawat.ph" target="_blank" id="socialMessengerLink" class="social-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.25a9.255 9.255 0 0 0 3.86 7.488V22l3.66-2.008a11.168 11.168 0 0 0 2.48.278c5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1.05 12.385l-2.58-2.75-5.02 2.75 5.52-5.865 2.58 2.75 5.02-2.75-5.52 5.865z"/></svg>
+                <span>Messenger Chat</span>
+              </a>
+
+              <a href="mailto:support@darawat.ph" id="socialEmailLink" class="social-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>Direct Email Support</span>
+              </a>
+            </div>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border-color); margin: 24px 0;">
+
+          <!-- Location / Map Block -->
+          <div class="side-block">
+            <h2 class="section-heading">Our Location</h2>
+            <p class="section-subheading" style="margin-bottom: 12px;">San Jose de Buenavista, Antique</p>
+            
+            <div class="map-box">
+              <!-- Reusing map implementation / placeholder container matching system styling -->
+              <div class="map-placeholder-text">
+                📍 San Jose de Buenavista, Antique<br>
+                <span style="font-size: 10.5px; font-weight: 500; color: #94a3b8;">Interactive map integration ready</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 4. Frequently Asked Questions Section -->
+      <section class="faq-section">
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-subheading">Quick answers to common questions about using DARAWAT.</p>
+
+        <div class="faq-list">
+          
+          <!-- FAQ 1 -->
+          <div class="faq-item" id="faq-1">
+            <button class="faq-question" onclick="toggleFaq('faq-1')">
+              <span>How can I register as a producer?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              You can register by navigating to the producer registration section or seller dashboard option in your profile menu, where you can input your farm or business details, location, and upload produce listings.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item" id="faq-2">
+            <button class="faq-question" onclick="toggleFaq('faq-2')">
+              <span>How can I find producers near me?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              Use the location switcher at the top of your consumer dashboard to select your municipality or zone, or use the search and category filters to browse local producers in your community.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item" id="faq-3">
+            <button class="faq-question" onclick="toggleFaq('faq-3')">
+              <span>How do I report incorrect information?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              If you notice inaccurate product details or producer information, you can use the Contact Us form above with the subject "Incorrect Information Report" to notify our administrative team.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item" id="faq-4">
+            <button class="faq-question" onclick="toggleFaq('faq-4')">
+              <span>Can I update my producer information?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              Yes! Producers can easily update their active listings, stock quantities, and account settings directly through their Producer Dashboard and Account Settings pages.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item" id="faq-5">
+            <button class="faq-question" onclick="toggleFaq('faq-5')">
+              <span>How can I report a problem with the website?</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer">
+              For technical bugs or issues with the platform, please fill out our contact form selecting "Other" or emailing our support desk directly with details of the problem.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+  </div>
+
+  <script>
+    // Side Drawer Menu Toggle
+    function toggleMenu() {
+      const drawer = document.getElementById('sideDrawer');
+      const overlay = document.getElementById('menuOverlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // FAQ Expand/Collapse Toggle Function
+    function toggleFaq(faqId) {
+      const item = document.getElementById(faqId);
+      const isOpen = item.classList.contains('active');
+      
+      // Optional: Close all other FAQs for accordion behavior, or leave open. Let's toggle individually or close others:
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      if (!isOpen) {
+        item.classList.add('active');
+      }
+    }
+
+    // Contact Form Validation & Submission Handler (Ready for backend/API integration)
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      
+      let isValid = true;
+
+      // Reset previous error states
+      document.querySelectorAll('.form-group').forEach(group => {
+        group.classList.remove('error');
+      });
+      document.getElementById('successAlert').style.display = 'none';
+
+      // Get Field Values
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const contactNo = document.getElementById('contactNo').value.trim();
+      const userType = document.getElementById('userType').value;
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Validation Checks
+      if (!fullName) {
+        document.getElementById('groupFullName').classList.add('error');
+        isValid = false;
+      }
+
+      // Email Format Regex Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        document.getElementById('groupEmail').classList.add('error');
+        isValid = false;
+      }
+
+      if (!contactNo) {
+        document.getElementById('groupContactNo').classList.add('error');
+        isValid = false;
+      }
+
+      if (!userType) {
+        document.getElementById('groupUserType').classList.add('error');
+        isValid = false;
+      }
+
+      if (!subject) {
+        document.getElementById('groupSubject').classList.add('error');
+        isValid = false;
+      }
+
+      if (!message || message.length < 10) {
+        document.getElementById('groupMessage').classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        return; // Prevent submission if invalid
+      }
+
+      // Prepare payload object ready for future backend/API integration (e.g., fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) }))
+      const formData = {
+        fullName,
+        email,
+        contactNo,
+        userType,
+        subject,
+        message,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log("Form submission payload ready for API integration:", formData);
+
+      // Display Success Message & Reset Form
+      const successAlert = document.getElementById('successAlert');
+      successAlert.style.display = 'block';
+      document.getElementById('contactForm').reset();
+
+      // Scroll smoothly to success alert
+      successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+     // Dynamic Back Button Logic based on where the user came from
+    function goBackToSource() {
+      const fromPage = sessionStorage.getItem('darawat_from');
+      if (fromPage === 'welcome') {
+        window.location.href = 'Welcome Screen.html';
+      } else if (fromPage === 'buyer') {
+        window.location.href = 'Register as Buyer.html';
+      } else if (fromPage === 'seller') {
+        window.location.href = 'Register as Seller.html';
+      } else {
+        history.back();
+      }
+    }
+  </script>
+
+</body>
+</html>

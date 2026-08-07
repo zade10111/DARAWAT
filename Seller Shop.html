@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARAWAT - Seller Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg-page: #fafcf9;
+      --text-dark: #1b251d;
+      --text-muted: #64748b;
+      --primary-green: #064e29;
+      --primary-green-light: #0d6838;
+      --accent-green: #22c55e;
+      --border-color: #edf2ee;
+      --heart-red: #ef4444;
+      --bookmark-blue: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px; /* Extra space for bottom nav */
+    }
+
+    .content-area {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-area {
+        padding: 24px 32px;
+      }
+    }
+
+    /* Top Navbar */
+    .navbar {
+      background: #ffffff;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: auto;
+    }
+
+    /* Shop Hero Banner */
+    .shop-hero-card {
+      background: linear-gradient(90deg, #04381d 0%, #08522b 55%, #136939 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      color: #ffffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    @media (min-width: 768px) {
+      .shop-hero-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .shop-hero-content {
+      padding: 24px 20px;
+      z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+      .shop-hero-content {
+        padding: 36px 40px;
+      }
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .shop-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .shop-title {
+        font-size: 32px;
+      }
+    }
+
+    .shop-location {
+      font-size: 13px;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .shop-stats-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .shop-stat-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .shop-stat-box strong {
+      font-size: 14px;
+      font-weight: 800;
+      display: block;
+    }
+
+    .shop-hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+    }
+
+    @media (min-width: 768px) {
+      .shop-hero-image-wrapper {
+        width: 40%;
+        height: 220px;
+      }
+    }
+
+    .shop-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    /* Products Grid */
+    .shop-products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .shop-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .product-card-img-wrap {
+      width: 100%;
+      height: 160px;
+      position: relative;
+      background: #f1f5f9;
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .product-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .product-price {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .product-stock {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Back Link */
+    .back-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .back-nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: var(--primary-green);
+    }
+
+    .nav-item-icon {
+      width: 22px;
+      height: 22px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <a href="Register as Buyer.html" class="logo-container">
+          <svg class="logo-mark" viewBox="0 0 100 80" fill="none">
+            <path d="M25 40 C 10 20, 30 10, 50 35 C 70 60, 90 50, 75 30 C 60 10, 40 50, 25 40 Z" stroke="#0f4d2a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M45 25 C45 10, 35 5, 25 15 C35 25, 40 25, 45 25 Z" fill="#2e7d32"/>
+            <path d="M55 22 C65 10, 75 12, 70 25 C60 22, 58 20, 55 22 Z" fill="#4caf50"/>
+            <circle cx="35" cy="48" r="3" fill="#0f4d2a"/>
+            <path d="M60 52 Q 68 42, 78 50 Q 70 58, 60 52 Z" fill="#0277bd"/>
+          </svg>
+          <span class="brand-title">DARAWAT</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      
+      <a href="Product Details For Buyer.html" class="back-nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Product Details
+      </a>
+
+      <!-- Shop Hero Header Banner -->
+      <section class="shop-hero-card">
+        <div class="shop-hero-content">
+          <span class="verified-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+            VERIFIED PRODUCER SHOP
+          </span>
+          <h1 class="shop-title" id="shopName">Badiang Greens Farm</h1>
+          <div class="shop-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span id="shopLocationText">Badiang, San Jose de Buenavista (0.8 km away)</span>
+          </div>
+          
+          <div class="shop-stats-row">
+            <div class="shop-stat-box">
+              <strong id="shopActiveListingsCount">3</strong>
+              <span>Active Products</span>
+            </div>
+            <div class="shop-stat-box">
+              <strong id="shopPhoneText">0917-555-0192</strong>
+              <span>Contact Number</span>
+            </div>
+          </div>
+        </div>
+        <div class="shop-hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=600" alt="Farm Shop" class="shop-hero-img">
+        </div>
+      </section>
+
+      <!-- Seller's Products Catalog Section -->
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">All Products from this Shop</h2>
+        </div>
+
+        <div class="shop-products-grid" id="shopProductsGrid">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </section>
+
+    </main>
+
+   <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="Register as Seller.html" class="nav-item active">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="Seller Manage Buyers.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Messages</span>
+      </a>
+      <a href="Seller Products.html" class="nav-item">
+        <div class="center-fab">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <span>New Listing</span>
+      </a>
+      <a href="Seller Discoveries.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Discover</span>
+      </a>
+      <a href="Seller Profile.html" class="nav-item">
+        <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const storedShop = sessionStorage.getItem('selectedSellerShop');
+      
+      let sellerName = "Badiang Greens Farm";
+      let location = "Badiang, San Jose de Buenavista";
+      let distance = "0.8 km away";
+      let phone = "0917-555-0192";
+
+      if (storedShop) {
+        const shopData = JSON.parse(storedShop);
+        sellerName = shopData.sellerName || sellerName;
+        location = shopData.location || location;
+        distance = shopData.distance || distance;
+        phone = shopData.phone || phone;
+      }
+
+      document.getElementById('shopName').innerText = sellerName;
+      document.getElementById('shopLocationText').innerText = `${location} (${distance})`;
+      document.getElementById('shopPhoneText').innerText = phone;
+
+      // Mock catalog items for the shop
+      const shopProducts = [
+        {
+          id: 'prod-1',
+          productName: 'Fresh Organically Grown Pechay',
+          category: 'Leafy Vegetables',
+          price: '₱ 25.00',
+          unit: 'per bundle',
+          quantity: '50 bundles',
+          expiryDate: 'August 10, 2026',
+          description: 'Harvested fresh early morning. Grown using natural organic fertilizer without chemical pesticides.',
+          fulfillment: ['Farm Pickup', 'Local Delivery'],
+          location: location,
+          distance: distance,
+          phone: phone,
+          images: [
+            'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=800',
+            'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=800'
+          ],
+          sellerName: sellerName,
+          sellerId: 'seller-badiang'
+        },
+        {
+          id: 'prod-4',
+          productName: 'Fresh Local Kangkong (Water Spinach)',
+          category: 'Leafy Vegetables',
+          price: '₱ 20.00',
+          unit: 'per bundle',
+          quantity: '40 bundles',
+          expiryDate: 'August 11, 2026',
+          description: 'Crisp and freshly cut green kangkong. Perfect for sinigang and stir-fry dishes.',
+          fulfillment: ['Farm Pickup', 'Local Delivery'],
+          location: location,
+          distance: distance,
+          phone: phone,
+          images: [
+            'https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&q=80&w=800'
+          ],
+          sellerName: sellerName,
+          sellerId: 'seller-badiang'
+        },
+        {
+          id: 'prod-5',
+          productName: 'Fresh Organic Mustard Greens (Mustasa)',
+          category: 'Leafy Vegetables',
+          price: '₱ 30.00',
+          unit: 'per bundle',
+          quantity: '25 bundles',
+          expiryDate: 'August 09, 2026',
+          description: 'Pungent and flavorful mustasa leaves, excellent for pickling or fresh salads.',
+          fulfillment: ['Farm Pickup', 'Local Delivery'],
+          location: location,
+          distance: distance,
+          phone: phone,
+          images: [
+            'https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?auto=format&fit=crop&q=80&w=800'
+          ],
+          sellerName: sellerName,
+          sellerId: 'seller-badiang'
+        }
+      ];
+
+      document.getElementById('shopActiveListingsCount').innerText = shopProducts.length;
+
+      const gridContainer = document.getElementById('shopProductsGrid');
+      gridContainer.innerHTML = '';
+
+      shopProducts.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => {
+          sessionStorage.setItem('selectedProductDetail', JSON.stringify(prod));
+          window.location.href = 'Product Details For Buyer.html';
+        };
+
+        card.innerHTML = `
+          <div class="product-card-img-wrap">
+            <img src="${prod.images[0]}" alt="${prod.productName}" class="product-card-img">
+          </div>
+          <div class="product-card-body">
+            <span class="product-category-tag">${prod.category}</span>
+            <h3 class="product-name">${prod.productName}</h3>
+            <div class="product-price-row">
+              <span class="product-price">${prod.price} <span style="font-size:11px; font-weight:600; color:var(--text-muted);">${prod.unit}</span></span>
+              <span class="product-stock">Stock: ${prod.quantity}</span>
+            </div>
+          </div>
+        `;
+        gridContainer.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
